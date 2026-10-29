@@ -13,7 +13,8 @@ const dir = resolve(process.cwd(), process.cwd().endsWith('/api') ? '../../datab
 try {
   await pool.query('CREATE TABLE IF NOT EXISTS schema_migrations (name TEXT PRIMARY KEY, applied_at TIMESTAMPTZ NOT NULL DEFAULT now())');
   const already = new Set((await pool.query('SELECT name FROM schema_migrations')).rows.map((r) => r.name));
-  const names = (await readdir(dir)).filter((n) => n.endsWith('.sql')).sort();
+  const names = (await readdir(dir)).filter((n) => /^000[1-7]_.+\\.sql$/.test(n)).sort();
+  if (names.length !== 7) throw new Error(`Expected exactly 7 canonical migrations (0001–0007); found ${names.length}. Refusing to apply legacy or duplicate migration chains.`);
   for (const name of names) {
     if (already.has(name)) { console.log(`skip ${name}`); continue; }
     const sql = await readFile(resolve(dir, name), 'utf8');
