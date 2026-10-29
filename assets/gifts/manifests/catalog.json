@@ -1,0 +1,3980 @@
+{
+  "generatedAt": "2026-10-26T04:32:19.784Z",
+  "count": 120,
+  "categories": [
+    "flowers",
+    "reactions",
+    "celebrations",
+    "animals",
+    "fantasy",
+    "vehicles",
+    "music",
+    "luxury",
+    "sports",
+    "jamaican_culture",
+    "parish_pride",
+    "seasonal"
+  ],
+  "gifts": [
+    {
+      "id": "gift_flowers_hibiscus_1",
+      "name": "Hibiscus",
+      "description": "ZOVARA original flowers gift.",
+      "category": "flowers",
+      "priceCoins": 1,
+      "coinValue": 1,
+      "assets": {
+        "icon": "assets/gifts/gift_flowers_hibiscus_1/icon.svg",
+        "preview": "assets/gifts/gift_flowers_hibiscus_1/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_flowers_hibiscus_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_flowers_hibiscus_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Hibiscus"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_flowers_hibiscus_2",
+      "name": "Hibiscus Deluxe",
+      "description": "ZOVARA original flowers gift.",
+      "category": "flowers",
+      "priceCoins": 5,
+      "coinValue": 5,
+      "assets": {
+        "icon": "assets/gifts/gift_flowers_hibiscus_2/icon.svg",
+        "preview": "assets/gifts/gift_flowers_hibiscus_2/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_flowers_hibiscus_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_flowers_hibiscus_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Hibiscus Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_flowers_lignum-vitae-bloom_1",
+      "name": "Lignum Vitae Bloom",
+      "description": "ZOVARA original flowers gift.",
+      "category": "flowers",
+      "priceCoins": 10,
+      "coinValue": 10,
+      "assets": {
+        "icon": "assets/gifts/gift_flowers_lignum-vitae-bloom_1/icon.svg",
+        "preview": "assets/gifts/gift_flowers_lignum-vitae-bloom_1/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_flowers_lignum-vitae-bloom_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_flowers_lignum-vitae-bloom_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Lignum Vitae Bloom"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_flowers_lignum-vitae-bloom_2",
+      "name": "Lignum Vitae Bloom Deluxe",
+      "description": "ZOVARA original flowers gift.",
+      "category": "flowers",
+      "priceCoins": 25,
+      "coinValue": 25,
+      "assets": {
+        "icon": "assets/gifts/gift_flowers_lignum-vitae-bloom_2/icon.svg",
+        "preview": "assets/gifts/gift_flowers_lignum-vitae-bloom_2/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_flowers_lignum-vitae-bloom_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_flowers_lignum-vitae-bloom_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Lignum Vitae Bloom Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_flowers_orchid-spray_1",
+      "name": "Orchid Spray",
+      "description": "ZOVARA original flowers gift.",
+      "category": "flowers",
+      "priceCoins": 99,
+      "coinValue": 99,
+      "assets": {
+        "icon": "assets/gifts/gift_flowers_orchid-spray_1/icon.svg",
+        "preview": "assets/gifts/gift_flowers_orchid-spray_1/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_flowers_orchid-spray_1/anim.json",
+        "sound": "assets/gifts/gift_flowers_orchid-spray_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_flowers_orchid-spray_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Orchid Spray"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_flowers_orchid-spray_2",
+      "name": "Orchid Spray Deluxe",
+      "description": "ZOVARA original flowers gift.",
+      "category": "flowers",
+      "priceCoins": 199,
+      "coinValue": 199,
+      "assets": {
+        "icon": "assets/gifts/gift_flowers_orchid-spray_2/icon.svg",
+        "preview": "assets/gifts/gift_flowers_orchid-spray_2/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_flowers_orchid-spray_2/anim.json",
+        "sound": "assets/gifts/gift_flowers_orchid-spray_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_flowers_orchid-spray_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Orchid Spray Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_flowers_sunflower-burst_1",
+      "name": "Sunflower Burst",
+      "description": "ZOVARA original flowers gift.",
+      "category": "flowers",
+      "priceCoins": 499,
+      "coinValue": 499,
+      "assets": {
+        "icon": "assets/gifts/gift_flowers_sunflower-burst_1/icon.svg",
+        "preview": "assets/gifts/gift_flowers_sunflower-burst_1/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_flowers_sunflower-burst_1/anim.json",
+        "sound": "assets/gifts/gift_flowers_sunflower-burst_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_flowers_sunflower-burst_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Sunflower Burst"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_flowers_sunflower-burst_2",
+      "name": "Sunflower Burst Deluxe",
+      "description": "ZOVARA original flowers gift.",
+      "category": "flowers",
+      "priceCoins": 999,
+      "coinValue": 999,
+      "assets": {
+        "icon": "assets/gifts/gift_flowers_sunflower-burst_2/icon.svg",
+        "preview": "assets/gifts/gift_flowers_sunflower-burst_2/preview.webp",
+        "model3d": "assets/gifts/gift_flowers_sunflower-burst_2/model.glb",
+        "animation": "assets/gifts/gift_flowers_sunflower-burst_2/anim.json",
+        "sound": "assets/gifts/gift_flowers_sunflower-burst_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_flowers_sunflower-burst_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Sunflower Burst Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_flowers_rose-cascade_1",
+      "name": "Rose Cascade",
+      "description": "ZOVARA original flowers gift.",
+      "category": "flowers",
+      "priceCoins": 4999,
+      "coinValue": 4999,
+      "assets": {
+        "icon": "assets/gifts/gift_flowers_rose-cascade_1/icon.svg",
+        "preview": "assets/gifts/gift_flowers_rose-cascade_1/preview.webp",
+        "model3d": "assets/gifts/gift_flowers_rose-cascade_1/model.glb",
+        "animation": "assets/gifts/gift_flowers_rose-cascade_1/anim.json",
+        "sound": "assets/gifts/gift_flowers_rose-cascade_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_flowers_rose-cascade_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Rose Cascade"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_flowers_rose-cascade_2",
+      "name": "Rose Cascade Deluxe",
+      "description": "ZOVARA original flowers gift.",
+      "category": "flowers",
+      "priceCoins": 9999,
+      "coinValue": 9999,
+      "assets": {
+        "icon": "assets/gifts/gift_flowers_rose-cascade_2/icon.svg",
+        "preview": "assets/gifts/gift_flowers_rose-cascade_2/preview.webp",
+        "model3d": "assets/gifts/gift_flowers_rose-cascade_2/model.glb",
+        "animation": "assets/gifts/gift_flowers_rose-cascade_2/anim.json",
+        "sound": "assets/gifts/gift_flowers_rose-cascade_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_flowers_rose-cascade_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Rose Cascade Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_reactions_spark_1",
+      "name": "Spark",
+      "description": "ZOVARA original reactions gift.",
+      "category": "reactions",
+      "priceCoins": 1,
+      "coinValue": 1,
+      "assets": {
+        "icon": "assets/gifts/gift_reactions_spark_1/icon.svg",
+        "preview": "assets/gifts/gift_reactions_spark_1/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_reactions_spark_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_reactions_spark_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Spark"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_reactions_spark_2",
+      "name": "Spark Deluxe",
+      "description": "ZOVARA original reactions gift.",
+      "category": "reactions",
+      "priceCoins": 5,
+      "coinValue": 5,
+      "assets": {
+        "icon": "assets/gifts/gift_reactions_spark_2/icon.svg",
+        "preview": "assets/gifts/gift_reactions_spark_2/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_reactions_spark_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_reactions_spark_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Spark Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_reactions_heart-pulse_1",
+      "name": "Heart Pulse",
+      "description": "ZOVARA original reactions gift.",
+      "category": "reactions",
+      "priceCoins": 10,
+      "coinValue": 10,
+      "assets": {
+        "icon": "assets/gifts/gift_reactions_heart-pulse_1/icon.svg",
+        "preview": "assets/gifts/gift_reactions_heart-pulse_1/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_reactions_heart-pulse_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_reactions_heart-pulse_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Heart Pulse"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_reactions_heart-pulse_2",
+      "name": "Heart Pulse Deluxe",
+      "description": "ZOVARA original reactions gift.",
+      "category": "reactions",
+      "priceCoins": 25,
+      "coinValue": 25,
+      "assets": {
+        "icon": "assets/gifts/gift_reactions_heart-pulse_2/icon.svg",
+        "preview": "assets/gifts/gift_reactions_heart-pulse_2/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_reactions_heart-pulse_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_reactions_heart-pulse_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Heart Pulse Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_reactions_wow-wave_1",
+      "name": "Wow Wave",
+      "description": "ZOVARA original reactions gift.",
+      "category": "reactions",
+      "priceCoins": 99,
+      "coinValue": 99,
+      "assets": {
+        "icon": "assets/gifts/gift_reactions_wow-wave_1/icon.svg",
+        "preview": "assets/gifts/gift_reactions_wow-wave_1/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_reactions_wow-wave_1/anim.json",
+        "sound": "assets/gifts/gift_reactions_wow-wave_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_reactions_wow-wave_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Wow Wave"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_reactions_wow-wave_2",
+      "name": "Wow Wave Deluxe",
+      "description": "ZOVARA original reactions gift.",
+      "category": "reactions",
+      "priceCoins": 199,
+      "coinValue": 199,
+      "assets": {
+        "icon": "assets/gifts/gift_reactions_wow-wave_2/icon.svg",
+        "preview": "assets/gifts/gift_reactions_wow-wave_2/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_reactions_wow-wave_2/anim.json",
+        "sound": "assets/gifts/gift_reactions_wow-wave_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_reactions_wow-wave_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Wow Wave Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_reactions_clap-storm_1",
+      "name": "Clap Storm",
+      "description": "ZOVARA original reactions gift.",
+      "category": "reactions",
+      "priceCoins": 499,
+      "coinValue": 499,
+      "assets": {
+        "icon": "assets/gifts/gift_reactions_clap-storm_1/icon.svg",
+        "preview": "assets/gifts/gift_reactions_clap-storm_1/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_reactions_clap-storm_1/anim.json",
+        "sound": "assets/gifts/gift_reactions_clap-storm_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_reactions_clap-storm_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Clap Storm"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_reactions_clap-storm_2",
+      "name": "Clap Storm Deluxe",
+      "description": "ZOVARA original reactions gift.",
+      "category": "reactions",
+      "priceCoins": 999,
+      "coinValue": 999,
+      "assets": {
+        "icon": "assets/gifts/gift_reactions_clap-storm_2/icon.svg",
+        "preview": "assets/gifts/gift_reactions_clap-storm_2/preview.webp",
+        "model3d": "assets/gifts/gift_reactions_clap-storm_2/model.glb",
+        "animation": "assets/gifts/gift_reactions_clap-storm_2/anim.json",
+        "sound": "assets/gifts/gift_reactions_clap-storm_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_reactions_clap-storm_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Clap Storm Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_reactions_fire-tap_1",
+      "name": "Fire Tap",
+      "description": "ZOVARA original reactions gift.",
+      "category": "reactions",
+      "priceCoins": 4999,
+      "coinValue": 4999,
+      "assets": {
+        "icon": "assets/gifts/gift_reactions_fire-tap_1/icon.svg",
+        "preview": "assets/gifts/gift_reactions_fire-tap_1/preview.webp",
+        "model3d": "assets/gifts/gift_reactions_fire-tap_1/model.glb",
+        "animation": "assets/gifts/gift_reactions_fire-tap_1/anim.json",
+        "sound": "assets/gifts/gift_reactions_fire-tap_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_reactions_fire-tap_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Fire Tap"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_reactions_fire-tap_2",
+      "name": "Fire Tap Deluxe",
+      "description": "ZOVARA original reactions gift.",
+      "category": "reactions",
+      "priceCoins": 9999,
+      "coinValue": 9999,
+      "assets": {
+        "icon": "assets/gifts/gift_reactions_fire-tap_2/icon.svg",
+        "preview": "assets/gifts/gift_reactions_fire-tap_2/preview.webp",
+        "model3d": "assets/gifts/gift_reactions_fire-tap_2/model.glb",
+        "animation": "assets/gifts/gift_reactions_fire-tap_2/anim.json",
+        "sound": "assets/gifts/gift_reactions_fire-tap_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_reactions_fire-tap_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Fire Tap Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_celebrations_confetti-pop_1",
+      "name": "Confetti Pop",
+      "description": "ZOVARA original celebrations gift.",
+      "category": "celebrations",
+      "priceCoins": 1,
+      "coinValue": 1,
+      "assets": {
+        "icon": "assets/gifts/gift_celebrations_confetti-pop_1/icon.svg",
+        "preview": "assets/gifts/gift_celebrations_confetti-pop_1/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_celebrations_confetti-pop_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_celebrations_confetti-pop_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Confetti Pop"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_celebrations_confetti-pop_2",
+      "name": "Confetti Pop Deluxe",
+      "description": "ZOVARA original celebrations gift.",
+      "category": "celebrations",
+      "priceCoins": 5,
+      "coinValue": 5,
+      "assets": {
+        "icon": "assets/gifts/gift_celebrations_confetti-pop_2/icon.svg",
+        "preview": "assets/gifts/gift_celebrations_confetti-pop_2/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_celebrations_confetti-pop_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_celebrations_confetti-pop_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Confetti Pop Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_celebrations_fireworks_1",
+      "name": "Fireworks",
+      "description": "ZOVARA original celebrations gift.",
+      "category": "celebrations",
+      "priceCoins": 10,
+      "coinValue": 10,
+      "assets": {
+        "icon": "assets/gifts/gift_celebrations_fireworks_1/icon.svg",
+        "preview": "assets/gifts/gift_celebrations_fireworks_1/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_celebrations_fireworks_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_celebrations_fireworks_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Fireworks"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_celebrations_fireworks_2",
+      "name": "Fireworks Deluxe",
+      "description": "ZOVARA original celebrations gift.",
+      "category": "celebrations",
+      "priceCoins": 25,
+      "coinValue": 25,
+      "assets": {
+        "icon": "assets/gifts/gift_celebrations_fireworks_2/icon.svg",
+        "preview": "assets/gifts/gift_celebrations_fireworks_2/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_celebrations_fireworks_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_celebrations_fireworks_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Fireworks Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_celebrations_victory-horn_1",
+      "name": "Victory Horn",
+      "description": "ZOVARA original celebrations gift.",
+      "category": "celebrations",
+      "priceCoins": 99,
+      "coinValue": 99,
+      "assets": {
+        "icon": "assets/gifts/gift_celebrations_victory-horn_1/icon.svg",
+        "preview": "assets/gifts/gift_celebrations_victory-horn_1/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_celebrations_victory-horn_1/anim.json",
+        "sound": "assets/gifts/gift_celebrations_victory-horn_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_celebrations_victory-horn_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Victory Horn"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_celebrations_victory-horn_2",
+      "name": "Victory Horn Deluxe",
+      "description": "ZOVARA original celebrations gift.",
+      "category": "celebrations",
+      "priceCoins": 199,
+      "coinValue": 199,
+      "assets": {
+        "icon": "assets/gifts/gift_celebrations_victory-horn_2/icon.svg",
+        "preview": "assets/gifts/gift_celebrations_victory-horn_2/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_celebrations_victory-horn_2/anim.json",
+        "sound": "assets/gifts/gift_celebrations_victory-horn_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_celebrations_victory-horn_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Victory Horn Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_celebrations_cake-tower_1",
+      "name": "Cake Tower",
+      "description": "ZOVARA original celebrations gift.",
+      "category": "celebrations",
+      "priceCoins": 499,
+      "coinValue": 499,
+      "assets": {
+        "icon": "assets/gifts/gift_celebrations_cake-tower_1/icon.svg",
+        "preview": "assets/gifts/gift_celebrations_cake-tower_1/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_celebrations_cake-tower_1/anim.json",
+        "sound": "assets/gifts/gift_celebrations_cake-tower_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_celebrations_cake-tower_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Cake Tower"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_celebrations_cake-tower_2",
+      "name": "Cake Tower Deluxe",
+      "description": "ZOVARA original celebrations gift.",
+      "category": "celebrations",
+      "priceCoins": 999,
+      "coinValue": 999,
+      "assets": {
+        "icon": "assets/gifts/gift_celebrations_cake-tower_2/icon.svg",
+        "preview": "assets/gifts/gift_celebrations_cake-tower_2/preview.webp",
+        "model3d": "assets/gifts/gift_celebrations_cake-tower_2/model.glb",
+        "animation": "assets/gifts/gift_celebrations_cake-tower_2/anim.json",
+        "sound": "assets/gifts/gift_celebrations_cake-tower_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_celebrations_cake-tower_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Cake Tower Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_celebrations_golden-toast_1",
+      "name": "Golden Toast",
+      "description": "ZOVARA original celebrations gift.",
+      "category": "celebrations",
+      "priceCoins": 4999,
+      "coinValue": 4999,
+      "assets": {
+        "icon": "assets/gifts/gift_celebrations_golden-toast_1/icon.svg",
+        "preview": "assets/gifts/gift_celebrations_golden-toast_1/preview.webp",
+        "model3d": "assets/gifts/gift_celebrations_golden-toast_1/model.glb",
+        "animation": "assets/gifts/gift_celebrations_golden-toast_1/anim.json",
+        "sound": "assets/gifts/gift_celebrations_golden-toast_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_celebrations_golden-toast_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Golden Toast"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_celebrations_golden-toast_2",
+      "name": "Golden Toast Deluxe",
+      "description": "ZOVARA original celebrations gift.",
+      "category": "celebrations",
+      "priceCoins": 9999,
+      "coinValue": 9999,
+      "assets": {
+        "icon": "assets/gifts/gift_celebrations_golden-toast_2/icon.svg",
+        "preview": "assets/gifts/gift_celebrations_golden-toast_2/preview.webp",
+        "model3d": "assets/gifts/gift_celebrations_golden-toast_2/model.glb",
+        "animation": "assets/gifts/gift_celebrations_golden-toast_2/anim.json",
+        "sound": "assets/gifts/gift_celebrations_golden-toast_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_celebrations_golden-toast_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Golden Toast Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_animals_doctor-bird_1",
+      "name": "Doctor Bird",
+      "description": "ZOVARA original animals gift.",
+      "category": "animals",
+      "priceCoins": 1,
+      "coinValue": 1,
+      "assets": {
+        "icon": "assets/gifts/gift_animals_doctor-bird_1/icon.svg",
+        "preview": "assets/gifts/gift_animals_doctor-bird_1/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_animals_doctor-bird_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_animals_doctor-bird_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Doctor Bird"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_animals_doctor-bird_2",
+      "name": "Doctor Bird Deluxe",
+      "description": "ZOVARA original animals gift.",
+      "category": "animals",
+      "priceCoins": 5,
+      "coinValue": 5,
+      "assets": {
+        "icon": "assets/gifts/gift_animals_doctor-bird_2/icon.svg",
+        "preview": "assets/gifts/gift_animals_doctor-bird_2/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_animals_doctor-bird_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_animals_doctor-bird_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Doctor Bird Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_animals_mongoose-dash_1",
+      "name": "Mongoose Dash",
+      "description": "ZOVARA original animals gift.",
+      "category": "animals",
+      "priceCoins": 10,
+      "coinValue": 10,
+      "assets": {
+        "icon": "assets/gifts/gift_animals_mongoose-dash_1/icon.svg",
+        "preview": "assets/gifts/gift_animals_mongoose-dash_1/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_animals_mongoose-dash_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_animals_mongoose-dash_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Mongoose Dash"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_animals_mongoose-dash_2",
+      "name": "Mongoose Dash Deluxe",
+      "description": "ZOVARA original animals gift.",
+      "category": "animals",
+      "priceCoins": 25,
+      "coinValue": 25,
+      "assets": {
+        "icon": "assets/gifts/gift_animals_mongoose-dash_2/icon.svg",
+        "preview": "assets/gifts/gift_animals_mongoose-dash_2/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_animals_mongoose-dash_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_animals_mongoose-dash_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Mongoose Dash Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_animals_sea-turtle_1",
+      "name": "Sea Turtle",
+      "description": "ZOVARA original animals gift.",
+      "category": "animals",
+      "priceCoins": 99,
+      "coinValue": 99,
+      "assets": {
+        "icon": "assets/gifts/gift_animals_sea-turtle_1/icon.svg",
+        "preview": "assets/gifts/gift_animals_sea-turtle_1/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_animals_sea-turtle_1/anim.json",
+        "sound": "assets/gifts/gift_animals_sea-turtle_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_animals_sea-turtle_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Sea Turtle"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_animals_sea-turtle_2",
+      "name": "Sea Turtle Deluxe",
+      "description": "ZOVARA original animals gift.",
+      "category": "animals",
+      "priceCoins": 199,
+      "coinValue": 199,
+      "assets": {
+        "icon": "assets/gifts/gift_animals_sea-turtle_2/icon.svg",
+        "preview": "assets/gifts/gift_animals_sea-turtle_2/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_animals_sea-turtle_2/anim.json",
+        "sound": "assets/gifts/gift_animals_sea-turtle_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_animals_sea-turtle_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Sea Turtle Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_animals_parrot-flock_1",
+      "name": "Parrot Flock",
+      "description": "ZOVARA original animals gift.",
+      "category": "animals",
+      "priceCoins": 499,
+      "coinValue": 499,
+      "assets": {
+        "icon": "assets/gifts/gift_animals_parrot-flock_1/icon.svg",
+        "preview": "assets/gifts/gift_animals_parrot-flock_1/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_animals_parrot-flock_1/anim.json",
+        "sound": "assets/gifts/gift_animals_parrot-flock_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_animals_parrot-flock_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Parrot Flock"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_animals_parrot-flock_2",
+      "name": "Parrot Flock Deluxe",
+      "description": "ZOVARA original animals gift.",
+      "category": "animals",
+      "priceCoins": 999,
+      "coinValue": 999,
+      "assets": {
+        "icon": "assets/gifts/gift_animals_parrot-flock_2/icon.svg",
+        "preview": "assets/gifts/gift_animals_parrot-flock_2/preview.webp",
+        "model3d": "assets/gifts/gift_animals_parrot-flock_2/model.glb",
+        "animation": "assets/gifts/gift_animals_parrot-flock_2/anim.json",
+        "sound": "assets/gifts/gift_animals_parrot-flock_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_animals_parrot-flock_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Parrot Flock Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_animals_lion-roar_1",
+      "name": "Lion Roar",
+      "description": "ZOVARA original animals gift.",
+      "category": "animals",
+      "priceCoins": 4999,
+      "coinValue": 4999,
+      "assets": {
+        "icon": "assets/gifts/gift_animals_lion-roar_1/icon.svg",
+        "preview": "assets/gifts/gift_animals_lion-roar_1/preview.webp",
+        "model3d": "assets/gifts/gift_animals_lion-roar_1/model.glb",
+        "animation": "assets/gifts/gift_animals_lion-roar_1/anim.json",
+        "sound": "assets/gifts/gift_animals_lion-roar_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_animals_lion-roar_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Lion Roar"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_animals_lion-roar_2",
+      "name": "Lion Roar Deluxe",
+      "description": "ZOVARA original animals gift.",
+      "category": "animals",
+      "priceCoins": 9999,
+      "coinValue": 9999,
+      "assets": {
+        "icon": "assets/gifts/gift_animals_lion-roar_2/icon.svg",
+        "preview": "assets/gifts/gift_animals_lion-roar_2/preview.webp",
+        "model3d": "assets/gifts/gift_animals_lion-roar_2/model.glb",
+        "animation": "assets/gifts/gift_animals_lion-roar_2/anim.json",
+        "sound": "assets/gifts/gift_animals_lion-roar_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_animals_lion-roar_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Lion Roar Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_fantasy_phoenix-rise_1",
+      "name": "Phoenix Rise",
+      "description": "ZOVARA original fantasy gift.",
+      "category": "fantasy",
+      "priceCoins": 1,
+      "coinValue": 1,
+      "assets": {
+        "icon": "assets/gifts/gift_fantasy_phoenix-rise_1/icon.svg",
+        "preview": "assets/gifts/gift_fantasy_phoenix-rise_1/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_fantasy_phoenix-rise_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_fantasy_phoenix-rise_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Phoenix Rise"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_fantasy_phoenix-rise_2",
+      "name": "Phoenix Rise Deluxe",
+      "description": "ZOVARA original fantasy gift.",
+      "category": "fantasy",
+      "priceCoins": 5,
+      "coinValue": 5,
+      "assets": {
+        "icon": "assets/gifts/gift_fantasy_phoenix-rise_2/icon.svg",
+        "preview": "assets/gifts/gift_fantasy_phoenix-rise_2/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_fantasy_phoenix-rise_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_fantasy_phoenix-rise_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Phoenix Rise Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_fantasy_dragon-flame_1",
+      "name": "Dragon Flame",
+      "description": "ZOVARA original fantasy gift.",
+      "category": "fantasy",
+      "priceCoins": 10,
+      "coinValue": 10,
+      "assets": {
+        "icon": "assets/gifts/gift_fantasy_dragon-flame_1/icon.svg",
+        "preview": "assets/gifts/gift_fantasy_dragon-flame_1/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_fantasy_dragon-flame_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_fantasy_dragon-flame_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Dragon Flame"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_fantasy_dragon-flame_2",
+      "name": "Dragon Flame Deluxe",
+      "description": "ZOVARA original fantasy gift.",
+      "category": "fantasy",
+      "priceCoins": 25,
+      "coinValue": 25,
+      "assets": {
+        "icon": "assets/gifts/gift_fantasy_dragon-flame_2/icon.svg",
+        "preview": "assets/gifts/gift_fantasy_dragon-flame_2/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_fantasy_dragon-flame_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_fantasy_dragon-flame_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Dragon Flame Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_fantasy_crystal-portal_1",
+      "name": "Crystal Portal",
+      "description": "ZOVARA original fantasy gift.",
+      "category": "fantasy",
+      "priceCoins": 99,
+      "coinValue": 99,
+      "assets": {
+        "icon": "assets/gifts/gift_fantasy_crystal-portal_1/icon.svg",
+        "preview": "assets/gifts/gift_fantasy_crystal-portal_1/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_fantasy_crystal-portal_1/anim.json",
+        "sound": "assets/gifts/gift_fantasy_crystal-portal_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_fantasy_crystal-portal_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Crystal Portal"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_fantasy_crystal-portal_2",
+      "name": "Crystal Portal Deluxe",
+      "description": "ZOVARA original fantasy gift.",
+      "category": "fantasy",
+      "priceCoins": 199,
+      "coinValue": 199,
+      "assets": {
+        "icon": "assets/gifts/gift_fantasy_crystal-portal_2/icon.svg",
+        "preview": "assets/gifts/gift_fantasy_crystal-portal_2/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_fantasy_crystal-portal_2/anim.json",
+        "sound": "assets/gifts/gift_fantasy_crystal-portal_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_fantasy_crystal-portal_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Crystal Portal Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_fantasy_star-djinn_1",
+      "name": "Star Djinn",
+      "description": "ZOVARA original fantasy gift.",
+      "category": "fantasy",
+      "priceCoins": 499,
+      "coinValue": 499,
+      "assets": {
+        "icon": "assets/gifts/gift_fantasy_star-djinn_1/icon.svg",
+        "preview": "assets/gifts/gift_fantasy_star-djinn_1/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_fantasy_star-djinn_1/anim.json",
+        "sound": "assets/gifts/gift_fantasy_star-djinn_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_fantasy_star-djinn_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Star Djinn"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_fantasy_star-djinn_2",
+      "name": "Star Djinn Deluxe",
+      "description": "ZOVARA original fantasy gift.",
+      "category": "fantasy",
+      "priceCoins": 999,
+      "coinValue": 999,
+      "assets": {
+        "icon": "assets/gifts/gift_fantasy_star-djinn_2/icon.svg",
+        "preview": "assets/gifts/gift_fantasy_star-djinn_2/preview.webp",
+        "model3d": "assets/gifts/gift_fantasy_star-djinn_2/model.glb",
+        "animation": "assets/gifts/gift_fantasy_star-djinn_2/anim.json",
+        "sound": "assets/gifts/gift_fantasy_star-djinn_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_fantasy_star-djinn_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Star Djinn Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_fantasy_nebula-crown_1",
+      "name": "Nebula Crown",
+      "description": "ZOVARA original fantasy gift.",
+      "category": "fantasy",
+      "priceCoins": 4999,
+      "coinValue": 4999,
+      "assets": {
+        "icon": "assets/gifts/gift_fantasy_nebula-crown_1/icon.svg",
+        "preview": "assets/gifts/gift_fantasy_nebula-crown_1/preview.webp",
+        "model3d": "assets/gifts/gift_fantasy_nebula-crown_1/model.glb",
+        "animation": "assets/gifts/gift_fantasy_nebula-crown_1/anim.json",
+        "sound": "assets/gifts/gift_fantasy_nebula-crown_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_fantasy_nebula-crown_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Nebula Crown"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_fantasy_nebula-crown_2",
+      "name": "Nebula Crown Deluxe",
+      "description": "ZOVARA original fantasy gift.",
+      "category": "fantasy",
+      "priceCoins": 9999,
+      "coinValue": 9999,
+      "assets": {
+        "icon": "assets/gifts/gift_fantasy_nebula-crown_2/icon.svg",
+        "preview": "assets/gifts/gift_fantasy_nebula-crown_2/preview.webp",
+        "model3d": "assets/gifts/gift_fantasy_nebula-crown_2/model.glb",
+        "animation": "assets/gifts/gift_fantasy_nebula-crown_2/anim.json",
+        "sound": "assets/gifts/gift_fantasy_nebula-crown_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_fantasy_nebula-crown_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Nebula Crown Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_vehicles_route-taxi_1",
+      "name": "Route Taxi",
+      "description": "ZOVARA original vehicles gift.",
+      "category": "vehicles",
+      "priceCoins": 1,
+      "coinValue": 1,
+      "assets": {
+        "icon": "assets/gifts/gift_vehicles_route-taxi_1/icon.svg",
+        "preview": "assets/gifts/gift_vehicles_route-taxi_1/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_vehicles_route-taxi_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_vehicles_route-taxi_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Route Taxi"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_vehicles_route-taxi_2",
+      "name": "Route Taxi Deluxe",
+      "description": "ZOVARA original vehicles gift.",
+      "category": "vehicles",
+      "priceCoins": 5,
+      "coinValue": 5,
+      "assets": {
+        "icon": "assets/gifts/gift_vehicles_route-taxi_2/icon.svg",
+        "preview": "assets/gifts/gift_vehicles_route-taxi_2/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_vehicles_route-taxi_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_vehicles_route-taxi_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Route Taxi Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_vehicles_speedboat_1",
+      "name": "Speedboat",
+      "description": "ZOVARA original vehicles gift.",
+      "category": "vehicles",
+      "priceCoins": 10,
+      "coinValue": 10,
+      "assets": {
+        "icon": "assets/gifts/gift_vehicles_speedboat_1/icon.svg",
+        "preview": "assets/gifts/gift_vehicles_speedboat_1/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_vehicles_speedboat_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_vehicles_speedboat_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Speedboat"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_vehicles_speedboat_2",
+      "name": "Speedboat Deluxe",
+      "description": "ZOVARA original vehicles gift.",
+      "category": "vehicles",
+      "priceCoins": 25,
+      "coinValue": 25,
+      "assets": {
+        "icon": "assets/gifts/gift_vehicles_speedboat_2/icon.svg",
+        "preview": "assets/gifts/gift_vehicles_speedboat_2/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_vehicles_speedboat_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_vehicles_speedboat_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Speedboat Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_vehicles_classic-convertible_1",
+      "name": "Classic Convertible",
+      "description": "ZOVARA original vehicles gift.",
+      "category": "vehicles",
+      "priceCoins": 99,
+      "coinValue": 99,
+      "assets": {
+        "icon": "assets/gifts/gift_vehicles_classic-convertible_1/icon.svg",
+        "preview": "assets/gifts/gift_vehicles_classic-convertible_1/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_vehicles_classic-convertible_1/anim.json",
+        "sound": "assets/gifts/gift_vehicles_classic-convertible_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_vehicles_classic-convertible_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Classic Convertible"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_vehicles_classic-convertible_2",
+      "name": "Classic Convertible Deluxe",
+      "description": "ZOVARA original vehicles gift.",
+      "category": "vehicles",
+      "priceCoins": 199,
+      "coinValue": 199,
+      "assets": {
+        "icon": "assets/gifts/gift_vehicles_classic-convertible_2/icon.svg",
+        "preview": "assets/gifts/gift_vehicles_classic-convertible_2/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_vehicles_classic-convertible_2/anim.json",
+        "sound": "assets/gifts/gift_vehicles_classic-convertible_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_vehicles_classic-convertible_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Classic Convertible Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_vehicles_sky-cruiser_1",
+      "name": "Sky Cruiser",
+      "description": "ZOVARA original vehicles gift.",
+      "category": "vehicles",
+      "priceCoins": 499,
+      "coinValue": 499,
+      "assets": {
+        "icon": "assets/gifts/gift_vehicles_sky-cruiser_1/icon.svg",
+        "preview": "assets/gifts/gift_vehicles_sky-cruiser_1/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_vehicles_sky-cruiser_1/anim.json",
+        "sound": "assets/gifts/gift_vehicles_sky-cruiser_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_vehicles_sky-cruiser_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Sky Cruiser"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_vehicles_sky-cruiser_2",
+      "name": "Sky Cruiser Deluxe",
+      "description": "ZOVARA original vehicles gift.",
+      "category": "vehicles",
+      "priceCoins": 999,
+      "coinValue": 999,
+      "assets": {
+        "icon": "assets/gifts/gift_vehicles_sky-cruiser_2/icon.svg",
+        "preview": "assets/gifts/gift_vehicles_sky-cruiser_2/preview.webp",
+        "model3d": "assets/gifts/gift_vehicles_sky-cruiser_2/model.glb",
+        "animation": "assets/gifts/gift_vehicles_sky-cruiser_2/anim.json",
+        "sound": "assets/gifts/gift_vehicles_sky-cruiser_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_vehicles_sky-cruiser_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Sky Cruiser Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_vehicles_rally-car_1",
+      "name": "Rally Car",
+      "description": "ZOVARA original vehicles gift.",
+      "category": "vehicles",
+      "priceCoins": 4999,
+      "coinValue": 4999,
+      "assets": {
+        "icon": "assets/gifts/gift_vehicles_rally-car_1/icon.svg",
+        "preview": "assets/gifts/gift_vehicles_rally-car_1/preview.webp",
+        "model3d": "assets/gifts/gift_vehicles_rally-car_1/model.glb",
+        "animation": "assets/gifts/gift_vehicles_rally-car_1/anim.json",
+        "sound": "assets/gifts/gift_vehicles_rally-car_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_vehicles_rally-car_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Rally Car"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_vehicles_rally-car_2",
+      "name": "Rally Car Deluxe",
+      "description": "ZOVARA original vehicles gift.",
+      "category": "vehicles",
+      "priceCoins": 9999,
+      "coinValue": 9999,
+      "assets": {
+        "icon": "assets/gifts/gift_vehicles_rally-car_2/icon.svg",
+        "preview": "assets/gifts/gift_vehicles_rally-car_2/preview.webp",
+        "model3d": "assets/gifts/gift_vehicles_rally-car_2/model.glb",
+        "animation": "assets/gifts/gift_vehicles_rally-car_2/anim.json",
+        "sound": "assets/gifts/gift_vehicles_rally-car_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_vehicles_rally-car_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Rally Car Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_music_riddim-drop_1",
+      "name": "Riddim Drop",
+      "description": "ZOVARA original music gift.",
+      "category": "music",
+      "priceCoins": 1,
+      "coinValue": 1,
+      "assets": {
+        "icon": "assets/gifts/gift_music_riddim-drop_1/icon.svg",
+        "preview": "assets/gifts/gift_music_riddim-drop_1/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_music_riddim-drop_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_music_riddim-drop_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Riddim Drop"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_music_riddim-drop_2",
+      "name": "Riddim Drop Deluxe",
+      "description": "ZOVARA original music gift.",
+      "category": "music",
+      "priceCoins": 5,
+      "coinValue": 5,
+      "assets": {
+        "icon": "assets/gifts/gift_music_riddim-drop_2/icon.svg",
+        "preview": "assets/gifts/gift_music_riddim-drop_2/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_music_riddim-drop_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_music_riddim-drop_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Riddim Drop Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_music_sound-system_1",
+      "name": "Sound System",
+      "description": "ZOVARA original music gift.",
+      "category": "music",
+      "priceCoins": 10,
+      "coinValue": 10,
+      "assets": {
+        "icon": "assets/gifts/gift_music_sound-system_1/icon.svg",
+        "preview": "assets/gifts/gift_music_sound-system_1/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_music_sound-system_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_music_sound-system_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Sound System"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_music_sound-system_2",
+      "name": "Sound System Deluxe",
+      "description": "ZOVARA original music gift.",
+      "category": "music",
+      "priceCoins": 25,
+      "coinValue": 25,
+      "assets": {
+        "icon": "assets/gifts/gift_music_sound-system_2/icon.svg",
+        "preview": "assets/gifts/gift_music_sound-system_2/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_music_sound-system_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_music_sound-system_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Sound System Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_music_brass-fanfare_1",
+      "name": "Brass Fanfare",
+      "description": "ZOVARA original music gift.",
+      "category": "music",
+      "priceCoins": 99,
+      "coinValue": 99,
+      "assets": {
+        "icon": "assets/gifts/gift_music_brass-fanfare_1/icon.svg",
+        "preview": "assets/gifts/gift_music_brass-fanfare_1/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_music_brass-fanfare_1/anim.json",
+        "sound": "assets/gifts/gift_music_brass-fanfare_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_music_brass-fanfare_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Brass Fanfare"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_music_brass-fanfare_2",
+      "name": "Brass Fanfare Deluxe",
+      "description": "ZOVARA original music gift.",
+      "category": "music",
+      "priceCoins": 199,
+      "coinValue": 199,
+      "assets": {
+        "icon": "assets/gifts/gift_music_brass-fanfare_2/icon.svg",
+        "preview": "assets/gifts/gift_music_brass-fanfare_2/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_music_brass-fanfare_2/anim.json",
+        "sound": "assets/gifts/gift_music_brass-fanfare_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_music_brass-fanfare_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Brass Fanfare Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_music_vinyl-spin_1",
+      "name": "Vinyl Spin",
+      "description": "ZOVARA original music gift.",
+      "category": "music",
+      "priceCoins": 499,
+      "coinValue": 499,
+      "assets": {
+        "icon": "assets/gifts/gift_music_vinyl-spin_1/icon.svg",
+        "preview": "assets/gifts/gift_music_vinyl-spin_1/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_music_vinyl-spin_1/anim.json",
+        "sound": "assets/gifts/gift_music_vinyl-spin_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_music_vinyl-spin_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Vinyl Spin"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_music_vinyl-spin_2",
+      "name": "Vinyl Spin Deluxe",
+      "description": "ZOVARA original music gift.",
+      "category": "music",
+      "priceCoins": 999,
+      "coinValue": 999,
+      "assets": {
+        "icon": "assets/gifts/gift_music_vinyl-spin_2/icon.svg",
+        "preview": "assets/gifts/gift_music_vinyl-spin_2/preview.webp",
+        "model3d": "assets/gifts/gift_music_vinyl-spin_2/model.glb",
+        "animation": "assets/gifts/gift_music_vinyl-spin_2/anim.json",
+        "sound": "assets/gifts/gift_music_vinyl-spin_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_music_vinyl-spin_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Vinyl Spin Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_music_mic-flame_1",
+      "name": "Mic Flame",
+      "description": "ZOVARA original music gift.",
+      "category": "music",
+      "priceCoins": 4999,
+      "coinValue": 4999,
+      "assets": {
+        "icon": "assets/gifts/gift_music_mic-flame_1/icon.svg",
+        "preview": "assets/gifts/gift_music_mic-flame_1/preview.webp",
+        "model3d": "assets/gifts/gift_music_mic-flame_1/model.glb",
+        "animation": "assets/gifts/gift_music_mic-flame_1/anim.json",
+        "sound": "assets/gifts/gift_music_mic-flame_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_music_mic-flame_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Mic Flame"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_music_mic-flame_2",
+      "name": "Mic Flame Deluxe",
+      "description": "ZOVARA original music gift.",
+      "category": "music",
+      "priceCoins": 9999,
+      "coinValue": 9999,
+      "assets": {
+        "icon": "assets/gifts/gift_music_mic-flame_2/icon.svg",
+        "preview": "assets/gifts/gift_music_mic-flame_2/preview.webp",
+        "model3d": "assets/gifts/gift_music_mic-flame_2/model.glb",
+        "animation": "assets/gifts/gift_music_mic-flame_2/anim.json",
+        "sound": "assets/gifts/gift_music_mic-flame_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_music_mic-flame_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Mic Flame Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_luxury_diamond-ring_1",
+      "name": "Diamond Ring",
+      "description": "ZOVARA original luxury gift.",
+      "category": "luxury",
+      "priceCoins": 1,
+      "coinValue": 1,
+      "assets": {
+        "icon": "assets/gifts/gift_luxury_diamond-ring_1/icon.svg",
+        "preview": "assets/gifts/gift_luxury_diamond-ring_1/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_luxury_diamond-ring_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_luxury_diamond-ring_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Diamond Ring"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_luxury_diamond-ring_2",
+      "name": "Diamond Ring Deluxe",
+      "description": "ZOVARA original luxury gift.",
+      "category": "luxury",
+      "priceCoins": 5,
+      "coinValue": 5,
+      "assets": {
+        "icon": "assets/gifts/gift_luxury_diamond-ring_2/icon.svg",
+        "preview": "assets/gifts/gift_luxury_diamond-ring_2/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_luxury_diamond-ring_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_luxury_diamond-ring_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Diamond Ring Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_luxury_gold-chain_1",
+      "name": "Gold Chain",
+      "description": "ZOVARA original luxury gift.",
+      "category": "luxury",
+      "priceCoins": 10,
+      "coinValue": 10,
+      "assets": {
+        "icon": "assets/gifts/gift_luxury_gold-chain_1/icon.svg",
+        "preview": "assets/gifts/gift_luxury_gold-chain_1/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_luxury_gold-chain_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_luxury_gold-chain_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Gold Chain"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_luxury_gold-chain_2",
+      "name": "Gold Chain Deluxe",
+      "description": "ZOVARA original luxury gift.",
+      "category": "luxury",
+      "priceCoins": 25,
+      "coinValue": 25,
+      "assets": {
+        "icon": "assets/gifts/gift_luxury_gold-chain_2/icon.svg",
+        "preview": "assets/gifts/gift_luxury_gold-chain_2/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_luxury_gold-chain_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_luxury_gold-chain_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Gold Chain Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_luxury_crown-jewel_1",
+      "name": "Crown Jewel",
+      "description": "ZOVARA original luxury gift.",
+      "category": "luxury",
+      "priceCoins": 99,
+      "coinValue": 99,
+      "assets": {
+        "icon": "assets/gifts/gift_luxury_crown-jewel_1/icon.svg",
+        "preview": "assets/gifts/gift_luxury_crown-jewel_1/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_luxury_crown-jewel_1/anim.json",
+        "sound": "assets/gifts/gift_luxury_crown-jewel_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_luxury_crown-jewel_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Crown Jewel"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_luxury_crown-jewel_2",
+      "name": "Crown Jewel Deluxe",
+      "description": "ZOVARA original luxury gift.",
+      "category": "luxury",
+      "priceCoins": 199,
+      "coinValue": 199,
+      "assets": {
+        "icon": "assets/gifts/gift_luxury_crown-jewel_2/icon.svg",
+        "preview": "assets/gifts/gift_luxury_crown-jewel_2/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_luxury_crown-jewel_2/anim.json",
+        "sound": "assets/gifts/gift_luxury_crown-jewel_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_luxury_crown-jewel_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Crown Jewel Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_luxury_yacht_1",
+      "name": "Yacht",
+      "description": "ZOVARA original luxury gift.",
+      "category": "luxury",
+      "priceCoins": 499,
+      "coinValue": 499,
+      "assets": {
+        "icon": "assets/gifts/gift_luxury_yacht_1/icon.svg",
+        "preview": "assets/gifts/gift_luxury_yacht_1/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_luxury_yacht_1/anim.json",
+        "sound": "assets/gifts/gift_luxury_yacht_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_luxury_yacht_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Yacht"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_luxury_yacht_2",
+      "name": "Yacht Deluxe",
+      "description": "ZOVARA original luxury gift.",
+      "category": "luxury",
+      "priceCoins": 999,
+      "coinValue": 999,
+      "assets": {
+        "icon": "assets/gifts/gift_luxury_yacht_2/icon.svg",
+        "preview": "assets/gifts/gift_luxury_yacht_2/preview.webp",
+        "model3d": "assets/gifts/gift_luxury_yacht_2/model.glb",
+        "animation": "assets/gifts/gift_luxury_yacht_2/anim.json",
+        "sound": "assets/gifts/gift_luxury_yacht_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_luxury_yacht_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Yacht Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_luxury_private-jet_1",
+      "name": "Private Jet",
+      "description": "ZOVARA original luxury gift.",
+      "category": "luxury",
+      "priceCoins": 4999,
+      "coinValue": 4999,
+      "assets": {
+        "icon": "assets/gifts/gift_luxury_private-jet_1/icon.svg",
+        "preview": "assets/gifts/gift_luxury_private-jet_1/preview.webp",
+        "model3d": "assets/gifts/gift_luxury_private-jet_1/model.glb",
+        "animation": "assets/gifts/gift_luxury_private-jet_1/anim.json",
+        "sound": "assets/gifts/gift_luxury_private-jet_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_luxury_private-jet_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Private Jet"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_luxury_private-jet_2",
+      "name": "Private Jet Deluxe",
+      "description": "ZOVARA original luxury gift.",
+      "category": "luxury",
+      "priceCoins": 9999,
+      "coinValue": 9999,
+      "assets": {
+        "icon": "assets/gifts/gift_luxury_private-jet_2/icon.svg",
+        "preview": "assets/gifts/gift_luxury_private-jet_2/preview.webp",
+        "model3d": "assets/gifts/gift_luxury_private-jet_2/model.glb",
+        "animation": "assets/gifts/gift_luxury_private-jet_2/anim.json",
+        "sound": "assets/gifts/gift_luxury_private-jet_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_luxury_private-jet_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Private Jet Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_sports_sprint-medal_1",
+      "name": "Sprint Medal",
+      "description": "ZOVARA original sports gift.",
+      "category": "sports",
+      "priceCoins": 1,
+      "coinValue": 1,
+      "assets": {
+        "icon": "assets/gifts/gift_sports_sprint-medal_1/icon.svg",
+        "preview": "assets/gifts/gift_sports_sprint-medal_1/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_sports_sprint-medal_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_sports_sprint-medal_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Sprint Medal"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_sports_sprint-medal_2",
+      "name": "Sprint Medal Deluxe",
+      "description": "ZOVARA original sports gift.",
+      "category": "sports",
+      "priceCoins": 5,
+      "coinValue": 5,
+      "assets": {
+        "icon": "assets/gifts/gift_sports_sprint-medal_2/icon.svg",
+        "preview": "assets/gifts/gift_sports_sprint-medal_2/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_sports_sprint-medal_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_sports_sprint-medal_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Sprint Medal Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_sports_cricket-six_1",
+      "name": "Cricket Six",
+      "description": "ZOVARA original sports gift.",
+      "category": "sports",
+      "priceCoins": 10,
+      "coinValue": 10,
+      "assets": {
+        "icon": "assets/gifts/gift_sports_cricket-six_1/icon.svg",
+        "preview": "assets/gifts/gift_sports_cricket-six_1/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_sports_cricket-six_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_sports_cricket-six_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Cricket Six"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_sports_cricket-six_2",
+      "name": "Cricket Six Deluxe",
+      "description": "ZOVARA original sports gift.",
+      "category": "sports",
+      "priceCoins": 25,
+      "coinValue": 25,
+      "assets": {
+        "icon": "assets/gifts/gift_sports_cricket-six_2/icon.svg",
+        "preview": "assets/gifts/gift_sports_cricket-six_2/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_sports_cricket-six_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_sports_cricket-six_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Cricket Six Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_sports_football-volley_1",
+      "name": "Football Volley",
+      "description": "ZOVARA original sports gift.",
+      "category": "sports",
+      "priceCoins": 99,
+      "coinValue": 99,
+      "assets": {
+        "icon": "assets/gifts/gift_sports_football-volley_1/icon.svg",
+        "preview": "assets/gifts/gift_sports_football-volley_1/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_sports_football-volley_1/anim.json",
+        "sound": "assets/gifts/gift_sports_football-volley_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_sports_football-volley_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Football Volley"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_sports_football-volley_2",
+      "name": "Football Volley Deluxe",
+      "description": "ZOVARA original sports gift.",
+      "category": "sports",
+      "priceCoins": 199,
+      "coinValue": 199,
+      "assets": {
+        "icon": "assets/gifts/gift_sports_football-volley_2/icon.svg",
+        "preview": "assets/gifts/gift_sports_football-volley_2/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_sports_football-volley_2/anim.json",
+        "sound": "assets/gifts/gift_sports_football-volley_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_sports_football-volley_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Football Volley Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_sports_track-blaze_1",
+      "name": "Track Blaze",
+      "description": "ZOVARA original sports gift.",
+      "category": "sports",
+      "priceCoins": 499,
+      "coinValue": 499,
+      "assets": {
+        "icon": "assets/gifts/gift_sports_track-blaze_1/icon.svg",
+        "preview": "assets/gifts/gift_sports_track-blaze_1/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_sports_track-blaze_1/anim.json",
+        "sound": "assets/gifts/gift_sports_track-blaze_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_sports_track-blaze_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Track Blaze"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_sports_track-blaze_2",
+      "name": "Track Blaze Deluxe",
+      "description": "ZOVARA original sports gift.",
+      "category": "sports",
+      "priceCoins": 999,
+      "coinValue": 999,
+      "assets": {
+        "icon": "assets/gifts/gift_sports_track-blaze_2/icon.svg",
+        "preview": "assets/gifts/gift_sports_track-blaze_2/preview.webp",
+        "model3d": "assets/gifts/gift_sports_track-blaze_2/model.glb",
+        "animation": "assets/gifts/gift_sports_track-blaze_2/anim.json",
+        "sound": "assets/gifts/gift_sports_track-blaze_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_sports_track-blaze_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Track Blaze Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_sports_champion-cup_1",
+      "name": "Champion Cup",
+      "description": "ZOVARA original sports gift.",
+      "category": "sports",
+      "priceCoins": 4999,
+      "coinValue": 4999,
+      "assets": {
+        "icon": "assets/gifts/gift_sports_champion-cup_1/icon.svg",
+        "preview": "assets/gifts/gift_sports_champion-cup_1/preview.webp",
+        "model3d": "assets/gifts/gift_sports_champion-cup_1/model.glb",
+        "animation": "assets/gifts/gift_sports_champion-cup_1/anim.json",
+        "sound": "assets/gifts/gift_sports_champion-cup_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_sports_champion-cup_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Champion Cup"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_sports_champion-cup_2",
+      "name": "Champion Cup Deluxe",
+      "description": "ZOVARA original sports gift.",
+      "category": "sports",
+      "priceCoins": 9999,
+      "coinValue": 9999,
+      "assets": {
+        "icon": "assets/gifts/gift_sports_champion-cup_2/icon.svg",
+        "preview": "assets/gifts/gift_sports_champion-cup_2/preview.webp",
+        "model3d": "assets/gifts/gift_sports_champion-cup_2/model.glb",
+        "animation": "assets/gifts/gift_sports_champion-cup_2/anim.json",
+        "sound": "assets/gifts/gift_sports_champion-cup_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_sports_champion-cup_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Champion Cup Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_jamaican_culture_ackee-saltfish_1",
+      "name": "Ackee & Saltfish",
+      "description": "ZOVARA original jamaican culture gift.",
+      "category": "jamaican_culture",
+      "priceCoins": 1,
+      "coinValue": 1,
+      "assets": {
+        "icon": "assets/gifts/gift_jamaican_culture_ackee-saltfish_1/icon.svg",
+        "preview": "assets/gifts/gift_jamaican_culture_ackee-saltfish_1/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_jamaican_culture_ackee-saltfish_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_jamaican_culture_ackee-saltfish_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Ackee & Saltfish"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_jamaican_culture_ackee-saltfish_2",
+      "name": "Ackee & Saltfish Deluxe",
+      "description": "ZOVARA original jamaican culture gift.",
+      "category": "jamaican_culture",
+      "priceCoins": 5,
+      "coinValue": 5,
+      "assets": {
+        "icon": "assets/gifts/gift_jamaican_culture_ackee-saltfish_2/icon.svg",
+        "preview": "assets/gifts/gift_jamaican_culture_ackee-saltfish_2/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_jamaican_culture_ackee-saltfish_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_jamaican_culture_ackee-saltfish_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Ackee & Saltfish Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_jamaican_culture_festival-dumpling_1",
+      "name": "Festival Dumpling",
+      "description": "ZOVARA original jamaican culture gift.",
+      "category": "jamaican_culture",
+      "priceCoins": 10,
+      "coinValue": 10,
+      "assets": {
+        "icon": "assets/gifts/gift_jamaican_culture_festival-dumpling_1/icon.svg",
+        "preview": "assets/gifts/gift_jamaican_culture_festival-dumpling_1/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_jamaican_culture_festival-dumpling_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_jamaican_culture_festival-dumpling_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Festival Dumpling"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_jamaican_culture_festival-dumpling_2",
+      "name": "Festival Dumpling Deluxe",
+      "description": "ZOVARA original jamaican culture gift.",
+      "category": "jamaican_culture",
+      "priceCoins": 25,
+      "coinValue": 25,
+      "assets": {
+        "icon": "assets/gifts/gift_jamaican_culture_festival-dumpling_2/icon.svg",
+        "preview": "assets/gifts/gift_jamaican_culture_festival-dumpling_2/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_jamaican_culture_festival-dumpling_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_jamaican_culture_festival-dumpling_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Festival Dumpling Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_jamaican_culture_nyam-feast_1",
+      "name": "Nyam Feast",
+      "description": "ZOVARA original jamaican culture gift.",
+      "category": "jamaican_culture",
+      "priceCoins": 99,
+      "coinValue": 99,
+      "assets": {
+        "icon": "assets/gifts/gift_jamaican_culture_nyam-feast_1/icon.svg",
+        "preview": "assets/gifts/gift_jamaican_culture_nyam-feast_1/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_jamaican_culture_nyam-feast_1/anim.json",
+        "sound": "assets/gifts/gift_jamaican_culture_nyam-feast_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_jamaican_culture_nyam-feast_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Nyam Feast"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_jamaican_culture_nyam-feast_2",
+      "name": "Nyam Feast Deluxe",
+      "description": "ZOVARA original jamaican culture gift.",
+      "category": "jamaican_culture",
+      "priceCoins": 199,
+      "coinValue": 199,
+      "assets": {
+        "icon": "assets/gifts/gift_jamaican_culture_nyam-feast_2/icon.svg",
+        "preview": "assets/gifts/gift_jamaican_culture_nyam-feast_2/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_jamaican_culture_nyam-feast_2/anim.json",
+        "sound": "assets/gifts/gift_jamaican_culture_nyam-feast_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_jamaican_culture_nyam-feast_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Nyam Feast Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_jamaican_culture_drum-circle_1",
+      "name": "Drum Circle",
+      "description": "ZOVARA original jamaican culture gift.",
+      "category": "jamaican_culture",
+      "priceCoins": 499,
+      "coinValue": 499,
+      "assets": {
+        "icon": "assets/gifts/gift_jamaican_culture_drum-circle_1/icon.svg",
+        "preview": "assets/gifts/gift_jamaican_culture_drum-circle_1/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_jamaican_culture_drum-circle_1/anim.json",
+        "sound": "assets/gifts/gift_jamaican_culture_drum-circle_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_jamaican_culture_drum-circle_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Drum Circle"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_jamaican_culture_drum-circle_2",
+      "name": "Drum Circle Deluxe",
+      "description": "ZOVARA original jamaican culture gift.",
+      "category": "jamaican_culture",
+      "priceCoins": 999,
+      "coinValue": 999,
+      "assets": {
+        "icon": "assets/gifts/gift_jamaican_culture_drum-circle_2/icon.svg",
+        "preview": "assets/gifts/gift_jamaican_culture_drum-circle_2/preview.webp",
+        "model3d": "assets/gifts/gift_jamaican_culture_drum-circle_2/model.glb",
+        "animation": "assets/gifts/gift_jamaican_culture_drum-circle_2/anim.json",
+        "sound": "assets/gifts/gift_jamaican_culture_drum-circle_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_jamaican_culture_drum-circle_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Drum Circle Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_jamaican_culture_flag-wave_1",
+      "name": "Flag Wave",
+      "description": "ZOVARA original jamaican culture gift.",
+      "category": "jamaican_culture",
+      "priceCoins": 4999,
+      "coinValue": 4999,
+      "assets": {
+        "icon": "assets/gifts/gift_jamaican_culture_flag-wave_1/icon.svg",
+        "preview": "assets/gifts/gift_jamaican_culture_flag-wave_1/preview.webp",
+        "model3d": "assets/gifts/gift_jamaican_culture_flag-wave_1/model.glb",
+        "animation": "assets/gifts/gift_jamaican_culture_flag-wave_1/anim.json",
+        "sound": "assets/gifts/gift_jamaican_culture_flag-wave_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_jamaican_culture_flag-wave_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Flag Wave"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_jamaican_culture_flag-wave_2",
+      "name": "Flag Wave Deluxe",
+      "description": "ZOVARA original jamaican culture gift.",
+      "category": "jamaican_culture",
+      "priceCoins": 9999,
+      "coinValue": 9999,
+      "assets": {
+        "icon": "assets/gifts/gift_jamaican_culture_flag-wave_2/icon.svg",
+        "preview": "assets/gifts/gift_jamaican_culture_flag-wave_2/preview.webp",
+        "model3d": "assets/gifts/gift_jamaican_culture_flag-wave_2/model.glb",
+        "animation": "assets/gifts/gift_jamaican_culture_flag-wave_2/anim.json",
+        "sound": "assets/gifts/gift_jamaican_culture_flag-wave_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_jamaican_culture_flag-wave_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Flag Wave Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_parish_pride_kingston-lights_1",
+      "name": "Kingston Lights",
+      "description": "ZOVARA original parish pride gift.",
+      "category": "parish_pride",
+      "priceCoins": 1,
+      "coinValue": 1,
+      "assets": {
+        "icon": "assets/gifts/gift_parish_pride_kingston-lights_1/icon.svg",
+        "preview": "assets/gifts/gift_parish_pride_kingston-lights_1/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_parish_pride_kingston-lights_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_parish_pride_kingston-lights_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Kingston Lights"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_parish_pride_kingston-lights_2",
+      "name": "Kingston Lights Deluxe",
+      "description": "ZOVARA original parish pride gift.",
+      "category": "parish_pride",
+      "priceCoins": 5,
+      "coinValue": 5,
+      "assets": {
+        "icon": "assets/gifts/gift_parish_pride_kingston-lights_2/icon.svg",
+        "preview": "assets/gifts/gift_parish_pride_kingston-lights_2/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_parish_pride_kingston-lights_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_parish_pride_kingston-lights_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Kingston Lights Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_parish_pride_montego-shore_1",
+      "name": "Montego Shore",
+      "description": "ZOVARA original parish pride gift.",
+      "category": "parish_pride",
+      "priceCoins": 10,
+      "coinValue": 10,
+      "assets": {
+        "icon": "assets/gifts/gift_parish_pride_montego-shore_1/icon.svg",
+        "preview": "assets/gifts/gift_parish_pride_montego-shore_1/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_parish_pride_montego-shore_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_parish_pride_montego-shore_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Montego Shore"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_parish_pride_montego-shore_2",
+      "name": "Montego Shore Deluxe",
+      "description": "ZOVARA original parish pride gift.",
+      "category": "parish_pride",
+      "priceCoins": 25,
+      "coinValue": 25,
+      "assets": {
+        "icon": "assets/gifts/gift_parish_pride_montego-shore_2/icon.svg",
+        "preview": "assets/gifts/gift_parish_pride_montego-shore_2/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_parish_pride_montego-shore_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_parish_pride_montego-shore_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Montego Shore Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_parish_pride_portland-falls_1",
+      "name": "Portland Falls",
+      "description": "ZOVARA original parish pride gift.",
+      "category": "parish_pride",
+      "priceCoins": 99,
+      "coinValue": 99,
+      "assets": {
+        "icon": "assets/gifts/gift_parish_pride_portland-falls_1/icon.svg",
+        "preview": "assets/gifts/gift_parish_pride_portland-falls_1/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_parish_pride_portland-falls_1/anim.json",
+        "sound": "assets/gifts/gift_parish_pride_portland-falls_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_parish_pride_portland-falls_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Portland Falls"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_parish_pride_portland-falls_2",
+      "name": "Portland Falls Deluxe",
+      "description": "ZOVARA original parish pride gift.",
+      "category": "parish_pride",
+      "priceCoins": 199,
+      "coinValue": 199,
+      "assets": {
+        "icon": "assets/gifts/gift_parish_pride_portland-falls_2/icon.svg",
+        "preview": "assets/gifts/gift_parish_pride_portland-falls_2/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_parish_pride_portland-falls_2/anim.json",
+        "sound": "assets/gifts/gift_parish_pride_portland-falls_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_parish_pride_portland-falls_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Portland Falls Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_parish_pride_st-ann-hills_1",
+      "name": "St. Ann Hills",
+      "description": "ZOVARA original parish pride gift.",
+      "category": "parish_pride",
+      "priceCoins": 499,
+      "coinValue": 499,
+      "assets": {
+        "icon": "assets/gifts/gift_parish_pride_st-ann-hills_1/icon.svg",
+        "preview": "assets/gifts/gift_parish_pride_st-ann-hills_1/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_parish_pride_st-ann-hills_1/anim.json",
+        "sound": "assets/gifts/gift_parish_pride_st-ann-hills_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_parish_pride_st-ann-hills_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "St. Ann Hills"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_parish_pride_st-ann-hills_2",
+      "name": "St. Ann Hills Deluxe",
+      "description": "ZOVARA original parish pride gift.",
+      "category": "parish_pride",
+      "priceCoins": 999,
+      "coinValue": 999,
+      "assets": {
+        "icon": "assets/gifts/gift_parish_pride_st-ann-hills_2/icon.svg",
+        "preview": "assets/gifts/gift_parish_pride_st-ann-hills_2/preview.webp",
+        "model3d": "assets/gifts/gift_parish_pride_st-ann-hills_2/model.glb",
+        "animation": "assets/gifts/gift_parish_pride_st-ann-hills_2/anim.json",
+        "sound": "assets/gifts/gift_parish_pride_st-ann-hills_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_parish_pride_st-ann-hills_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "St. Ann Hills Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_parish_pride_clarendon-fields_1",
+      "name": "Clarendon Fields",
+      "description": "ZOVARA original parish pride gift.",
+      "category": "parish_pride",
+      "priceCoins": 4999,
+      "coinValue": 4999,
+      "assets": {
+        "icon": "assets/gifts/gift_parish_pride_clarendon-fields_1/icon.svg",
+        "preview": "assets/gifts/gift_parish_pride_clarendon-fields_1/preview.webp",
+        "model3d": "assets/gifts/gift_parish_pride_clarendon-fields_1/model.glb",
+        "animation": "assets/gifts/gift_parish_pride_clarendon-fields_1/anim.json",
+        "sound": "assets/gifts/gift_parish_pride_clarendon-fields_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_parish_pride_clarendon-fields_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Clarendon Fields"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_parish_pride_clarendon-fields_2",
+      "name": "Clarendon Fields Deluxe",
+      "description": "ZOVARA original parish pride gift.",
+      "category": "parish_pride",
+      "priceCoins": 9999,
+      "coinValue": 9999,
+      "assets": {
+        "icon": "assets/gifts/gift_parish_pride_clarendon-fields_2/icon.svg",
+        "preview": "assets/gifts/gift_parish_pride_clarendon-fields_2/preview.webp",
+        "model3d": "assets/gifts/gift_parish_pride_clarendon-fields_2/model.glb",
+        "animation": "assets/gifts/gift_parish_pride_clarendon-fields_2/anim.json",
+        "sound": "assets/gifts/gift_parish_pride_clarendon-fields_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_parish_pride_clarendon-fields_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Clarendon Fields Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_seasonal_christmas-breeze_1",
+      "name": "Christmas Breeze",
+      "description": "ZOVARA original seasonal gift.",
+      "category": "seasonal",
+      "priceCoins": 1,
+      "coinValue": 1,
+      "assets": {
+        "icon": "assets/gifts/gift_seasonal_christmas-breeze_1/icon.svg",
+        "preview": "assets/gifts/gift_seasonal_christmas-breeze_1/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_seasonal_christmas-breeze_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_seasonal_christmas-breeze_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Christmas Breeze"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_seasonal_christmas-breeze_2",
+      "name": "Christmas Breeze Deluxe",
+      "description": "ZOVARA original seasonal gift.",
+      "category": "seasonal",
+      "priceCoins": 5,
+      "coinValue": 5,
+      "assets": {
+        "icon": "assets/gifts/gift_seasonal_christmas-breeze_2/icon.svg",
+        "preview": "assets/gifts/gift_seasonal_christmas-breeze_2/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_seasonal_christmas-breeze_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_seasonal_christmas-breeze_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Christmas Breeze Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_seasonal_carnival-mask_1",
+      "name": "Carnival Mask",
+      "description": "ZOVARA original seasonal gift.",
+      "category": "seasonal",
+      "priceCoins": 10,
+      "coinValue": 10,
+      "assets": {
+        "icon": "assets/gifts/gift_seasonal_carnival-mask_1/icon.svg",
+        "preview": "assets/gifts/gift_seasonal_carnival-mask_1/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_seasonal_carnival-mask_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_seasonal_carnival-mask_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Carnival Mask"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_seasonal_carnival-mask_2",
+      "name": "Carnival Mask Deluxe",
+      "description": "ZOVARA original seasonal gift.",
+      "category": "seasonal",
+      "priceCoins": 25,
+      "coinValue": 25,
+      "assets": {
+        "icon": "assets/gifts/gift_seasonal_carnival-mask_2/icon.svg",
+        "preview": "assets/gifts/gift_seasonal_carnival-mask_2/preview.webp",
+        "model3d": null,
+        "animation": null,
+        "sound": "assets/gifts/gift_seasonal_carnival-mask_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_seasonal_carnival-mask_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Carnival Mask Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_seasonal_independence-blaze_1",
+      "name": "Independence Blaze",
+      "description": "ZOVARA original seasonal gift.",
+      "category": "seasonal",
+      "priceCoins": 99,
+      "coinValue": 99,
+      "assets": {
+        "icon": "assets/gifts/gift_seasonal_independence-blaze_1/icon.svg",
+        "preview": "assets/gifts/gift_seasonal_independence-blaze_1/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_seasonal_independence-blaze_1/anim.json",
+        "sound": "assets/gifts/gift_seasonal_independence-blaze_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_seasonal_independence-blaze_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Independence Blaze"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_seasonal_independence-blaze_2",
+      "name": "Independence Blaze Deluxe",
+      "description": "ZOVARA original seasonal gift.",
+      "category": "seasonal",
+      "priceCoins": 199,
+      "coinValue": 199,
+      "assets": {
+        "icon": "assets/gifts/gift_seasonal_independence-blaze_2/icon.svg",
+        "preview": "assets/gifts/gift_seasonal_independence-blaze_2/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_seasonal_independence-blaze_2/anim.json",
+        "sound": "assets/gifts/gift_seasonal_independence-blaze_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_seasonal_independence-blaze_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Independence Blaze Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_seasonal_easter-bun_1",
+      "name": "Easter Bun",
+      "description": "ZOVARA original seasonal gift.",
+      "category": "seasonal",
+      "priceCoins": 499,
+      "coinValue": 499,
+      "assets": {
+        "icon": "assets/gifts/gift_seasonal_easter-bun_1/icon.svg",
+        "preview": "assets/gifts/gift_seasonal_easter-bun_1/preview.webp",
+        "model3d": null,
+        "animation": "assets/gifts/gift_seasonal_easter-bun_1/anim.json",
+        "sound": "assets/gifts/gift_seasonal_easter-bun_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_seasonal_easter-bun_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Easter Bun"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_seasonal_easter-bun_2",
+      "name": "Easter Bun Deluxe",
+      "description": "ZOVARA original seasonal gift.",
+      "category": "seasonal",
+      "priceCoins": 999,
+      "coinValue": 999,
+      "assets": {
+        "icon": "assets/gifts/gift_seasonal_easter-bun_2/icon.svg",
+        "preview": "assets/gifts/gift_seasonal_easter-bun_2/preview.webp",
+        "model3d": "assets/gifts/gift_seasonal_easter-bun_2/model.glb",
+        "animation": "assets/gifts/gift_seasonal_easter-bun_2/anim.json",
+        "sound": "assets/gifts/gift_seasonal_easter-bun_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_seasonal_easter-bun_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "Easter Bun Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_seasonal_new-year-bell_1",
+      "name": "New Year Bell",
+      "description": "ZOVARA original seasonal gift.",
+      "category": "seasonal",
+      "priceCoins": 4999,
+      "coinValue": 4999,
+      "assets": {
+        "icon": "assets/gifts/gift_seasonal_new-year-bell_1/icon.svg",
+        "preview": "assets/gifts/gift_seasonal_new-year-bell_1/preview.webp",
+        "model3d": "assets/gifts/gift_seasonal_new-year-bell_1/model.glb",
+        "animation": "assets/gifts/gift_seasonal_new-year-bell_1/anim.json",
+        "sound": "assets/gifts/gift_seasonal_new-year-bell_1/sfx.mp3",
+        "fallback": "assets/gifts/gift_seasonal_new-year-bell_1/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "New Year Bell"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    },
+    {
+      "id": "gift_seasonal_new-year-bell_2",
+      "name": "New Year Bell Deluxe",
+      "description": "ZOVARA original seasonal gift.",
+      "category": "seasonal",
+      "priceCoins": 9999,
+      "coinValue": 9999,
+      "assets": {
+        "icon": "assets/gifts/gift_seasonal_new-year-bell_2/icon.svg",
+        "preview": "assets/gifts/gift_seasonal_new-year-bell_2/preview.webp",
+        "model3d": "assets/gifts/gift_seasonal_new-year-bell_2/model.glb",
+        "animation": "assets/gifts/gift_seasonal_new-year-bell_2/anim.json",
+        "sound": "assets/gifts/gift_seasonal_new-year-bell_2/sfx.mp3",
+        "fallback": "assets/gifts/gift_seasonal_new-year-bell_2/fallback.png"
+      },
+      "availability": {
+        "regions": [
+          "global"
+        ],
+        "enabled": true
+      },
+      "localization": {
+        "en": "New Year Bell Deluxe"
+      },
+      "assetStatus": {
+        "icon": "MISSING",
+        "preview": "MISSING",
+        "model3d": "MISSING",
+        "animation": "MISSING",
+        "sound": "MISSING",
+        "fallback": "MISSING"
+      }
+    }
+  ]
+}

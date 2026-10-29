@@ -1,0 +1,1685 @@
+{
+  "version": 1,
+  "count": 104,
+  "categories": [
+    "animals",
+    "celebrations",
+    "fantasy",
+    "flowers",
+    "jamaica",
+    "luxury",
+    "music",
+    "ocean",
+    "parish-pride",
+    "reactions",
+    "seasonal",
+    "sports",
+    "vehicles"
+  ],
+  "gifts": [
+    {
+      "id": "gift-001",
+      "name": "Dawn Tulip",
+      "category": "flowers",
+      "coinPrice": 999,
+      "tier": "epic",
+      "asset": "assets/gifts/gift-001.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1780,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "1175b31e4f275298aa7c2b2c5318eac8b13c38069ace46df18addb9c0aff5e75"
+    },
+    {
+      "id": "gift-002",
+      "name": "Jade Orchid",
+      "category": "flowers",
+      "coinPrice": 199,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-002.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1960,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "4af6706f5c70f24e992ce45dd215e8bab57f3de72527a23c231e55940e8925c8"
+    },
+    {
+      "id": "gift-003",
+      "name": "Sunbeam Rose",
+      "category": "flowers",
+      "coinPrice": 50,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-003.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2140,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "5a8e0d808cb31f7f88457ad606f85ed30ba0272cfd619ca798a5cf13b2612e38"
+    },
+    {
+      "id": "gift-004",
+      "name": "Moonlit Lily",
+      "category": "flowers",
+      "coinPrice": 10,
+      "tier": "common",
+      "asset": "assets/gifts/gift-004.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2320,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "4aed5d03e20b8d9450c4f9afb3c974ee0cc30352fbd02c136fe75f59e01c905f"
+    },
+    {
+      "id": "gift-005",
+      "name": "Coral Peony",
+      "category": "flowers",
+      "coinPrice": 4999,
+      "tier": "legendary",
+      "asset": "assets/gifts/gift-005.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1600,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "c37959db7138aa6223449f20f6f5956eb0ed1b88c903393cea1a3c3c7a895031"
+    },
+    {
+      "id": "gift-006",
+      "name": "Iris Spark",
+      "category": "flowers",
+      "coinPrice": 999,
+      "tier": "epic",
+      "asset": "assets/gifts/gift-006.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1780,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "9916e5c11e47ecf39ae45bfa720c5bb8fb597e00e996309bebc62efe973d8c32"
+    },
+    {
+      "id": "gift-007",
+      "name": "Wildflower Halo",
+      "category": "flowers",
+      "coinPrice": 199,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-007.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1960,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "dbf51bdb8d7bb34e33436208d873c9124a86e206fec1f91d07e81edaa851e59b"
+    },
+    {
+      "id": "gift-008",
+      "name": "Golden Marigold",
+      "category": "flowers",
+      "coinPrice": 50,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-008.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2140,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "fc184a5e5c90c640eef4045dea202a44f08b995c9b114eb7601f7dffcf6e189b"
+    },
+    {
+      "id": "gift-009",
+      "name": "Bright Clap",
+      "category": "reactions",
+      "coinPrice": 50,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-009.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2320,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "af863f3054484cfec943abb8273ae357fb2d6814aa13592570be5596ee0d827c"
+    },
+    {
+      "id": "gift-010",
+      "name": "Heart Pulse",
+      "category": "reactions",
+      "coinPrice": 10,
+      "tier": "common",
+      "asset": "assets/gifts/gift-010.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1600,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "e757753e677431796ebe10a02517202e9dec25f74fac933c1e1a75f684374d96"
+    },
+    {
+      "id": "gift-011",
+      "name": "Laugh Burst",
+      "category": "reactions",
+      "coinPrice": 4999,
+      "tier": "legendary",
+      "asset": "assets/gifts/gift-011.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1780,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "1e358bced5d57e16619ef791b05451081dfa3b08c7e92191430d7665e3fdbda2"
+    },
+    {
+      "id": "gift-012",
+      "name": "Cheer Wave",
+      "category": "reactions",
+      "coinPrice": 999,
+      "tier": "epic",
+      "asset": "assets/gifts/gift-012.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1960,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "d0e3544676448449b83228e5ee979695f5ed579b384f290cede42554b14fe484"
+    },
+    {
+      "id": "gift-013",
+      "name": "Aha Spark",
+      "category": "reactions",
+      "coinPrice": 199,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-013.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2140,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "9603e5123de6eaa0da9db5de55635b6ff39c58460d7ba74ffdc5fd31b63f1bb0"
+    },
+    {
+      "id": "gift-014",
+      "name": "Kindness Glow",
+      "category": "reactions",
+      "coinPrice": 50,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-014.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2320,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "3fc1ec1a7e9aaaa350f3658540741eb6fc47706c671231602db96d77aaeac815"
+    },
+    {
+      "id": "gift-015",
+      "name": "Wow Prism",
+      "category": "reactions",
+      "coinPrice": 10,
+      "tier": "common",
+      "asset": "assets/gifts/gift-015.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1600,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "66e0dcab2d5e2570f43e4acca077a0f9bc2fbed6baf0c97387916346b6c85250"
+    },
+    {
+      "id": "gift-016",
+      "name": "Hug Cloud",
+      "category": "reactions",
+      "coinPrice": 4999,
+      "tier": "legendary",
+      "asset": "assets/gifts/gift-016.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1780,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "5ba2f6ad86e57870fb804c39bcbe4c477ad9396e7de7a47167021d53d1c7aa5b"
+    },
+    {
+      "id": "gift-017",
+      "name": "Confetti Pop",
+      "category": "celebrations",
+      "coinPrice": 4999,
+      "tier": "legendary",
+      "asset": "assets/gifts/gift-017.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1960,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "8684ba7bfd67d4d63f45d0ab769e058fa744eda3f03e1549f94a1de59c06654a"
+    },
+    {
+      "id": "gift-018",
+      "name": "Victory Crown",
+      "category": "celebrations",
+      "coinPrice": 999,
+      "tier": "epic",
+      "asset": "assets/gifts/gift-018.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2140,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "5ef72325250f9302776fe0870682932996904f67e2b6752e281ff107a7fbfc93"
+    },
+    {
+      "id": "gift-019",
+      "name": "Firework Bloom",
+      "category": "celebrations",
+      "coinPrice": 199,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-019.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2320,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "a0376639e0b30662f590fd14c7638fee075371397943136e5e09b7993308962f"
+    },
+    {
+      "id": "gift-020",
+      "name": "Milestone Star",
+      "category": "celebrations",
+      "coinPrice": 50,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-020.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1600,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "3a8abfe2b7b9112ec16f7b2d9703900f093f419a5d0d7660ffff2f7c32d0a48b"
+    },
+    {
+      "id": "gift-021",
+      "name": "Grand Parade",
+      "category": "celebrations",
+      "coinPrice": 10,
+      "tier": "common",
+      "asset": "assets/gifts/gift-021.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1780,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "14b6fe8317d01b4523d980bd9bef59c6faf392d93783134574837b30d7a0a905"
+    },
+    {
+      "id": "gift-022",
+      "name": "Diamond Cheers",
+      "category": "celebrations",
+      "coinPrice": 4999,
+      "tier": "legendary",
+      "asset": "assets/gifts/gift-022.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1960,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "7c1b1b09171ba42424a2949322eb1c0d9c970b4a2435e8149b9be0a5fac7a5b1"
+    },
+    {
+      "id": "gift-023",
+      "name": "Aurora Party",
+      "category": "celebrations",
+      "coinPrice": 999,
+      "tier": "epic",
+      "asset": "assets/gifts/gift-023.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2140,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "4bee68cb8bb3bbbd80f1a05cc8cea8fc3b677a60ab3eafd9843d13d9fca7ab57"
+    },
+    {
+      "id": "gift-024",
+      "name": "Champions Bell",
+      "category": "celebrations",
+      "coinPrice": 199,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-024.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2320,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "d3beff01eeaea7a5757baff34ddb984a22563e8e7b2e2faea1cb29dc0095ea82"
+    },
+    {
+      "id": "gift-025",
+      "name": "Mango Hummingbird",
+      "category": "animals",
+      "coinPrice": 199,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-025.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1600,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "293c24958d2f868c79505fdc99a411c454a8a9643056f58d352f7aacca5a6a9a"
+    },
+    {
+      "id": "gift-026",
+      "name": "Neon Gecko",
+      "category": "animals",
+      "coinPrice": 50,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-026.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1780,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "0e3a722bb64aaeb19e74c65e241a4ad646db0651fa97508c082d0a0dbb3ab389"
+    },
+    {
+      "id": "gift-027",
+      "name": "Jamaica Dolphin",
+      "category": "animals",
+      "coinPrice": 10,
+      "tier": "common",
+      "asset": "assets/gifts/gift-027.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1960,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "7a7bf7347a4dee7cbb95a983b36b8bbe5a9093180fad7025d1325d42fcd82955"
+    },
+    {
+      "id": "gift-028",
+      "name": "Velvet Fox",
+      "category": "animals",
+      "coinPrice": 4999,
+      "tier": "legendary",
+      "asset": "assets/gifts/gift-028.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2140,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "5539211399d446877ee91c519212babcb9ca637290e342db1d4010ee85d4e4af"
+    },
+    {
+      "id": "gift-029",
+      "name": "Moon Rabbit",
+      "category": "animals",
+      "coinPrice": 999,
+      "tier": "epic",
+      "asset": "assets/gifts/gift-029.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2320,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "ac24abacd13a73d2f065d1d0cd94fd55809a6a553d2c961484281afd544dee13"
+    },
+    {
+      "id": "gift-030",
+      "name": "Ruby Butterfly",
+      "category": "animals",
+      "coinPrice": 199,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-030.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1600,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "460772ff7c767f10c41b7b228733807ffd23cf819a175803351cde9e5f871dd2"
+    },
+    {
+      "id": "gift-031",
+      "name": "Comet Lion",
+      "category": "animals",
+      "coinPrice": 50,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-031.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1780,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "503130f27ddd61606ee1b7e3c2efa297ba77b2e57dbde9693a235a112cf63449"
+    },
+    {
+      "id": "gift-032",
+      "name": "Crystal Turtle",
+      "category": "animals",
+      "coinPrice": 10,
+      "tier": "common",
+      "asset": "assets/gifts/gift-032.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1960,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "0a49b12f2323140898199066412179736c3350181680781a88aa77dac551d409"
+    },
+    {
+      "id": "gift-033",
+      "name": "Phoenix Rise",
+      "category": "fantasy",
+      "coinPrice": 10,
+      "tier": "common",
+      "asset": "assets/gifts/gift-033.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2140,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "25f425f642d85b6176fa942db4b15cf1e65ac666786daca944e76718d8c08937"
+    },
+    {
+      "id": "gift-034",
+      "name": "Dragon Lantern",
+      "category": "fantasy",
+      "coinPrice": 4999,
+      "tier": "legendary",
+      "asset": "assets/gifts/gift-034.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2320,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "1562f05d1275a38220b09f873945dca1f2a53b980436c32f77a81d0b31cac5c0"
+    },
+    {
+      "id": "gift-035",
+      "name": "Mermaid Tide",
+      "category": "fantasy",
+      "coinPrice": 999,
+      "tier": "epic",
+      "asset": "assets/gifts/gift-035.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1600,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "fc79cac853555e2cb94c9095b36814b803f5bbf97cfd0c20548d05319e7852dc"
+    },
+    {
+      "id": "gift-036",
+      "name": "Wizard Comet",
+      "category": "fantasy",
+      "coinPrice": 199,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-036.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1780,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "6a68e2fae5cce7f343e3aee9c8087383347c21bffba74a4ac0d219ebbee5f1d9"
+    },
+    {
+      "id": "gift-037",
+      "name": "Mooncastle",
+      "category": "fantasy",
+      "coinPrice": 50,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-037.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1960,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "d402e1378e638a3fbd92bb9a7dca07c5b41200518f88c55d5bcaa467091148be"
+    },
+    {
+      "id": "gift-038",
+      "name": "Stardust Portal",
+      "category": "fantasy",
+      "coinPrice": 10,
+      "tier": "common",
+      "asset": "assets/gifts/gift-038.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2140,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "e5e11edbb402aea0caa765dbe01e733b180c39b7ef9c36b85c3bfd2e2dff4c78"
+    },
+    {
+      "id": "gift-039",
+      "name": "Celestial Orb",
+      "category": "fantasy",
+      "coinPrice": 4999,
+      "tier": "legendary",
+      "asset": "assets/gifts/gift-039.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2320,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "e0ad027ced7753c1c576704031df213508ced2356d08f44045ccda1d0798798a"
+    },
+    {
+      "id": "gift-040",
+      "name": "Crystal Griffin",
+      "category": "fantasy",
+      "coinPrice": 999,
+      "tier": "epic",
+      "asset": "assets/gifts/gift-040.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1600,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "489770e8459a380e0dba5434b2f4399307a493cce210064f1ca3b144bf050d08"
+    },
+    {
+      "id": "gift-041",
+      "name": "Turbo Scooter",
+      "category": "vehicles",
+      "coinPrice": 999,
+      "tier": "epic",
+      "asset": "assets/gifts/gift-041.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1780,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "0a9fbb17f7897e10df32ad512f81d12e0b2290ebe7f224141522e7212dc740d7"
+    },
+    {
+      "id": "gift-042",
+      "name": "Skyline Coupe",
+      "category": "vehicles",
+      "coinPrice": 199,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-042.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1960,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "d3ea019553d703d1085aade2d55c1fa7ede0ae459cf0bf1f9afa4214db853cea"
+    },
+    {
+      "id": "gift-043",
+      "name": "Solar Jet",
+      "category": "vehicles",
+      "coinPrice": 50,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-043.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2140,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "369aaa19637fcd640d85ab9dfbb396be0e002953525fc6fe83bacd59da0b3e8f"
+    },
+    {
+      "id": "gift-044",
+      "name": "Ocean Yacht",
+      "category": "vehicles",
+      "coinPrice": 10,
+      "tier": "common",
+      "asset": "assets/gifts/gift-044.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2320,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "2666aa6da6cc06076f3b9b3835113b76dd059cc0cf0ce4e035ee30c72d9897b3"
+    },
+    {
+      "id": "gift-045",
+      "name": "Rocket Runner",
+      "category": "vehicles",
+      "coinPrice": 4999,
+      "tier": "legendary",
+      "asset": "assets/gifts/gift-045.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1600,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "d9f818a62c63ebd56e8c4d30b3729bbd45f40f298885ffa4f1982f8cd647529b"
+    },
+    {
+      "id": "gift-046",
+      "name": "Neon Train",
+      "category": "vehicles",
+      "coinPrice": 999,
+      "tier": "epic",
+      "asset": "assets/gifts/gift-046.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1780,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "60a8513469dacd70125e924268764a68898789b01e7d0129aab000c0675eb8e6"
+    },
+    {
+      "id": "gift-047",
+      "name": "Cloud Cruiser",
+      "category": "vehicles",
+      "coinPrice": 199,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-047.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1960,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "25fd21bac834f6c161413e100e90147813cee8c84a5fffe9a8df742b703a6225"
+    },
+    {
+      "id": "gift-048",
+      "name": "Jade Supercar",
+      "category": "vehicles",
+      "coinPrice": 50,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-048.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2140,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "de0bae33c20600c4fdf52105ad7ed7cde574dd9f37bd155cf44f99eb600d584a"
+    },
+    {
+      "id": "gift-049",
+      "name": "Bass Drop",
+      "category": "music",
+      "coinPrice": 50,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-049.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2320,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "a6e347593ec8039060c18a14e429dfc14438861caa794929056bd63c51d0aeef"
+    },
+    {
+      "id": "gift-050",
+      "name": "Reggae Riddim",
+      "category": "music",
+      "coinPrice": 10,
+      "tier": "common",
+      "asset": "assets/gifts/gift-050.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1600,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "183e23eb38849f3ab3847090003c4cbb602cbcf80fedf340fc610bc71d7c0d4a"
+    },
+    {
+      "id": "gift-051",
+      "name": "Golden Sax",
+      "category": "music",
+      "coinPrice": 4999,
+      "tier": "legendary",
+      "asset": "assets/gifts/gift-051.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1780,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "25527f503136bdd61e52387411a2ac9267641ada1ff48fc5ac5f9160644b37db"
+    },
+    {
+      "id": "gift-052",
+      "name": "Sonic Vinyl",
+      "category": "music",
+      "coinPrice": 999,
+      "tier": "epic",
+      "asset": "assets/gifts/gift-052.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1960,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "1617145947d16066d5da0f7be29ad705d1a577bf61df2c6e303b77f1d2d5f3c8"
+    },
+    {
+      "id": "gift-053",
+      "name": "Melody Keys",
+      "category": "music",
+      "coinPrice": 199,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-053.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2140,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "8cd4c8ee7f7fe9a628bd62762aa2db27e953513ba045a7320f1f0d23c709bd01"
+    },
+    {
+      "id": "gift-054",
+      "name": "Drumline Spark",
+      "category": "music",
+      "coinPrice": 50,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-054.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2320,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "cfac6a83d60011ee798c6d6da845a9bc48ae83b8873ccd4270852a0539c3292f"
+    },
+    {
+      "id": "gift-055",
+      "name": "Disco Orbit",
+      "category": "music",
+      "coinPrice": 10,
+      "tier": "common",
+      "asset": "assets/gifts/gift-055.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1600,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "e96200fef4f1b96c777a7d349be019b072bc592c77dd9bfc6e3a69b3a7759e87"
+    },
+    {
+      "id": "gift-056",
+      "name": "Harmony Note",
+      "category": "music",
+      "coinPrice": 4999,
+      "tier": "legendary",
+      "asset": "assets/gifts/gift-056.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1780,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "d0bf8ec056596033cb62e59a6845aae636bf816b95fd03bfcfbe39398cd4caed"
+    },
+    {
+      "id": "gift-057",
+      "name": "Velvet Diamond",
+      "category": "luxury",
+      "coinPrice": 4999,
+      "tier": "legendary",
+      "asset": "assets/gifts/gift-057.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1960,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "b2d0a6e4faffb7f0745fcbf73a9a966e47f14fc45ac7140af165d72306ec2f91"
+    },
+    {
+      "id": "gift-058",
+      "name": "Pearl Bouquet",
+      "category": "luxury",
+      "coinPrice": 999,
+      "tier": "epic",
+      "asset": "assets/gifts/gift-058.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2140,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "dc2109ce5d261797ce0047ee1757ea2e860dfdd87fe14ef2b3e695287d60e0b1"
+    },
+    {
+      "id": "gift-059",
+      "name": "Platinum Key",
+      "category": "luxury",
+      "coinPrice": 199,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-059.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2320,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "109b81ab38640fcd9aed451f5b632474a72776dcebfc3c38352148de4d11dfbb"
+    },
+    {
+      "id": "gift-060",
+      "name": "Royal Watch",
+      "category": "luxury",
+      "coinPrice": 50,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-060.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1600,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "87edcdf1d7e5015c3df429f8c3a55dcbddfcb84e01de13db34f7ab8bda72a4f7"
+    },
+    {
+      "id": "gift-061",
+      "name": "Sapphire Vault",
+      "category": "luxury",
+      "coinPrice": 10,
+      "tier": "common",
+      "asset": "assets/gifts/gift-061.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1780,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "ac0982717b4704bb334d0ac1ccc6b266ab583ded0f6977629dc8d5b81f1c9b5e"
+    },
+    {
+      "id": "gift-062",
+      "name": "Golden Atelier",
+      "category": "luxury",
+      "coinPrice": 4999,
+      "tier": "legendary",
+      "asset": "assets/gifts/gift-062.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1960,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "c0f5a8d62d9598ebc6e084313c0b0c041678403fc62d1fe4f047fe6ad3e0eaff"
+    },
+    {
+      "id": "gift-063",
+      "name": "Crystal Pavilion",
+      "category": "luxury",
+      "coinPrice": 999,
+      "tier": "epic",
+      "asset": "assets/gifts/gift-063.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2140,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "89943f20d52b431dc58e296874bc0ef08a33eb39d86dd7ae5c7dab9f3ad17e77"
+    },
+    {
+      "id": "gift-064",
+      "name": "Luxe Nebula",
+      "category": "luxury",
+      "coinPrice": 199,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-064.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2320,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "7df00943d833fcf9764595b4b5ccd8207c65285ac67088be2bf5c943799b56ed"
+    },
+    {
+      "id": "gift-065",
+      "name": "Golden Goal",
+      "category": "sports",
+      "coinPrice": 199,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-065.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1600,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "2b9c5748a2530b97149dc85d896c914569717072810f91e626e8f30d2ab34896"
+    },
+    {
+      "id": "gift-066",
+      "name": "Sprint Burst",
+      "category": "sports",
+      "coinPrice": 50,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-066.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1780,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "c7294c9e5b6b7403c9151f4f8b860ed095b0bba623fd3fcd44e2da88d51df5ce"
+    },
+    {
+      "id": "gift-067",
+      "name": "Champion Glove",
+      "category": "sports",
+      "coinPrice": 10,
+      "tier": "common",
+      "asset": "assets/gifts/gift-067.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1960,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "26f9097e8024c41a5c0ddd18d59c698dabc77747cbb4b4682c940a12c4ddbfce"
+    },
+    {
+      "id": "gift-068",
+      "name": "Island Cricket Bat",
+      "category": "sports",
+      "coinPrice": 4999,
+      "tier": "legendary",
+      "asset": "assets/gifts/gift-068.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2140,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "4d9639007d11cd046bd8bc9f8d80512cfc00ccab2befbb0b2c9ab45bb7408735"
+    },
+    {
+      "id": "gift-069",
+      "name": "Volley Comet",
+      "category": "sports",
+      "coinPrice": 999,
+      "tier": "epic",
+      "asset": "assets/gifts/gift-069.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2320,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "48acc6f7ffb77bdee4455e1bff07e78b1bf7fe279ae6edc27734a169ec4b65b1"
+    },
+    {
+      "id": "gift-070",
+      "name": "Hoop Legend",
+      "category": "sports",
+      "coinPrice": 199,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-070.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1600,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "2a531e5d5a272868e857fc831d7c1139d978f14c67667ecedd29ec7558a0c8af"
+    },
+    {
+      "id": "gift-071",
+      "name": "Racing Trophy",
+      "category": "sports",
+      "coinPrice": 50,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-071.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1780,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "6468393e91a0d814acf02d0ebbf1e64ed37d4c1f21a67e15b2d69ec069e754a8"
+    },
+    {
+      "id": "gift-072",
+      "name": "Victory Medal",
+      "category": "sports",
+      "coinPrice": 10,
+      "tier": "common",
+      "asset": "assets/gifts/gift-072.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1960,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "93e35998101129463a0467aa624840f6cd73601eebcc815b4b5b9073b2ee5265"
+    },
+    {
+      "id": "gift-073",
+      "name": "Blue Mountain Glow",
+      "category": "jamaica",
+      "coinPrice": 10,
+      "tier": "common",
+      "asset": "assets/gifts/gift-073.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2140,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "cb2a55556d9d9299ea76b9992afb3b204f48434a8aee61a150dcd2f7a04629ce"
+    },
+    {
+      "id": "gift-074",
+      "name": "Island Sunrise",
+      "category": "jamaica",
+      "coinPrice": 4999,
+      "tier": "legendary",
+      "asset": "assets/gifts/gift-074.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2320,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "d0b152dabb3cbbc1561cf81a6caee85755c6dd4483aab49b7e3f30f0ca30acc9"
+    },
+    {
+      "id": "gift-075",
+      "name": "Ackee Bloom",
+      "category": "jamaica",
+      "coinPrice": 999,
+      "tier": "epic",
+      "asset": "assets/gifts/gift-075.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1600,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "233692dc4c805bac231e8c76257edfc0a082c2592d798e2e28e75b29d4093b42"
+    },
+    {
+      "id": "gift-076",
+      "name": "Reggae Heart",
+      "category": "jamaica",
+      "coinPrice": 199,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-076.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1780,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "c537cafba5afdf0c473aaced1b8f8b863bcc43d1e84e34a2b54654bef05be84f"
+    },
+    {
+      "id": "gift-077",
+      "name": "Jamaica Star",
+      "category": "jamaica",
+      "coinPrice": 50,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-077.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1960,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "535e0c6319303c72b2aa4c62858b8d8074a76f86fe978c9bec8f648b4586f1fe"
+    },
+    {
+      "id": "gift-078",
+      "name": "Blue Mahoe",
+      "category": "jamaica",
+      "coinPrice": 10,
+      "tier": "common",
+      "asset": "assets/gifts/gift-078.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2140,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "ee4a290e6986d9c9d51f2325de0be0f11936ae5854c082d7926f6c36b9b7f2c8"
+    },
+    {
+      "id": "gift-079",
+      "name": "Island Rhythm",
+      "category": "jamaica",
+      "coinPrice": 4999,
+      "tier": "legendary",
+      "asset": "assets/gifts/gift-079.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2320,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "d3c3ac63e6f546ade3b9221e83a511ed3c74367acc1c66d77f19216443d539f8"
+    },
+    {
+      "id": "gift-080",
+      "name": "Patois Poetry",
+      "category": "jamaica",
+      "coinPrice": 999,
+      "tier": "epic",
+      "asset": "assets/gifts/gift-080.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1600,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "0eef8c990be13f3f48cba318af89ca4c3c147a5e4bf39c281fedd33ccd1d3865"
+    },
+    {
+      "id": "gift-081",
+      "name": "Kingston Pulse",
+      "category": "parish-pride",
+      "coinPrice": 999,
+      "tier": "epic",
+      "asset": "assets/gifts/gift-081.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1780,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "ad419542bfd15d164f274e826188965257742ca7b412c833862d8fb8c9f636f3"
+    },
+    {
+      "id": "gift-082",
+      "name": "Portland Emerald",
+      "category": "parish-pride",
+      "coinPrice": 199,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-082.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1960,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "83a2269204b4f84cf354bd349acbdb79b6457199d65c5cbf786e1650d1223332"
+    },
+    {
+      "id": "gift-083",
+      "name": "St Mary Sunrise",
+      "category": "parish-pride",
+      "coinPrice": 50,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-083.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2140,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "0604aba68ebc7b65bf51a8dd2b8792ba8bdb8b9a3c0695f156a4b174641cf8c2"
+    },
+    {
+      "id": "gift-084",
+      "name": "St Ann Wave",
+      "category": "parish-pride",
+      "coinPrice": 10,
+      "tier": "common",
+      "asset": "assets/gifts/gift-084.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2320,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "ed41a7b78a855ff8ddd76be61f9b74710e9897caa52dfe091397eda30758c178"
+    },
+    {
+      "id": "gift-085",
+      "name": "Trelawny Flame",
+      "category": "parish-pride",
+      "coinPrice": 4999,
+      "tier": "legendary",
+      "asset": "assets/gifts/gift-085.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1600,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "530f3a84ad978464a00bc873c125349a722afa73ba26f06c439506f69ed28880"
+    },
+    {
+      "id": "gift-086",
+      "name": "St James Crown",
+      "category": "parish-pride",
+      "coinPrice": 999,
+      "tier": "epic",
+      "asset": "assets/gifts/gift-086.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1780,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "f9352aa8a50766253d263605005664363c94c2e7f30a8258b132610133586e0e"
+    },
+    {
+      "id": "gift-087",
+      "name": "Hanover Breeze",
+      "category": "parish-pride",
+      "coinPrice": 199,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-087.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1960,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "4d71ff746a0333e85aca3ec4a3f0f6e337530e716935df63f94283f4d1d9e3a0"
+    },
+    {
+      "id": "gift-088",
+      "name": "Westmoreland Gold",
+      "category": "parish-pride",
+      "coinPrice": 50,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-088.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2140,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "064ef9216043efb017eb824b8ae1550306050bc74bc96a4b77d4f7f3f9983e7d"
+    },
+    {
+      "id": "gift-089",
+      "name": "Winter Prism",
+      "category": "seasonal",
+      "coinPrice": 50,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-089.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2320,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "09b49bd96419fd90321b9b7bc6e69f32412b6535898fd3a4d1018c107859e2b7"
+    },
+    {
+      "id": "gift-090",
+      "name": "Spring Lantern",
+      "category": "seasonal",
+      "coinPrice": 10,
+      "tier": "common",
+      "asset": "assets/gifts/gift-090.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1600,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "1d91a46bfb2d0ba00b55ecb4d8853482d684dfa63c421ddd4158af85a7d67d39"
+    },
+    {
+      "id": "gift-091",
+      "name": "Summer Solstice",
+      "category": "seasonal",
+      "coinPrice": 4999,
+      "tier": "legendary",
+      "asset": "assets/gifts/gift-091.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1780,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "f10760397ab200d3730fa85e14f3f7db5a55ba2a0e363f7c223538369ae9f277"
+    },
+    {
+      "id": "gift-092",
+      "name": "Autumn Ember",
+      "category": "seasonal",
+      "coinPrice": 999,
+      "tier": "epic",
+      "asset": "assets/gifts/gift-092.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1960,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "d91201be177246ef947075c6903f829ab83c9fd194d0c2c093f07eb320c1269a"
+    },
+    {
+      "id": "gift-093",
+      "name": "New Year Orbit",
+      "category": "seasonal",
+      "coinPrice": 199,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-093.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2140,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "95761123a9ce36169c119e431a42ee433db89274ee33533421a06d1f34f85822"
+    },
+    {
+      "id": "gift-094",
+      "name": "Love Day Bloom",
+      "category": "seasonal",
+      "coinPrice": 50,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-094.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2320,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "c218fa96258eb65666be034c6d26355051414095dcd2cf5046afe26212e0a63c"
+    },
+    {
+      "id": "gift-095",
+      "name": "Harvest Moon",
+      "category": "seasonal",
+      "coinPrice": 10,
+      "tier": "common",
+      "asset": "assets/gifts/gift-095.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1600,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "45b168d2a67c60eb91720c4f7e658b1a1952a5337c47ae11c21968530eb04366"
+    },
+    {
+      "id": "gift-096",
+      "name": "Festival Spark",
+      "category": "seasonal",
+      "coinPrice": 4999,
+      "tier": "legendary",
+      "asset": "assets/gifts/gift-096.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1780,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "e6ad3b05e526964a5d62b757e1aa5f17a97a743bdd4db55149b6b0ef898f28bb"
+    },
+    {
+      "id": "gift-097",
+      "name": "Coral Reef",
+      "category": "ocean",
+      "coinPrice": 4999,
+      "tier": "legendary",
+      "asset": "assets/gifts/gift-097.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1960,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "34742043952f70140b06a2bd67b73ab1ef9b3791cd17eba23c664f22a6f95543"
+    },
+    {
+      "id": "gift-098",
+      "name": "Pearl Current",
+      "category": "ocean",
+      "coinPrice": 999,
+      "tier": "epic",
+      "asset": "assets/gifts/gift-098.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2140,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "c945d606f188d08c9dc89fb0929f6e3afea3adec5178b6410a682208c2702fa4"
+    },
+    {
+      "id": "gift-099",
+      "name": "Tidal Crown",
+      "category": "ocean",
+      "coinPrice": 199,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-099.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2320,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "2938896e02bfe6e4cda392acbb221b22d4879c8d92f724b496ae483edc906b9b"
+    },
+    {
+      "id": "gift-100",
+      "name": "Blue Whale Dream",
+      "category": "ocean",
+      "coinPrice": 50,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-100.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1600,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "83334eab90dce529712385e171489388a02fc95439dd3941a440e7f9a0190e1e"
+    },
+    {
+      "id": "gift-101",
+      "name": "Lagoon Lantern",
+      "category": "ocean",
+      "coinPrice": 10,
+      "tier": "common",
+      "asset": "assets/gifts/gift-101.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1780,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "ba1c1aceff9bc2ddb100c18f39a1ef013aaea27985325552409e055843254d63"
+    },
+    {
+      "id": "gift-102",
+      "name": "Sea Glass Star",
+      "category": "ocean",
+      "coinPrice": 4999,
+      "tier": "legendary",
+      "asset": "assets/gifts/gift-102.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 1960,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "3ab4ca6d8f69883335d89714c6708fec28261d242b2bd73e40a00353c0a60e6b"
+    },
+    {
+      "id": "gift-103",
+      "name": "Wave Rider",
+      "category": "ocean",
+      "coinPrice": 999,
+      "tier": "epic",
+      "asset": "assets/gifts/gift-103.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2140,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "ce62f11813c3597b73f8bfab8ebdc82c84d55e5c1331b590b3ee60d78ed084ff"
+    },
+    {
+      "id": "gift-104",
+      "name": "Deep Sea Glow",
+      "category": "ocean",
+      "coinPrice": 199,
+      "tier": "rare",
+      "asset": "assets/gifts/gift-104.svg",
+      "animation": {
+        "kind": "vector-burst",
+        "durationMs": 2320,
+        "fallback": "static-svg",
+        "reducedMotion": "fade"
+      },
+      "sound": null,
+      "checksum": "66484dff6167f44082abd72a5d05f82848a3263b50af3d39e004370ffb84fbd0"
+    }
+  ]
+}
