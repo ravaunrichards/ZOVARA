@@ -186,7 +186,7 @@
       "id": "android-shell",
       "status": "source-provided-not-built",
       "sources": [
-        "apps/mobile/android/"
+        "apps/android/"
       ],
       "tests": []
     },
@@ -194,7 +194,7 @@
       "id": "ios-shell",
       "status": "source-provided-not-built",
       "sources": [
-        "apps/mobile/ios/"
+        "apps/ios/"
       ],
       "tests": []
     },
