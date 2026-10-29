@@ -1,0 +1,1790 @@
+{
+  "version": 1,
+  "assetCount": 223,
+  "items": [
+    {
+      "id": "badges/gifter-level-01.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1203,
+      "sha256": "4c7d66d973d87331a6387633326db5d8a9fa3e37cf24b4237fcb38a81cb115cf",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-02.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1203,
+      "sha256": "cda92a0af3af77a81753b0e47cfe090dd57b8a95db7a0497028a42cafbc7fc32",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-03.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1203,
+      "sha256": "33713a94257d853886539318c2bacf4fb1c32bb83725a03ac70c8d05403739fb",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-04.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1203,
+      "sha256": "3bc9fb451daff20aeb9a14bd7b8cda6aa5d35315269fa35177b3770980d621bc",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-05.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1203,
+      "sha256": "4b29c532285bae58b96c9922b729271d8a47bc6d5d2449f9e1733e3104f58ea6",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-06.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1203,
+      "sha256": "cae3780cd91aaa8ca1ac222918e7b51005f6aecdaae9cfde872e7e89bef262a3",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-07.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1203,
+      "sha256": "6e32a8eebb447ebf5a0443de535828343871efab46c8c1a0c2532513df6779f3",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-08.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1203,
+      "sha256": "53ec5bdc47d7a3e659971b05b8ff108724e68f37029cbe0dd1e62c545aeef7a7",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-09.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1203,
+      "sha256": "3849e1acf7cabc9a679ef75d38de61f9fe1328d24feb159e3b40691f35977bff",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-10.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "aea6353f70adea965993480575bc9bb014ebb9d4279779e270fa417240132c56",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-11.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "41d144e66c48389a6c0a2e9c4d073e121b3806f4ab72bc0be05fa015bc8c9900",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-12.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "d13d0183e0ee92dad0b3bf54b2f6695ffec0a7c7f1c8472fa1fcee5dfd6524bb",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-13.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "1e84871ec8c664d3abaffd397c19095d0a995974ae75d9454aff726ad35f7513",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-14.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "0094a649ae89562115431c50f9ab8e3694c3483510380ad1c03f1aef5db3c675",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-15.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "e43e388864234584306462dff91968a60f3eb587ac7e37ff407eff12a3dfde00",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-16.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "e8e9286ea69d58b588b2470cf1a8af8d9a9b8062da3c2faf023f8737d4432741",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-17.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "64c6b5d664c790d9725872380f0ec5809c68cb816a57a41caf71db36c149dea3",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-18.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "c4fd0b5db3a6f2dcf606d7bc0529e64d6849545fd3a3f135e0792e0d9098c9be",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-19.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "ac20d05e17d291929801914bdb29956795e110d5ab8071f8388542dda8f9974a",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-20.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "6df970a33a62010126790dfd997d37373678412284c3a25de396c687f447657d",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-21.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "f5a7acea903d8d99f64392d5d87ca436d5e2eb38994aaa51bb704a7da8dabe98",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-22.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "3cba2537c6292755df35afedaf135ad35ad94b257f6d780434da48da83c1ee0b",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-23.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "66a9f0eefed1a29ce6a622b68b46c23c492bd11db7272f9ac2306b396c03bf78",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-24.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "a5a94c4b9bd6f558cd08ee061e6d54f8598fe3fd009cac9d8167d18145ad2090",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-25.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "b5ac7a0e763571c473f45679c8e3e1730d5dae14689eb44b31407f936379a698",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-26.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "97265e91dade1a8a7a1c27c0686f285f81b37bc9b7954ac6f0e5f8cc650b36b7",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-27.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "1039133945d0902e419a1824f3d9a9442b4624c8af437e503a55078d2da34c24",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-28.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "b57d5d61cde49276bcc2c14497e5c8b6afa92971229d5f901639a59661b72f4c",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-29.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "06ad7a66cac9e25cb5adcb50fa8e3efd41a010491252e6dcd05a192d717f573d",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-30.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "df66d8049271666971b18a0ad341b2c3cd61b365ae7256e3ce6f97c29a41e4c8",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-31.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "984906139cebd4d57393e61cd4e2e9f3b7f29db8dc38af7c87b37e47a7a89729",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-32.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "46983110ab279bb7dd6956bdf3c7807827b6285fc52900d303087e37dc28b300",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-33.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "939e2e12ea55212b67067add338781d6b2abdd34b3d67b14377ef65557e12409",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-34.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "8e51182998ca5f9ae6e23a1942235ea986b834557a46617aeebd1d63bd21194c",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-35.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "272b3b8fa70f5c055f6e6b29d402b9e52b4024ca40694af6872a8b24a7604b38",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-36.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "71899cb05b6125fc5f427e84f2c74acfbe74ed16f74da959e61b353c4c020b28",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-37.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "109f1883c7cd0538065f55a5f34c32a339d7d4be79ce4488265829af89bd8840",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-38.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "ef33329522c1506d123f2ecbe33b7f08ff15458ee1e2e4583aab580549b2cadf",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-39.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "19bb24b46cc0655a3dbf246a91064b736f1e23fdc93044ed24cfc019e047226a",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-40.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "d0acf12630f65f7bb86fc8e6858c66480cf4055e3d7bad9e022a83a9b0261621",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-41.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "c6e90c77026bddaad21f18f56553e25b14b0039d7031d0b00be30b176c2a9678",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-42.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "9e0cda8b576d0d93cf6971b8f0daf158c56907288c6e73df1e8ba9adea9d2080",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-43.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "79f6d8125f10d5c9b9d4d97314d81bd1167cab84eec26b3b27b2a8a28443066a",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-44.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "3c8e4ab377d6b53cf5077ac90b5c2f419561eb06a3630f150ba2c321ce91c9ac",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-45.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "1e6342a8d13dd6d76d99ad6cf0b0d8ff56bbc192e9d21885a50c08cf92aef61c",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-46.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "00d5616e15a9f9505aa3c053cf1efaa3e23057ab417d06bc6a4e41e5d5784106",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-47.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "9dd0bfab73152c6619f80af67a61a57874168664f9253b8f0ee48d5a2343a768",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-48.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "9d331035ae3b149719705134baaf2f62d7de075fc0c0163c6c9940a8c7e3aa65",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-49.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "7847cfb3f13daf2c22c5f88e06e5405ff7142167580c062f4159d9c4be68ab9b",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-level-50.svg",
+      "category": "badges",
+      "format": "svg",
+      "bytes": 1206,
+      "sha256": "e7f7be278548591e2504506ea3b1a93b4eaf4f0c3501b5c4a6b4bb63192f843f",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/gifter-levels.json",
+      "category": "badges",
+      "format": "json",
+      "bytes": 19187,
+      "sha256": "d034277ed76a56b964e5e597fea2104935551b8f43c3879475f120af9a76116e",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "badges/manifest.json",
+      "category": "badges",
+      "format": "json",
+      "bytes": 18878,
+      "sha256": "8d8cbb0731415add3fc35c841ac21587a00b77d8323db5866680f1ba4e8a1c21",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/catalog.json",
+      "category": "gifts",
+      "format": "json",
+      "bytes": 47119,
+      "sha256": "598cef7ca7f69985c93670ed931fee6c0a445b673c24976d7396c0371bbdf55a",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-001.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1238,
+      "sha256": "1175b31e4f275298aa7c2b2c5318eac8b13c38069ace46df18addb9c0aff5e75",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-002.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1133,
+      "sha256": "4af6706f5c70f24e992ce45dd215e8bab57f3de72527a23c231e55940e8925c8",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-003.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1242,
+      "sha256": "5a8e0d808cb31f7f88457ad606f85ed30ba0272cfd619ca798a5cf13b2612e38",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-004.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1135,
+      "sha256": "4aed5d03e20b8d9450c4f9afb3c974ee0cc30352fbd02c136fe75f59e01c905f",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-005.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1240,
+      "sha256": "c37959db7138aa6223449f20f6f5956eb0ed1b88c903393cea1a3c3c7a895031",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-006.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1131,
+      "sha256": "9916e5c11e47ecf39ae45bfa720c5bb8fb597e00e996309bebc62efe973d8c32",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-007.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1248,
+      "sha256": "dbf51bdb8d7bb34e33436208d873c9124a86e206fec1f91d07e81edaa851e59b",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-008.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1141,
+      "sha256": "fc184a5e5c90c640eef4045dea202a44f08b995c9b114eb7601f7dffcf6e189b",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-009.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1021,
+      "sha256": "af863f3054484cfec943abb8273ae357fb2d6814aa13592570be5596ee0d827c",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-010.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1124,
+      "sha256": "e757753e677431796ebe10a02517202e9dec25f74fac933c1e1a75f684374d96",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-011.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1021,
+      "sha256": "1e358bced5d57e16619ef791b05451081dfa3b08c7e92191430d7665e3fdbda2",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-012.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1122,
+      "sha256": "d0e3544676448449b83228e5ee979695f5ed579b384f290cede42554b14fe484",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-013.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1017,
+      "sha256": "9603e5123de6eaa0da9db5de55635b6ff39c58460d7ba74ffdc5fd31b63f1bb0",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-014.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1128,
+      "sha256": "3fc1ec1a7e9aaaa350f3658540741eb6fc47706c671231602db96d77aaeac815",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-015.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1017,
+      "sha256": "66e0dcab2d5e2570f43e4acca077a0f9bc2fbed6baf0c97387916346b6c85250",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-016.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1120,
+      "sha256": "5ba2f6ad86e57870fb804c39bcbe4c477ad9396e7de7a47167021d53d1c7aa5b",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-017.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1111,
+      "sha256": "8684ba7bfd67d4d63f45d0ab769e058fa744eda3f03e1549f94a1de59c06654a",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-018.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1128,
+      "sha256": "5ef72325250f9302776fe0870682932996904f67e2b6752e281ff107a7fbfc93",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-019.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1115,
+      "sha256": "a0376639e0b30662f590fd14c7638fee075371397943136e5e09b7993308962f",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-020.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1130,
+      "sha256": "3a8abfe2b7b9112ec16f7b2d9703900f093f419a5d0d7660ffff2f7c32d0a48b",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-021.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1111,
+      "sha256": "14b6fe8317d01b4523d980bd9bef59c6faf392d93783134574837b30d7a0a905",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-022.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1130,
+      "sha256": "7c1b1b09171ba42424a2949322eb1c0d9c970b4a2435e8149b9be0a5fac7a5b1",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-023.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1111,
+      "sha256": "4bee68cb8bb3bbbd80f1a05cc8cea8fc3b677a60ab3eafd9843d13d9fca7ab57",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-024.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1130,
+      "sha256": "d3beff01eeaea7a5757baff34ddb984a22563e8e7b2e2faea1cb29dc0095ea82",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-025.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1197,
+      "sha256": "293c24958d2f868c79505fdc99a411c454a8a9643056f58d352f7aacca5a6a9a",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-026.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1149,
+      "sha256": "0e3a722bb64aaeb19e74c65e241a4ad646db0651fa97508c082d0a0dbb3ab389",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-027.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1193,
+      "sha256": "7a7bf7347a4dee7cbb95a983b36b8bbe5a9093180fad7025d1325d42fcd82955",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-028.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1149,
+      "sha256": "5539211399d446877ee91c519212babcb9ca637290e342db1d4010ee85d4e4af",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-029.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1185,
+      "sha256": "ac24abacd13a73d2f065d1d0cd94fd55809a6a553d2c961484281afd544dee13",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-030.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1157,
+      "sha256": "460772ff7c767f10c41b7b228733807ffd23cf819a175803351cde9e5f871dd2",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-031.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1183,
+      "sha256": "503130f27ddd61606ee1b7e3c2efa297ba77b2e57dbde9693a235a112cf63449",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-032.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1157,
+      "sha256": "0a49b12f2323140898199066412179736c3350181680781a88aa77dac551d409",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-033.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1072,
+      "sha256": "25f425f642d85b6176fa942db4b15cf1e65ac666786daca944e76718d8c08937",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-034.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1093,
+      "sha256": "1562f05d1275a38220b09f873945dca1f2a53b980436c32f77a81d0b31cac5c0",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-035.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1072,
+      "sha256": "fc79cac853555e2cb94c9095b36814b803f5bbf97cfd0c20548d05319e7852dc",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-036.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1089,
+      "sha256": "6a68e2fae5cce7f343e3aee9c8087383347c21bffba74a4ac0d219ebbee5f1d9",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-037.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1068,
+      "sha256": "d402e1378e638a3fbd92bb9a7dca07c5b41200518f88c55d5bcaa467091148be",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-038.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1095,
+      "sha256": "e5e11edbb402aea0caa765dbe01e733b180c39b7ef9c36b85c3bfd2e2dff4c78",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-039.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1074,
+      "sha256": "e0ad027ced7753c1c576704031df213508ced2356d08f44045ccda1d0798798a",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-040.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1095,
+      "sha256": "489770e8459a380e0dba5434b2f4399307a493cce210064f1ca3b144bf050d08",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-041.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1222,
+      "sha256": "0a9fbb17f7897e10df32ad512f81d12e0b2290ebe7f224141522e7212dc740d7",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-042.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1110,
+      "sha256": "d3ea019553d703d1085aade2d55c1fa7ede0ae459cf0bf1f9afa4214db853cea",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-043.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1214,
+      "sha256": "369aaa19637fcd640d85ab9dfbb396be0e002953525fc6fe83bacd59da0b3e8f",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-044.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1106,
+      "sha256": "2666aa6da6cc06076f3b9b3835113b76dd059cc0cf0ce4e035ee30c72d9897b3",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-045.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1222,
+      "sha256": "d9f818a62c63ebd56e8c4d30b3729bbd45f40f298885ffa4f1982f8cd647529b",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-046.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1104,
+      "sha256": "60a8513469dacd70125e924268764a68898789b01e7d0129aab000c0675eb8e6",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-047.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1222,
+      "sha256": "25fd21bac834f6c161413e100e90147813cee8c84a5fffe9a8df742b703a6225",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-048.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1110,
+      "sha256": "de0bae33c20600c4fdf52105ad7ed7cde574dd9f37bd155cf44f99eb600d584a",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-049.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1061,
+      "sha256": "a6e347593ec8039060c18a14e429dfc14438861caa794929056bd63c51d0aeef",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-050.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1082,
+      "sha256": "183e23eb38849f3ab3847090003c4cbb602cbcf80fedf340fc610bc71d7c0d4a",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-051.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1063,
+      "sha256": "25527f503136bdd61e52387411a2ac9267641ada1ff48fc5ac5f9160644b37db",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-052.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1078,
+      "sha256": "1617145947d16066d5da0f7be29ad705d1a577bf61df2c6e303b77f1d2d5f3c8",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-053.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1065,
+      "sha256": "8cd4c8ee7f7fe9a628bd62762aa2db27e953513ba045a7320f1f0d23c709bd01",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-054.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1084,
+      "sha256": "cfac6a83d60011ee798c6d6da845a9bc48ae83b8873ccd4270852a0539c3292f",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-055.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1065,
+      "sha256": "e96200fef4f1b96c777a7d349be019b072bc592c77dd9bfc6e3a69b3a7759e87",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-056.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1080,
+      "sha256": "d0bf8ec056596033cb62e59a6845aae636bf816b95fd03bfcfbe39398cd4caed",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-057.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1111,
+      "sha256": "b2d0a6e4faffb7f0745fcbf73a9a966e47f14fc45ac7140af165d72306ec2f91",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-058.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1114,
+      "sha256": "dc2109ce5d261797ce0047ee1757ea2e860dfdd87fe14ef2b3e695287d60e0b1",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-059.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1107,
+      "sha256": "109b81ab38640fcd9aed451f5b632474a72776dcebfc3c38352148de4d11dfbb",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-060.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1110,
+      "sha256": "87edcdf1d7e5015c3df429f8c3a55dcbddfcb84e01de13db34f7ab8bda72a4f7",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-061.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1111,
+      "sha256": "ac0982717b4704bb334d0ac1ccc6b266ab583ded0f6977629dc8d5b81f1c9b5e",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-062.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1116,
+      "sha256": "c0f5a8d62d9598ebc6e084313c0b0c041678403fc62d1fe4f047fe6ad3e0eaff",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-063.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1115,
+      "sha256": "89943f20d52b431dc58e296874bc0ef08a33eb39d86dd7ae5c7dab9f3ad17e77",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-064.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1110,
+      "sha256": "7df00943d833fcf9764595b4b5ccd8207c65285ac67088be2bf5c943799b56ed",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-065.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1079,
+      "sha256": "2b9c5748a2530b97149dc85d896c914569717072810f91e626e8f30d2ab34896",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-066.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1102,
+      "sha256": "c7294c9e5b6b7403c9151f4f8b860ed095b0bba623fd3fcd44e2da88d51df5ce",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-067.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1085,
+      "sha256": "26f9097e8024c41a5c0ddd18d59c698dabc77747cbb4b4682c940a12c4ddbfce",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-068.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1114,
+      "sha256": "4d9639007d11cd046bd8bc9f8d80512cfc00ccab2befbb0b2c9ab45bb7408735",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-069.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1081,
+      "sha256": "48acc6f7ffb77bdee4455e1bff07e78b1bf7fe279ae6edc27734a169ec4b65b1",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-070.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1100,
+      "sha256": "2a531e5d5a272868e857fc831d7c1139d978f14c67667ecedd29ec7558a0c8af",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-071.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1083,
+      "sha256": "6468393e91a0d814acf02d0ebbf1e64ed37d4c1f21a67e15b2d69ec069e754a8",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-072.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1104,
+      "sha256": "93e35998101129463a0467aa624840f6cd73601eebcc815b4b5b9073b2ee5265",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-073.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1126,
+      "sha256": "cb2a55556d9d9299ea76b9992afb3b204f48434a8aee61a150dcd2f7a04629ce",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-074.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1106,
+      "sha256": "d0b152dabb3cbbc1561cf81a6caee85755c6dd4483aab49b7e3f30f0ca30acc9",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-075.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1112,
+      "sha256": "233692dc4c805bac231e8c76257edfc0a082c2592d798e2e28e75b29d4093b42",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-076.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1102,
+      "sha256": "c537cafba5afdf0c473aaced1b8f8b863bcc43d1e84e34a2b54654bef05be84f",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-077.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1114,
+      "sha256": "535e0c6319303c72b2aa4c62858b8d8074a76f86fe978c9bec8f648b4586f1fe",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-078.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1098,
+      "sha256": "ee4a290e6986d9c9d51f2325de0be0f11936ae5854c082d7926f6c36b9b7f2c8",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-079.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1116,
+      "sha256": "d3c3ac63e6f546ade3b9221e83a511ed3c74367acc1c66d77f19216443d539f8",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-080.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1104,
+      "sha256": "0eef8c990be13f3f48cba318af89ca4c3c147a5e4bf39c281fedd33ccd1d3865",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-081.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1071,
+      "sha256": "ad419542bfd15d164f274e826188965257742ca7b412c833862d8fb8c9f636f3",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-082.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1033,
+      "sha256": "83a2269204b4f84cf354bd349acbdb79b6457199d65c5cbf786e1650d1223332",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-083.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1073,
+      "sha256": "0604aba68ebc7b65bf51a8dd2b8792ba8bdb8b9a3c0695f156a4b174641cf8c2",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-084.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1023,
+      "sha256": "ed41a7b78a855ff8ddd76be61f9b74710e9897caa52dfe091397eda30758c178",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-085.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1071,
+      "sha256": "530f3a84ad978464a00bc873c125349a722afa73ba26f06c439506f69ed28880",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-086.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1029,
+      "sha256": "f9352aa8a50766253d263605005664363c94c2e7f30a8258b132610133586e0e",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-087.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1071,
+      "sha256": "4d71ff746a0333e85aca3ec4a3f0f6e337530e716935df63f94283f4d1d9e3a0",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-088.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1035,
+      "sha256": "064ef9216043efb017eb824b8ae1550306050bc74bc96a4b77d4f7f3f9983e7d",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-089.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1053,
+      "sha256": "09b49bd96419fd90321b9b7bc6e69f32412b6535898fd3a4d1018c107859e2b7",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-090.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1076,
+      "sha256": "1d91a46bfb2d0ba00b55ecb4d8853482d684dfa63c421ddd4158af85a7d67d39",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-091.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1059,
+      "sha256": "f10760397ab200d3730fa85e14f3f7db5a55ba2a0e363f7c223538369ae9f277",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-092.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1072,
+      "sha256": "d91201be177246ef947075c6903f829ab83c9fd194d0c2c093f07eb320c1269a",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-093.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1057,
+      "sha256": "95761123a9ce36169c119e431a42ee433db89274ee33533421a06d1f34f85822",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-094.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1076,
+      "sha256": "c218fa96258eb65666be034c6d26355051414095dcd2cf5046afe26212e0a63c",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-095.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1053,
+      "sha256": "45b168d2a67c60eb91720c4f7e658b1a1952a5337c47ae11c21968530eb04366",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-096.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1076,
+      "sha256": "e6ad3b05e526964a5d62b757e1aa5f17a97a743bdd4db55149b6b0ef898f28bb",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-097.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1074,
+      "sha256": "34742043952f70140b06a2bd67b73ab1ef9b3791cd17eba23c664f22a6f95543",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-098.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1042,
+      "sha256": "c945d606f188d08c9dc89fb0929f6e3afea3adec5178b6410a682208c2702fa4",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-099.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1076,
+      "sha256": "2938896e02bfe6e4cda392acbb221b22d4879c8d92f724b496ae483edc906b9b",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-100.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1048,
+      "sha256": "83334eab90dce529712385e171489388a02fc95439dd3941a440e7f9a0190e1e",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-101.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1082,
+      "sha256": "ba1c1aceff9bc2ddb100c18f39a1ef013aaea27985325552409e055843254d63",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-102.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1044,
+      "sha256": "3ab4ca6d8f69883335d89714c6708fec28261d242b2bd73e40a00353c0a60e6b",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-103.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1074,
+      "sha256": "ce62f11813c3597b73f8bfab8ebdc82c84d55e5c1331b590b3ee60d78ed084ff",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "gifts/gift-104.svg",
+      "category": "gifts",
+      "format": "svg",
+      "bytes": 1042,
+      "sha256": "66484dff6167f44082abd72a5d05f82848a3263b50af3d39e004370ffb84fbd0",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/accessibility.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 278,
+      "sha256": "7ad8784b78bb6f666eb8948cefd03e343d1214dec775589c470722f95eb5a70d",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/appeal.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 278,
+      "sha256": "3ce32dafbfd74fd37e1c17d9d9a5eea474346165a1c0aa166d5aba5390be5198",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/badge.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 288,
+      "sha256": "585d3be41ea1c19219f4c0b122d583b9d6bc855818d6cdf0ff183087480b1046",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/block.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 262,
+      "sha256": "af350a32af205b4b7311b3dfd29f7be5db9d8ae98feb69bc4f2cdf8fc308e760",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/bookmark.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 273,
+      "sha256": "a694473e8756ab4103a43ead97eb479ee1162c69f90566baae8a49bb4cf3fcbc",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/calendar.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 265,
+      "sha256": "2b8513879696a72aace165d6a79adeb1a6a7c7eb6d823e173d8cdb0ef9cb2000",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/camera-flip.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 294,
+      "sha256": "35af586d8846f3cd862a447225ecbc21597149bcf7c9767f09b26284c13b9570",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/camera.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 263,
+      "sha256": "9cbb2adc4e6e77c07447388abfa6b8983968ac30f8f3a0dcb498020c40773406",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/check.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 277,
+      "sha256": "ffd02bf3e1c69624066ecda4c48c0b7d3ce2a944c569a08f0b6362a68f031749",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/clock.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 288,
+      "sha256": "d5f7e0eb9f301dcd60cf11445a123c7305031fe8f8ba8d2b965c08271644b46c",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/close.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 261,
+      "sha256": "e93f7f9fc999ac0ba273e29480434e6f8daaff71b6bf2b02334da3cca1cf3757",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/coins.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 277,
+      "sha256": "88cb22e06450b14d995ad00982f73c314b96cfe524c3cf0b565e790a18a56eeb",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/comment.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 279,
+      "sha256": "843ad05ec3e6ca7272d5130fab5735859638bc808b6b3b789daa1e3cbb980210",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/contrast.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 265,
+      "sha256": "3966ffa15ba3f99d2f973709f5bc47993f5a3f605b93400c246fef0cc49597d3",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/create.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 262,
+      "sha256": "4a6a01edbda2f584876a6e470a7341192196fca801c99c2b539ad588db5c7709",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/creator.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 272,
+      "sha256": "5ab7f7dea5825c3081642587f51d9d2dea34efa9f404d4196e7d5721e06c689e",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/crown.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 262,
+      "sha256": "59bec0429b09b148541361df84e63ef9b85ea8b7fea6129d67a9bf11e3f053d0",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/delete.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 262,
+      "sha256": "fcef852b4ae73adbd9c2b9c6a90af6527a4dd47092016a781412800e5c23d4b9",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/discover.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 291,
+      "sha256": "fe8d17a43240c4c25de2500db039f9de0eb2d29abe15c298b06059954df15054",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/download.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 265,
+      "sha256": "b0c9c65b6e51e9f81b07edc0732232b6aefbdc005d80b5ff3f7fe36b8f7c6e42",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/edit.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 287,
+      "sha256": "1990d6ab25cf65af55ac181991eebd29d3cdc93c1450020c42228a6a25328bc8",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/filter.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 278,
+      "sha256": "125f54211f4fbc52c50592b8c02ef6de45757641a393ea4de6b3a928a7693e9d",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/fullscreen.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 267,
+      "sha256": "c7f84369311b97a81dc512a3e0266434b92448e1e562c22552eb3406b5352c9e",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/gift.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 337,
+      "sha256": "6b92fd827473662d1b1028fb896e87f533d528fcabccd1418f9a5f1a9398a89c",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/globe.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 261,
+      "sha256": "2d179adb99c9154a2a5752b7488f2e8d1a02583f07d71946d8263b78fad913d9",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/heart.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 298,
+      "sha256": "f528e21d1d4c17d5c860fc445068a543788af88f6fccbf1db76f1f797c5b1141",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/help.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 260,
+      "sha256": "6d7bc609337709500171a99438dec6ba65e5728be7ede5b38c325c990c48443b",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/home.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 268,
+      "sha256": "70d839a6054eaee42cae3d849193896ce965907f36ecb99cbf5397d34611ad40",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/inbox.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 270,
+      "sha256": "cfe39bd6703c4c505cccd0ed94b8636ba657ce3a29b6f8acfbcb28306b0167fc",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/info.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 276,
+      "sha256": "33352a8c8b65e72850bec1767b1bf021def2dd569ec8febb37ef94744bb94c35",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/language.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 280,
+      "sha256": "ab7c77063abfa8565ad0078b649a9c89e4753e9f92ddad13a3f05ea166b54a57",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/league.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 262,
+      "sha256": "00ca50c82f530847c763a7d3a81469924e6e7abdd22590b15771ed3b620565cb",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/live.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 276,
+      "sha256": "77284f15914db07e8fe343c21628184556b7c1fc88e075e323a2430f29d4ec18",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/manifest.json",
+      "category": "icons",
+      "format": "json",
+      "bytes": 18085,
+      "sha256": "f5d449b2b1d65ce6b78edf3e5ffb7bc7c0f309cf328480cab305c43bf769afa0",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/match.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 277,
+      "sha256": "1b8c4cd153091d471ffa613b896383b2360826d22d0b6ef74a0fea14c7b922e3",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/messages.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 273,
+      "sha256": "0f8b7ba988b01ee59f6c767bc11edb5c165e1b37302702ebb85ae65366260eff",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/microphone-off.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 286,
+      "sha256": "b7a269c123de3f2c9404d0e545b4b82daebc3cee6363859b8e5752a4693597e4",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/microphone.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 266,
+      "sha256": "5bb7f0ad62fb65d04d99ba438a70595a338551194b9f5068e4d19eb9fd104044",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/minimize.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 291,
+      "sha256": "d1b1d2b9c390b014cdf3600ef48e9f8a2a6e0387e617fa37876c68f80575c4dc",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/minus.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 262,
+      "sha256": "a53df6e253943d02a8b2c39e68d9278e40f4a1474351f08e9fd7f0e45bd85a8d",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/more.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 276,
+      "sha256": "92ff482ea47183017429e3150cdf6f9610e8d27e11c0a98e08c6bef325c26f37",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/motion.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 289,
+      "sha256": "0d477955840793d076b5438bd571f0696cbe82eed2d41228bf0490c357d2b656",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/mute.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 287,
+      "sha256": "0011773826439e8d2d67ba2cff4987f5329bac78d4dfe18ca007f63dddd29f30",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/notifications.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 285,
+      "sha256": "707ff9b6e7592c216562a04cc7464b611bf94ee1d3bd4a5ea54a101a65c317f8",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/pause.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 261,
+      "sha256": "4e3df56f4f1f1069fc3bfcd9b2b2cf153408e229bd45a77ec3f575d098598594",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/play.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 244,
+      "sha256": "4ba82a306ba1562bc0b78628fe39465d030fab013af494f690490cbc9230be59",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/plus.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 269,
+      "sha256": "65ff9e1ada12636758e07b400bedb1d7840d7df85f0e8a3bddd657f99c1ca43d",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/profile.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 292,
+      "sha256": "5382b5e519904bcc459b625c8c2c68e36b94187a4d7c6e2190788590a9f2aa6d",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/report.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 262,
+      "sha256": "2ed8431a244de7f9cac767c243bcf17362adcfe8af342eeee7b0bde8f3b62613",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/repost.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 263,
+      "sha256": "358c50dfaf2e4bc4ab85ae2683d275d7c212e90e8a5a2145859616d4ff74ae19",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/retry.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 288,
+      "sha256": "0b33ea92bf60aa65a9cdf0c09e139f33df54bcb553b6bac91e9112c3616830ce",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/search.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 281,
+      "sha256": "de3703d64b7d6604e93b64c6226a6d7f1338ad6f9030930e025fece4744dd8ec",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/send.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 260,
+      "sha256": "5ada50eac4a45ea7645b883d9bfd3fbe3404db9c3b02f461589390f9080667ac",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/settings.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 357,
+      "sha256": "0197cdc965ec85793cc519427745a3b6c2b6ee6d0a6ae41230108af1f6a12228",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/share.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 288,
+      "sha256": "e3fc3455c8355b8a27bbf26822430e2bb76ccd390e158f8b1b98315659c5091e",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/shield.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 271,
+      "sha256": "a1a6f9eda9ba86320b41f01c2476b0ae99f0151e74279cb06d7cc89eaf6d6384",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/sort.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 269,
+      "sha256": "a99d7e7acc3fab909855ec2ac12d70229cc64da332fdbc362f6182f07047b484",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/success.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 264,
+      "sha256": "ba9f948dd440d2cdd2282747ad376935233701e5dc276c689c9ce709dd67ae50",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/upload.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 271,
+      "sha256": "fc915e369a012c67703e237b6f91d89521d441a63e87fcea4abe4d3c7f02b773",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/video-off.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 266,
+      "sha256": "f81920b5e4dd790b14c2fce60b97115f7d339024a90b83dc20fb73444785f2a1",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/video.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 270,
+      "sha256": "e192e439e87749046e37be63f03968876b165e760d7ee9b5a440e657967a7398",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/volume-off.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 275,
+      "sha256": "8c2c0f4c560bec51dfd23e02eaf658da8c62b682c35edc9cf314fd55cef1de81",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/volume.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 278,
+      "sha256": "caca9d1a87b0db7155026a7b8da6cb8728253f4f582aeacf4f044f691e373cf0",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/wallet.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 262,
+      "sha256": "86554f30aa666e5d3006fda5485375677f515f9025b6daa7efb0b53acf3514d4",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "icons/warning.svg",
+      "category": "icons",
+      "format": "svg",
+      "bytes": 272,
+      "sha256": "7480771a40617e5ddd3ea755ca087f394b75436475e62f25cb04aae40137f8c8",
+      "licence": "ZOVARA-generated/source-controlled"
+    },
+    {
+      "id": "styles/registry.json",
+      "category": "styles",
+      "format": "json",
+      "bytes": 363931,
+      "sha256": "c097ec8d3044735952e16c804646a72896395722f3e74b59137b331b703b6e7a",
+      "licence": "ZOVARA-generated/source-controlled"
+    }
+  ]
+}
