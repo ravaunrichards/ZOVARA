@@ -1,0 +1,1 @@
+The root `Dockerfile` builds the dependency-light Node API container. `docker-compose.yml` does not start a duplicate local database, because Supabase is the authoritative relational service. For an isolated database test environment, use the Supabase CLI and migrations on a disposable project rather than maintaining two unsynchronized sources of truth.

@@ -1,0 +1,5 @@
+export type ProfileMode = 'personal'|'creator'|'business'|'community';
+export type User = {id:string;email?:string;username:string;displayName:string;role:'user'|'moderator'|'admin';createdAt?:string};
+export type Profile = {id:string;username:string;displayName:string;role:string;mode:ProfileMode;bio:string;pronouns:string;avatarUrl:string|null;bannerUrl:string|null;theme:{preset?:string;accent?:string;layout?:string;depth?:string};links:{label:string;url:string}[];featuredPostIds:string[];livestreamSchedule:{title:string;startsAt:string;recurring?:string}[];followers:number;following:number;postCount:number;isFollowing:boolean};
+export type Post = {id:string;caption:string;media_type:'video'|'image'|'text';media_url:string|null;thumbnail_url?:string|null;created_at:string;username:string;display_name:string;avatar_url?:string|null;author_id?:string;likes:number;comments:number;liked:boolean;bookmarked?:boolean;visibility?:string};
+export type ApiErrorShape = {error:{code:string;message:string}};

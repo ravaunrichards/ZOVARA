@@ -1,0 +1,4 @@
+import { api } from '@zovara/api-client';
+export type PublishInput = {file:File;caption:string;visibility?:'public'|'followers'|'private'};
+export async function publishMedia(input:PublishInput) { const body=new FormData();body.set('file',input.file);body.set('caption',input.caption);body.set('visibility',input.visibility??'public');return api<{post:{id:string;caption:string;media_type:'video'|'image';media_url:string;created_at:string}}>('/api/posts',{method:'POST',body}); }
+export async function getFeed(options:{following?:boolean;cursor?:string;limit?:number}={}) { const qs=new URLSearchParams();if(options.following)qs.set('following','true');if(options.cursor)qs.set('cursor',options.cursor);if(options.limit)qs.set('limit',String(options.limit));return api<{posts:unknown[];nextCursor:string|null}>(`/api/feed${qs.size?`?${qs}`:''}`); }
