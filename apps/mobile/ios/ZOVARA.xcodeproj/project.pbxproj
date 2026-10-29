@@ -1,0 +1,26 @@
+// !$*UTF8*$!
+{
+ archiveVersion = 1;
+ classes = {};
+ objectVersion = 56;
+ objects = {
+  A00100000000000000000001 /* ZOVARAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00100000000000000000002 /* ZOVARAApp.swift */; };
+  A00100000000000000000002 /* ZOVARAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/ZOVARAiOS/ZOVARAApp.swift; sourceTree = "<group>"; };
+  A00100000000000000000003 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+  A00100000000000000000004 /* ZOVARA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZOVARA.app; sourceTree = BUILT_PRODUCTS_DIR; };
+  A00100000000000000000005 = {isa = PBXGroup; children = (A00100000000000000000002 /* ZOVARAApp.swift */, A00100000000000000000003 /* Info.plist */, A00100000000000000000006 /* Products */); sourceTree = "<group>"; };
+  A00100000000000000000006 /* Products */ = {isa = PBXGroup; children = (A00100000000000000000004 /* ZOVARA.app */,); name = Products; sourceTree = "<group>"; };
+  A00100000000000000000007 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A00100000000000000000001 /* ZOVARAApp.swift in Sources */,); runOnlyForDeploymentPostprocessing = 0; };
+  A00100000000000000000008 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+  A00100000000000000000009 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+  A0010000000000000000000A /* ZOVARA */ = {isa = PBXNativeTarget; buildConfigurationList = A0010000000000000000000B; buildPhases = (A00100000000000000000007 /* Sources */, A00100000000000000000008 /* Frameworks */, A00100000000000000000009 /* Resources */,); buildRules = (); dependencies = (); name = ZOVARA; productName = ZOVARA; productReference = A00100000000000000000004 /* ZOVARA.app */; productType = "com.apple.product-type.application"; };
+  A0010000000000000000000C /* Project object */ = {isa = PBXProject; attributes = {BuildIndependentTargetsInParallel = 1; LastUpgradeCheck = 1600; TargetAttributes = {A0010000000000000000000A = {CreatedOnToolsVersion = 16.0; }; }; }; buildConfigurationList = A0010000000000000000000D; compatibilityVersion = "Xcode 15.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en, Base,); mainGroup = A00100000000000000000005; productRefGroup = A00100000000000000000006; projectDirPath = ""; projectRoot = ""; targets = (A0010000000000000000000A /* ZOVARA */,); };
+  A0010000000000000000000E /* Debug */ = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGN_STYLE = Automatic; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 16.0; PRODUCT_BUNDLE_IDENTIFIER = com.zovara.app; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = iphoneos; SWIFT_VERSION = 5.9; TARGETED_DEVICE_FAMILY = "1,2"; }; name = Debug; };
+  A0010000000000000000000F /* Release */ = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGN_STYLE = Automatic; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 16.0; PRODUCT_BUNDLE_IDENTIFIER = com.zovara.app; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = iphoneos; SWIFT_VERSION = 5.9; TARGETED_DEVICE_FAMILY = "1,2"; }; name = Release; };
+  A00100000000000000000010 = {isa = XCConfigurationList; buildConfigurations = (A0010000000000000000000E /* Debug */, A0010000000000000000000F /* Release */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+  A00100000000000000000011 = {isa = XCConfigurationList; buildConfigurations = (A00100000000000000000012 /* Project Debug */, A00100000000000000000013 /* Project Release */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+  A00100000000000000000012 /* Project Debug */ = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; IPHONEOS_DEPLOYMENT_TARGET = 16.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.9; }; name = Debug; };
+  A00100000000000000000013 /* Project Release */ = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; IPHONEOS_DEPLOYMENT_TARGET = 16.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.9; }; name = Release; };
+ };
+ rootObject = A0010000000000000000000C /* Project object */;
+}

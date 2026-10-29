@@ -1,0 +1,43 @@
+// !$*UTF8*$!
+{
+  archiveVersion = 1;
+  classes = {};
+  objectVersion = 56;
+  objects = {
+    A10000000000000000000001 /* Project object */ = { isa = PBXProject; attributes = { LastUpgradeCheck = 1600; TargetAttributes = { A10000000000000000000020 = { CreatedOnToolsVersion = 16.0; }; A10000000000000000000021 = { CreatedOnToolsVersion = 16.0; TestTargetID = A10000000000000000000020; }; }; }; buildConfigurationList = A10000000000000000000030; compatibilityVersion = "Xcode 14.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en, Base); mainGroup = A10000000000000000000002; productRefGroup = A10000000000000000000004; projectDirPath = ""; projectRoot = ""; targets = (A10000000000000000000020, A10000000000000000000021); };
+    A10000000000000000000002 /* Main group */ = { isa = PBXGroup; children = (A10000000000000000000003, A10000000000000000000013, A10000000000000000000004); sourceTree = "<group>"; };
+    A10000000000000000000003 /* ZOVARA sources */ = { isa = PBXGroup; path = ZOVARA; sourceTree = "<group>"; children = (A10000000000000000000005, A10000000000000000000006, A10000000000000000000007); };
+    A10000000000000000000004 /* Products */ = { isa = PBXGroup; name = Products; sourceTree = "<group>"; children = (A10000000000000000000008, A10000000000000000000009); };
+    A10000000000000000000005 /* App */ = { isa = PBXGroup; path = App; sourceTree = "<group>"; children = (A10000000000000000000010); };
+    A10000000000000000000006 /* Resources */ = { isa = PBXGroup; path = Resources; sourceTree = "<group>"; children = (A10000000000000000000011); };
+    A10000000000000000000007 /* Feature folders */ = { isa = PBXGroup; path = Features; sourceTree = "<group>"; children = (); };
+    A10000000000000000000010 /* ZOVARAApp.swift */ = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZOVARAApp.swift; sourceTree = "<group>"; };
+    A10000000000000000000011 /* Info.plist */ = { isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+    A10000000000000000000012 /* ZOVARASmokeTests.swift */ = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZOVARASmokeTests.swift; sourceTree = "<group>"; };
+    A10000000000000000000008 /* ZOVARA.app */ = { isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZOVARA.app; sourceTree = BUILT_PRODUCTS_DIR; };
+    A10000000000000000000009 /* ZOVARATests.xctest */ = { isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZOVARATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+    A10000000000000000000013 /* Tests */ = { isa = PBXGroup; path = Tests; sourceTree = "<group>"; children = (A10000000000000000000012); };
+    A10000000000000000000014 /* App sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A10000000000000000000015); runOnlyForDeploymentPostprocessing = 0; };
+    A10000000000000000000015 /* ZOVARAApp in Sources */ = { isa = PBXBuildFile; fileRef = A10000000000000000000010; };
+    A10000000000000000000016 /* Test sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A10000000000000000000017); runOnlyForDeploymentPostprocessing = 0; };
+    A10000000000000000000017 /* Tests in Sources */ = { isa = PBXBuildFile; fileRef = A10000000000000000000012; };
+    A10000000000000000000018 /* App frameworks */ = { isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+    A10000000000000000000019 /* Test frameworks */ = { isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+    A10000000000000000000022 /* App resources */ = { isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+    A10000000000000000000023 /* Test resources */ = { isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+    A10000000000000000000020 /* ZOVARA */ = { isa = PBXNativeTarget; buildConfigurationList = A10000000000000000000031; buildPhases = (A10000000000000000000014, A10000000000000000000018, A10000000000000000000022); buildRules = (); dependencies = (); name = ZOVARA; productName = ZOVARA; productReference = A10000000000000000000008; productType = "com.apple.product-type.application"; };
+    A10000000000000000000021 /* ZOVARATests */ = { isa = PBXNativeTarget; buildConfigurationList = A10000000000000000000032; buildPhases = (A10000000000000000000016, A10000000000000000000019, A10000000000000000000023); buildRules = (); dependencies = (A10000000000000000000024); name = ZOVARATests; productName = ZOVARATests; productReference = A10000000000000000000009; productType = "com.apple.product-type.bundle.unit-test"; };
+    A10000000000000000000024 /* Test app dependency */ = { isa = PBXTargetDependency; target = A10000000000000000000020; targetProxy = A10000000000000000000025; };
+    A10000000000000000000025 /* Container proxy */ = { isa = PBXContainerItemProxy; containerPortal = A10000000000000000000001; proxyType = 1; remoteGlobalIDString = A10000000000000000000020; remoteInfo = ZOVARA; };
+    A10000000000000000000030 /* Project configurations */ = { isa = XCConfigurationList; buildConfigurations = (A10000000000000000000040, A10000000000000000000041); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+    A10000000000000000000031 /* App configurations */ = { isa = XCConfigurationList; buildConfigurations = (A10000000000000000000042, A10000000000000000000043); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+    A10000000000000000000032 /* Test configurations */ = { isa = XCConfigurationList; buildConfigurations = (A10000000000000000000044, A10000000000000000000045); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+    A10000000000000000000040 /* Project Debug */ = { isa = XCBuildConfiguration; buildSettings = { IPHONEOS_DEPLOYMENT_TARGET = 17.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0; }; name = Debug; };
+    A10000000000000000000041 /* Project Release */ = { isa = XCBuildConfiguration; buildSettings = { IPHONEOS_DEPLOYMENT_TARGET = 17.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0; }; name = Release; };
+    A10000000000000000000042 /* App Debug */ = { isa = XCBuildConfiguration; buildSettings = { GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = ZOVARA/Resources/Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 17.0; PRODUCT_BUNDLE_IDENTIFIER = com.zovara.app; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2"; }; name = Debug; };
+    A10000000000000000000043 /* App Release */ = { isa = XCBuildConfiguration; buildSettings = { GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = ZOVARA/Resources/Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 17.0; PRODUCT_BUNDLE_IDENTIFIER = com.zovara.app; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2"; }; name = Release; };
+    A10000000000000000000044 /* Tests Debug */ = { isa = XCBuildConfiguration; buildSettings = { GENERATE_INFOPLIST_FILE = YES; IPHONEOS_DEPLOYMENT_TARGET = 17.0; PRODUCT_BUNDLE_IDENTIFIER = com.zovara.tests; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2"; TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZOVARA.app/ZOVARA"; BUNDLE_LOADER = "$(TEST_HOST)"; }; name = Debug; };
+    A10000000000000000000045 /* Tests Release */ = { isa = XCBuildConfiguration; buildSettings = { GENERATE_INFOPLIST_FILE = YES; IPHONEOS_DEPLOYMENT_TARGET = 17.0; PRODUCT_BUNDLE_IDENTIFIER = com.zovara.tests; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2"; TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZOVARA.app/ZOVARA"; BUNDLE_LOADER = "$(TEST_HOST)"; }; name = Release; };
+  };
+  rootObject = A10000000000000000000001;
+}
