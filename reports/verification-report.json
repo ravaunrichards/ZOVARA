@@ -1,0 +1,249 @@
+{
+  "repository": "ZOVARA",
+  "version": "0.1.0",
+  "overallStatus": "verified-local-foundation",
+  "startedAt": "2026-10-26T01:41:38.924Z",
+  "finishedAt": "2026-10-26T01:41:41.154Z",
+  "environment": {
+    "node": "v22.16.0",
+    "platform": "linux",
+    "architecture": "x64"
+  },
+  "counts": {
+    "checks": 34,
+    "passed": 34,
+    "failed": 0,
+    "gifts": 104,
+    "gifterLevels": 50,
+    "gifterCategories": 5,
+    "styles": 1000,
+    "icons": 64,
+    "migrations": 7,
+    "assets": 223
+  },
+  "commandsExecuted": [
+    "node scripts/verify.mjs",
+    "node scripts/scan-secrets.mjs",
+    "node --test tests/catalog.test.mjs tests/domain.test.mjs tests/api-smoke.test.mjs"
+  ],
+  "checks": [
+    {
+      "name": "required file README.md",
+      "status": "PASS"
+    },
+    {
+      "name": "required file package.json",
+      "status": "PASS"
+    },
+    {
+      "name": "required file pnpm-workspace.yaml",
+      "status": "PASS"
+    },
+    {
+      "name": "required file pnpm-lock.yaml",
+      "status": "PASS"
+    },
+    {
+      "name": "required file .env.example",
+      "status": "PASS"
+    },
+    {
+      "name": "required file render.yaml",
+      "status": "PASS"
+    },
+    {
+      "name": "required file Dockerfile",
+      "status": "PASS"
+    },
+    {
+      "name": "required file docker-compose.yml",
+      "status": "PASS"
+    },
+    {
+      "name": "required file services/api/src/server.mjs",
+      "status": "PASS"
+    },
+    {
+      "name": "required file apps/web/index.html",
+      "status": "PASS"
+    },
+    {
+      "name": "required file apps/web/src/app.js",
+      "status": "PASS"
+    },
+    {
+      "name": "required file database/migrations/0001_identity_social.sql",
+      "status": "PASS"
+    },
+    {
+      "name": "required file database/migrations/0007_rls_policies.sql",
+      "status": "PASS"
+    },
+    {
+      "name": "required file assets/gifts/catalog.json",
+      "status": "PASS"
+    },
+    {
+      "name": "required file assets/badges/gifter-levels.json",
+      "status": "PASS"
+    },
+    {
+      "name": "required file assets/badges/manifest.json",
+      "status": "PASS"
+    },
+    {
+      "name": "required file assets/styles/registry.json",
+      "status": "PASS"
+    },
+    {
+      "name": "required file assets/icons/manifest.json",
+      "status": "PASS"
+    },
+    {
+      "name": "required file reports/implementation-inventory.json",
+      "status": "PASS"
+    },
+    {
+      "name": "required file docs/openapi.yaml",
+      "status": "PASS"
+    },
+    {
+      "name": "at least 100 distinct gifts",
+      "status": "PASS",
+      "count": 104,
+      "uniqueIds": 104,
+      "uniqueNames": 104
+    },
+    {
+      "name": "gift asset references/checksums",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "name": "gift assets are genuinely distinct",
+      "status": "PASS",
+      "count": 104,
+      "uniqueHashes": 104
+    },
+    {
+      "name": "Level 1–50 badges/categories/thresholds/assets",
+      "status": "PASS",
+      "count": 50,
+      "categories": [
+        "Spark 1-10",
+        "Bronze 11-20",
+        "Silver 21-30",
+        "Gold 31-40",
+        "Cosmic 41-50"
+      ],
+      "lastThreshold": 100000000,
+      "errors": []
+    },
+    {
+      "name": "1,000 unique style configurations",
+      "status": "PASS",
+      "count": 1000,
+      "unique": 1000
+    },
+    {
+      "name": "icon manifest references/checksums",
+      "status": "PASS",
+      "count": 64,
+      "errors": []
+    },
+    {
+      "name": "icon asset hashes are unique",
+      "status": "PASS",
+      "count": 64,
+      "uniqueHashes": 64
+    },
+    {
+      "name": "substantive migration inventory",
+      "status": "PASS",
+      "count": 7,
+      "files": [
+        "0001_identity_social.sql",
+        "0002_content_media.sql",
+        "0003_live_and_community.sql",
+        "0004_financial_ledger_and_gifts.sql",
+        "0005_payments_withdrawals.sql",
+        "0006_functions_and_integrity.sql",
+        "0007_rls_policies.sql"
+      ],
+      "bytes": [
+        4715,
+        4516,
+        8496,
+        10302,
+        9596,
+        6835,
+        14993
+      ]
+    },
+    {
+      "name": "migration transaction boundaries",
+      "status": "PASS",
+      "files": [
+        "0001_identity_social.sql",
+        "0002_content_media.sql",
+        "0003_live_and_community.sql",
+        "0004_financial_ledger_and_gifts.sql",
+        "0005_payments_withdrawals.sql",
+        "0006_functions_and_integrity.sql",
+        "0007_rls_policies.sql"
+      ]
+    },
+    {
+      "name": "RLS helper references match schema",
+      "status": "PASS"
+    },
+    {
+      "name": "asset manifest generated",
+      "status": "PASS",
+      "assetCount": 223
+    },
+    {
+      "name": "implementation inventory counters",
+      "status": "PASS",
+      "counts": {
+        "gifterLevels": 50,
+        "gifterBadgeCategories": 5,
+        "giftDefinitions": 104,
+        "giftCategories": 13,
+        "styleConfigurations": 1000,
+        "iconAssets": 64,
+        "databaseMigrations": 7
+      }
+    },
+    {
+      "name": "secret scan baseline",
+      "status": "PASS",
+      "output": "PASS no known hard-coded secret patterns found in scanned source files (baseline scanner only)."
+    },
+    {
+      "name": "Node automated test suite",
+      "status": "PASS",
+      "exitCode": 0,
+      "output": "TAP version 13\n# Subtest: health is available without external providers\nok 1 - health is available without external providers\n  ---\n  duration_ms: 58.696553\n  type: 'test'\n  ...\n# Subtest: public gift and gifter badge catalogs are served from source registries\nok 2 - public gift and gifter badge catalogs are served from source registries\n  ---\n  duration_ms: 52.659875\n  type: 'test'\n  ...\n# Subtest: style registry summary reports exactly 1,000 generated configurations\nok 3 - style registry summary reports exactly 1,000 generated configurations\n  ---\n  duration_ms: 24.311935\n  type: 'test'\n  ...\n# Subtest: client config never includes server-only secret names/values\nok 4 - client config never includes server-only secret names/values\n  ---\n  duration_ms: 6.949659\n  type: 'test'\n  ...\n# {\"ts\":\"2026-10-26T01:41:40.146Z\",\"level\":\"warn\",\"event\":\"request_failed\",\"requestId\":\"aaa247a3-ea9d-4f53-9128-bec2b7399fa0\",\"path\":\"/api/v1/me\",\"status\":401,\"code\":\"UNAUTHENTICATED\",\"message\":\"Sign in is required\"}\n# Subtest: protected identity API rejects an anonymous request\nok 5 - protected identity API rejects an anonymous request\n  ---\n  duration_ms: 7.911594\n  type: 'test'\n  ...\n# {\"ts\":\"2026-10-26T01:41:40.155Z\",\"level\":\"error\",\"event\":\"request_failed\",\"requestId\":\"94a7ae43-dffe-45b9-af44-2f1739eaf0d6\",\"path\":\"/api/v1/feed\",\"status\":503,\"code\":\"CONFIGURATION_REQUIRED\",\"message\":\"Supabase integration is not configured. Set the required server environment variables.\"}\n# Subtest: feed reports missing Supabase instead of making up posts\nok 6 - feed reports missing Supabase instead of making up posts\n  ---\n  duration_ms: 15.27029\n  type: 'test'\n  ...\n# Subtest: gift catalog contains at least 100 unique, priced, referenced designs\nok 7 - gift catalog contains at least 100 unique, priced, referenced designs\n  ---\n  duration_ms: 118.717924\n  type: 'test'\n  ...\n# Subtest: level badges cover 1–50 across five exact categories and rising spend thresholds\nok 8 - level badges cover 1–50 across five exact categories and rising spend thresholds\n  ---\n  duration_ms: 9.601796\n  type: 'test'\n  ...\n# Subtest: all 1,000 style configurations are unique and dimensionally complete\nok 9 - all 1,000 style configurations are unique and dimensionally complete\n  ---\n  duration_ms: 31.631351\n  type: 'test'\n  ...\n# Subtest: icon manifest includes distinct source files with valid hashes\nok 10 - icon manifest includes distinct source files with valid hashes\n  ---\n  duration_ms: 45.443712\n  type: 'test'\n  ...\n# Subtest: gifter progression starts at zero and resolves level boundaries\nok 11 - gifter progression starts at zero and resolves level boundaries\n  ---\n  duration_ms: 2.605424\n  type: 'test'\n  ...\n# Subtest: gift split adds to gross and keeps cents integer\nok 12 - gift split adds to gross and keeps cents integer\n  ---\n  duration_ms: 5.154372\n  type: 'test'\n  ...\n# Subtest: input validation rejects unsafe handles and clamps no input silently\nok 13 - input validation rejects unsafe handles and clamps no input silently\n  ---\n  duration_ms: 1.33434\n  type: 'test'\n  ...\n1..13\n# tests 13\n# suites 0\n# pass 13\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 1396.974734\n",
+      "stderr": ""
+    }
+  ],
+  "externalChecks": {
+    "pnpmLockfileValidated": false,
+    "supabaseMigrationsApplied": false,
+    "supabaseRlsTested": false,
+    "paypalSandboxTested": false,
+    "paypalProductionTested": false,
+    "paypalPayoutEligibilityVerified": false,
+    "livekitMediaTested": false,
+    "androidBuildExecuted": false,
+    "iosArchiveBuilt": false,
+    "renderDeploymentVerified": false
+  },
+  "notes": [
+    "Local verification does not claim production deployment or provider transactions.",
+    "pnpm lockfile install validation was not run because this offline runner could not download pnpm from the npm registry.",
+    "Provider-dependent features remain blocked without credentials and tests.",
+    "SVG catalogs are programmatically generated vector assets, not commissioned production 3D models."
+  ]
+}

@@ -1,0 +1,256 @@
+{
+  "version": "0.1.0",
+  "generatedBy": "scripts/generate-inventory.mjs",
+  "overallStatus": "foundation-partial",
+  "summary": "Connected foundation and core domain registries; not all requested product domains are complete or externally verified.",
+  "counts": {
+    "gifterLevels": 50,
+    "gifterBadgeCategories": 5,
+    "giftDefinitions": 104,
+    "giftCategories": 13,
+    "styleConfigurations": 1000,
+    "iconAssets": 64,
+    "databaseMigrations": 7
+  },
+  "features": [
+    {
+      "id": "responsive-web-pwa",
+      "status": "implemented-foundation",
+      "sources": [
+        "apps/web/index.html",
+        "apps/web/src/app.js",
+        "apps/web/src/style.css"
+      ],
+      "routes": [
+        "/"
+      ],
+      "tests": [
+        "tests/api-smoke.test.mjs"
+      ]
+    },
+    {
+      "id": "auth-profile-social-graph",
+      "status": "partial-provider-required",
+      "sources": [
+        "services/api/src/server.mjs",
+        "database/migrations/0001_identity_social.sql"
+      ],
+      "routes": [
+        "GET /api/v1/me",
+        "PATCH /api/v1/me",
+        "POST /api/v1/profiles/:id/follow",
+        "DELETE /api/v1/profiles/:id/follow"
+      ],
+      "database": [
+        "profiles",
+        "follows",
+        "blocks",
+        "friendships"
+      ],
+      "tests": [
+        "tests/api-smoke.test.mjs"
+      ]
+    },
+    {
+      "id": "content-publishing",
+      "status": "partial-provider-required",
+      "sources": [
+        "services/api/src/server.mjs",
+        "database/migrations/0002_content_media.sql"
+      ],
+      "routes": [
+        "GET /api/v1/feed",
+        "POST /api/v1/posts",
+        "POST /api/v1/media/upload-url"
+      ],
+      "database": [
+        "posts",
+        "media_assets",
+        "post_likes",
+        "comments"
+      ]
+    },
+    {
+      "id": "gifts-catalog",
+      "status": "implemented-catalog-partial-transaction",
+      "sources": [
+        "assets/gifts/catalog.json",
+        "assets/gifts/",
+        "services/api/src/server.mjs",
+        "packages/gifting/src/index.mjs",
+        "database/migrations/0004_financial_ledger_and_gifts.sql"
+      ],
+      "routes": [
+        "GET /api/v1/catalog/gifts",
+        "POST /api/v1/lives/:id/gifts"
+      ],
+      "database": [
+        "gifts",
+        "gift_transactions",
+        "wallets",
+        "ledger_entries"
+      ],
+      "tests": [
+        "tests/catalog.test.mjs",
+        "tests/domain.test.mjs"
+      ]
+    },
+    {
+      "id": "gifter-levels",
+      "status": "implemented-rule-catalog-server-domain",
+      "sources": [
+        "assets/badges/gifter-levels.json",
+        "assets/badges/",
+        "packages/gifting/src/index.mjs"
+      ],
+      "database": [
+        "gifter_level_rules",
+        "gifter_profiles"
+      ],
+      "tests": [
+        "tests/catalog.test.mjs",
+        "tests/domain.test.mjs"
+      ]
+    },
+    {
+      "id": "style-and-icon-registries",
+      "status": "implemented-generated-registry",
+      "sources": [
+        "assets/styles/registry.json",
+        "assets/icons/manifest.json",
+        "assets/icons/"
+      ],
+      "tests": [
+        "scripts/verify-styles.mjs",
+        "scripts/verify.mjs"
+      ]
+    },
+    {
+      "id": "livestream",
+      "status": "partial-livekit-provider-required",
+      "sources": [
+        "services/api/src/server.mjs",
+        "database/migrations/0003_live_and_community.sql",
+        "docs/livekit.md"
+      ],
+      "routes": [
+        "POST /api/v1/lives",
+        "POST /api/v1/lives/:id/token"
+      ],
+      "database": [
+        "live_sessions",
+        "live_participants",
+        "live_chat_messages"
+      ],
+      "tests": [
+        "tests/api-smoke.test.mjs"
+      ]
+    },
+    {
+      "id": "paypal-coin-payments",
+      "status": "partial-provider-account-required",
+      "sources": [
+        "services/api/src/server.mjs",
+        "database/migrations/0005_payments_withdrawals.sql",
+        "docs/payments.md"
+      ],
+      "routes": [
+        "POST /api/v1/payments/orders",
+        "POST /api/v1/payments/orders/:id/capture",
+        "POST /api/v1/payments/webhooks/paypal"
+      ],
+      "database": [
+        "payment_orders",
+        "payment_events",
+        "wallets",
+        "ledger_entries"
+      ]
+    },
+    {
+      "id": "creator-payouts",
+      "status": "guarded-provider-approval-required",
+      "sources": [
+        "services/api/src/server.mjs",
+        "database/migrations/0005_payments_withdrawals.sql",
+        "docs/payments.md"
+      ],
+      "routes": [
+        "POST /api/v1/payouts"
+      ],
+      "database": [
+        "creator_earnings",
+        "payout_requests"
+      ]
+    },
+    {
+      "id": "android-shell",
+      "status": "source-provided-not-built",
+      "sources": [
+        "apps/mobile/android/"
+      ],
+      "tests": []
+    },
+    {
+      "id": "ios-shell",
+      "status": "source-provided-not-built",
+      "sources": [
+        "apps/mobile/ios/"
+      ],
+      "tests": []
+    },
+    {
+      "id": "desktop-wrapper",
+      "status": "source-provided-not-built",
+      "sources": [
+        "apps/desktop/"
+      ],
+      "tests": []
+    },
+    {
+      "id": "tv-interface",
+      "status": "responsive-tv-mode-foundation",
+      "sources": [
+        "apps/tv/",
+        "apps/web/"
+      ],
+      "tests": []
+    },
+    {
+      "id": "messaging-calls-notifications",
+      "status": "schema-and-ui-foundation-only",
+      "sources": [
+        "apps/web/",
+        "database/migrations/0003_live_and_community.sql"
+      ],
+      "database": [
+        "conversations",
+        "messages",
+        "notifications"
+      ],
+      "tests": []
+    },
+    {
+      "id": "creator-video-editor",
+      "status": "planned-foundation-only",
+      "sources": [
+        "apps/creator-studio/",
+        "docs/features.md"
+      ],
+      "tests": []
+    },
+    {
+      "id": "moderation-appeals",
+      "status": "schema-foundation-only",
+      "sources": [
+        "database/migrations/0003_live_and_community.sql",
+        "docs/security.md"
+      ],
+      "database": [
+        "reports",
+        "moderation_actions",
+        "appeals"
+      ],
+      "tests": []
+    }
+  ]
+}
