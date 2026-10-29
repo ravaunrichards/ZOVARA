@@ -1,0 +1,646 @@
+{
+  "version": 1,
+  "count": 64,
+  "icons": [
+    {
+      "id": "home",
+      "asset": "assets/icons/home.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "70d839a6054eaee42cae3d849193896ce965907f36ecb99cbf5397d34611ad40"
+    },
+    {
+      "id": "discover",
+      "asset": "assets/icons/discover.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "fe8d17a43240c4c25de2500db039f9de0eb2d29abe15c298b06059954df15054"
+    },
+    {
+      "id": "create",
+      "asset": "assets/icons/create.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "4a6a01edbda2f584876a6e470a7341192196fca801c99c2b539ad588db5c7709"
+    },
+    {
+      "id": "live",
+      "asset": "assets/icons/live.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "77284f15914db07e8fe343c21628184556b7c1fc88e075e323a2430f29d4ec18"
+    },
+    {
+      "id": "inbox",
+      "asset": "assets/icons/inbox.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "cfe39bd6703c4c505cccd0ed94b8636ba657ce3a29b6f8acfbcb28306b0167fc"
+    },
+    {
+      "id": "profile",
+      "asset": "assets/icons/profile.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "5382b5e519904bcc459b625c8c2c68e36b94187a4d7c6e2190788590a9f2aa6d"
+    },
+    {
+      "id": "search",
+      "asset": "assets/icons/search.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "de3703d64b7d6604e93b64c6226a6d7f1338ad6f9030930e025fece4744dd8ec"
+    },
+    {
+      "id": "settings",
+      "asset": "assets/icons/settings.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "0197cdc965ec85793cc519427745a3b6c2b6ee6d0a6ae41230108af1f6a12228"
+    },
+    {
+      "id": "notifications",
+      "asset": "assets/icons/notifications.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "707ff9b6e7592c216562a04cc7464b611bf94ee1d3bd4a5ea54a101a65c317f8"
+    },
+    {
+      "id": "messages",
+      "asset": "assets/icons/messages.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "0f8b7ba988b01ee59f6c767bc11edb5c165e1b37302702ebb85ae65366260eff"
+    },
+    {
+      "id": "camera",
+      "asset": "assets/icons/camera.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "9cbb2adc4e6e77c07447388abfa6b8983968ac30f8f3a0dcb498020c40773406"
+    },
+    {
+      "id": "camera-flip",
+      "asset": "assets/icons/camera-flip.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "35af586d8846f3cd862a447225ecbc21597149bcf7c9767f09b26284c13b9570"
+    },
+    {
+      "id": "microphone",
+      "asset": "assets/icons/microphone.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "5bb7f0ad62fb65d04d99ba438a70595a338551194b9f5068e4d19eb9fd104044"
+    },
+    {
+      "id": "microphone-off",
+      "asset": "assets/icons/microphone-off.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "b7a269c123de3f2c9404d0e545b4b82daebc3cee6363859b8e5752a4693597e4"
+    },
+    {
+      "id": "video",
+      "asset": "assets/icons/video.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "e192e439e87749046e37be63f03968876b165e760d7ee9b5a440e657967a7398"
+    },
+    {
+      "id": "video-off",
+      "asset": "assets/icons/video-off.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "f81920b5e4dd790b14c2fce60b97115f7d339024a90b83dc20fb73444785f2a1"
+    },
+    {
+      "id": "share",
+      "asset": "assets/icons/share.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "e3fc3455c8355b8a27bbf26822430e2bb76ccd390e158f8b1b98315659c5091e"
+    },
+    {
+      "id": "heart",
+      "asset": "assets/icons/heart.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "f528e21d1d4c17d5c860fc445068a543788af88f6fccbf1db76f1f797c5b1141"
+    },
+    {
+      "id": "comment",
+      "asset": "assets/icons/comment.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "843ad05ec3e6ca7272d5130fab5735859638bc808b6b3b789daa1e3cbb980210"
+    },
+    {
+      "id": "bookmark",
+      "asset": "assets/icons/bookmark.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "a694473e8756ab4103a43ead97eb479ee1162c69f90566baae8a49bb4cf3fcbc"
+    },
+    {
+      "id": "repost",
+      "asset": "assets/icons/repost.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "358c50dfaf2e4bc4ab85ae2683d275d7c212e90e8a5a2145859616d4ff74ae19"
+    },
+    {
+      "id": "gift",
+      "asset": "assets/icons/gift.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "6b92fd827473662d1b1028fb896e87f533d528fcabccd1418f9a5f1a9398a89c"
+    },
+    {
+      "id": "wallet",
+      "asset": "assets/icons/wallet.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "86554f30aa666e5d3006fda5485375677f515f9025b6daa7efb0b53acf3514d4"
+    },
+    {
+      "id": "coins",
+      "asset": "assets/icons/coins.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "88cb22e06450b14d995ad00982f73c314b96cfe524c3cf0b565e790a18a56eeb"
+    },
+    {
+      "id": "creator",
+      "asset": "assets/icons/creator.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "5ab7f7dea5825c3081642587f51d9d2dea34efa9f404d4196e7d5721e06c689e"
+    },
+    {
+      "id": "crown",
+      "asset": "assets/icons/crown.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "59bec0429b09b148541361df84e63ef9b85ea8b7fea6129d67a9bf11e3f053d0"
+    },
+    {
+      "id": "badge",
+      "asset": "assets/icons/badge.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "585d3be41ea1c19219f4c0b122d583b9d6bc855818d6cdf0ff183087480b1046"
+    },
+    {
+      "id": "league",
+      "asset": "assets/icons/league.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "00ca50c82f530847c763a7d3a81469924e6e7abdd22590b15771ed3b620565cb"
+    },
+    {
+      "id": "match",
+      "asset": "assets/icons/match.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "1b8c4cd153091d471ffa613b896383b2360826d22d0b6ef74a0fea14c7b922e3"
+    },
+    {
+      "id": "shield",
+      "asset": "assets/icons/shield.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "a1a6f9eda9ba86320b41f01c2476b0ae99f0151e74279cb06d7cc89eaf6d6384"
+    },
+    {
+      "id": "block",
+      "asset": "assets/icons/block.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "af350a32af205b4b7311b3dfd29f7be5db9d8ae98feb69bc4f2cdf8fc308e760"
+    },
+    {
+      "id": "mute",
+      "asset": "assets/icons/mute.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "0011773826439e8d2d67ba2cff4987f5329bac78d4dfe18ca007f63dddd29f30"
+    },
+    {
+      "id": "report",
+      "asset": "assets/icons/report.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "2ed8431a244de7f9cac767c243bcf17362adcfe8af342eeee7b0bde8f3b62613"
+    },
+    {
+      "id": "appeal",
+      "asset": "assets/icons/appeal.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "3ce32dafbfd74fd37e1c17d9d9a5eea474346165a1c0aa166d5aba5390be5198"
+    },
+    {
+      "id": "upload",
+      "asset": "assets/icons/upload.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "fc915e369a012c67703e237b6f91d89521d441a63e87fcea4abe4d3c7f02b773"
+    },
+    {
+      "id": "download",
+      "asset": "assets/icons/download.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "b0c9c65b6e51e9f81b07edc0732232b6aefbdc005d80b5ff3f7fe36b8f7c6e42"
+    },
+    {
+      "id": "play",
+      "asset": "assets/icons/play.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "4ba82a306ba1562bc0b78628fe39465d030fab013af494f690490cbc9230be59"
+    },
+    {
+      "id": "pause",
+      "asset": "assets/icons/pause.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "4e3df56f4f1f1069fc3bfcd9b2b2cf153408e229bd45a77ec3f575d098598594"
+    },
+    {
+      "id": "volume",
+      "asset": "assets/icons/volume.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "caca9d1a87b0db7155026a7b8da6cb8728253f4f582aeacf4f044f691e373cf0"
+    },
+    {
+      "id": "volume-off",
+      "asset": "assets/icons/volume-off.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "8c2c0f4c560bec51dfd23e02eaf658da8c62b682c35edc9cf314fd55cef1de81"
+    },
+    {
+      "id": "fullscreen",
+      "asset": "assets/icons/fullscreen.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "c7f84369311b97a81dc512a3e0266434b92448e1e562c22552eb3406b5352c9e"
+    },
+    {
+      "id": "minimize",
+      "asset": "assets/icons/minimize.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "d1b1d2b9c390b014cdf3600ef48e9f8a2a6e0387e617fa37876c68f80575c4dc"
+    },
+    {
+      "id": "close",
+      "asset": "assets/icons/close.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "e93f7f9fc999ac0ba273e29480434e6f8daaff71b6bf2b02334da3cca1cf3757"
+    },
+    {
+      "id": "check",
+      "asset": "assets/icons/check.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "ffd02bf3e1c69624066ecda4c48c0b7d3ce2a944c569a08f0b6362a68f031749"
+    },
+    {
+      "id": "plus",
+      "asset": "assets/icons/plus.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "65ff9e1ada12636758e07b400bedb1d7840d7df85f0e8a3bddd657f99c1ca43d"
+    },
+    {
+      "id": "minus",
+      "asset": "assets/icons/minus.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "a53df6e253943d02a8b2c39e68d9278e40f4a1474351f08e9fd7f0e45bd85a8d"
+    },
+    {
+      "id": "edit",
+      "asset": "assets/icons/edit.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "1990d6ab25cf65af55ac181991eebd29d3cdc93c1450020c42228a6a25328bc8"
+    },
+    {
+      "id": "delete",
+      "asset": "assets/icons/delete.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "fcef852b4ae73adbd9c2b9c6a90af6527a4dd47092016a781412800e5c23d4b9"
+    },
+    {
+      "id": "filter",
+      "asset": "assets/icons/filter.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "125f54211f4fbc52c50592b8c02ef6de45757641a393ea4de6b3a928a7693e9d"
+    },
+    {
+      "id": "sort",
+      "asset": "assets/icons/sort.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "a99d7e7acc3fab909855ec2ac12d70229cc64da332fdbc362f6182f07047b484"
+    },
+    {
+      "id": "calendar",
+      "asset": "assets/icons/calendar.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "2b8513879696a72aace165d6a79adeb1a6a7c7eb6d823e173d8cdb0ef9cb2000"
+    },
+    {
+      "id": "clock",
+      "asset": "assets/icons/clock.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "d5f7e0eb9f301dcd60cf11445a123c7305031fe8f8ba8d2b965c08271644b46c"
+    },
+    {
+      "id": "globe",
+      "asset": "assets/icons/globe.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "2d179adb99c9154a2a5752b7488f2e8d1a02583f07d71946d8263b78fad913d9"
+    },
+    {
+      "id": "language",
+      "asset": "assets/icons/language.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "ab7c77063abfa8565ad0078b649a9c89e4753e9f92ddad13a3f05ea166b54a57"
+    },
+    {
+      "id": "accessibility",
+      "asset": "assets/icons/accessibility.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "7ad8784b78bb6f666eb8948cefd03e343d1214dec775589c470722f95eb5a70d"
+    },
+    {
+      "id": "contrast",
+      "asset": "assets/icons/contrast.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "3966ffa15ba3f99d2f973709f5bc47993f5a3f605b93400c246fef0cc49597d3"
+    },
+    {
+      "id": "motion",
+      "asset": "assets/icons/motion.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "0d477955840793d076b5438bd571f0696cbe82eed2d41228bf0490c357d2b656"
+    },
+    {
+      "id": "help",
+      "asset": "assets/icons/help.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "6d7bc609337709500171a99438dec6ba65e5728be7ede5b38c325c990c48443b"
+    },
+    {
+      "id": "info",
+      "asset": "assets/icons/info.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "33352a8c8b65e72850bec1767b1bf021def2dd569ec8febb37ef94744bb94c35"
+    },
+    {
+      "id": "warning",
+      "asset": "assets/icons/warning.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "7480771a40617e5ddd3ea755ca087f394b75436475e62f25cb04aae40137f8c8"
+    },
+    {
+      "id": "success",
+      "asset": "assets/icons/success.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "ba9f948dd440d2cdd2282747ad376935233701e5dc276c689c9ce709dd67ae50"
+    },
+    {
+      "id": "retry",
+      "asset": "assets/icons/retry.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "0b33ea92bf60aa65a9cdf0c09e139f33df54bcb553b6bac91e9112c3616830ce"
+    },
+    {
+      "id": "send",
+      "asset": "assets/icons/send.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "5ada50eac4a45ea7645b883d9bfd3fbe3404db9c3b02f461589390f9080667ac"
+    },
+    {
+      "id": "more",
+      "asset": "assets/icons/more.svg",
+      "format": "svg",
+      "width": 24,
+      "height": 24,
+      "version": 1,
+      "licence": "ZOVARA-generated",
+      "checksum": "92ff482ea47183017429e3150cdf6f9610e8d27e11c0a98e08c6bef325c26f37"
+    }
+  ]
+}
