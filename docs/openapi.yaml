@@ -1,0 +1,126 @@
+openapi: 3.1.0
+info:
+  title: ZOVARA API
+  version: 0.1.0
+  description: Shared API for ZOVARA web, mobile, desktop, and TV clients. Provider dependencies are explicitly reported.
+servers:
+  - url: https://{host}
+    variables:
+      host: zovara-api.example.com
+security:
+  - bearerAuth: []
+paths:
+  /healthz:
+    get:
+      security: []
+      summary: Service health
+      responses:
+        '200': {description: Service process is responsive}
+  /api/v1/health:
+    get:
+      security: []
+      summary: Service and provider readiness
+      responses: {'200': {description: Health response}}
+  /api/v1/client-config:
+    get:
+      security: []
+      summary: Non-secret public configuration only
+      responses: {'200': {description: Public configuration and provider readiness}}
+  /api/v1/features:
+    get:
+      security: []
+      summary: Machine-readable implementation inventory
+      responses: {'200': {description: Feature statuses}}
+  /api/v1/catalog/gifts:
+    get:
+      security: []
+      summary: Original gift definitions
+      responses: {'200': {description: Catalog}}
+  /api/v1/catalog/gifter-levels:
+    get:
+      security: []
+      summary: 50 categorized gifter level badges
+      responses: {'200': {description: Level catalog}}
+  /api/v1/catalog/styles:
+    get:
+      security: []
+      summary: Supported style configuration dimensions
+      responses: {'200': {description: Style registry summary}}
+  /api/v1/me:
+    get:
+      summary: Current account and profile
+      responses: {'200': {description: Current profile}, '401': {description: Authentication required}}
+    patch:
+      summary: Update editable profile fields
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                handle: {type: string, minLength: 3, maxLength: 30}
+                displayName: {type: string, maxLength: 60}
+                bio: {type: string, maxLength: 500}
+                visibility: {type: string, enum: [public, private]}
+      responses: {'200': {description: Updated profile}}
+  /api/v1/feed:
+    get:
+      security: []
+      summary: Load visible public posts or authenticated feed
+      responses: {'200': {description: Feed items}}
+  /api/v1/posts:
+    post:
+      summary: Publish a post
+      responses: {'201': {description: Published post}}
+  /api/v1/media/upload-url:
+    post:
+      summary: Create an owner-scoped signed upload URL
+      responses: {'201': {description: Signed upload instructions}}
+  /api/v1/wallet/packages:
+    get:
+      security: []
+      summary: Read active server-priced coin packages
+      responses: {'200': {description: Coin packages}}
+  /api/v1/wallet:
+    get:
+      summary: Read coin balance, creator earnings, and gifter level
+      responses: {'200': {description: Wallet snapshot}}
+  /api/v1/lives:
+    post:
+      summary: Start a real LiveKit session
+      responses: {'201': {description: Session and short-lived participant token}, '503': {description: LiveKit is not configured}}
+  /api/v1/lives/{id}/token:
+    post:
+      summary: Issue room-scoped token after access checks
+      parameters: [{name: id, in: path, required: true, schema: {type: string, format: uuid}}]
+      responses: {'200': {description: Participant token and grants}}
+  /api/v1/lives/{id}/gifts:
+    post:
+      summary: Send a gift using an idempotency key and atomic ledger transaction
+      parameters: [{name: id, in: path, required: true, schema: {type: string, format: uuid}}, {name: Idempotency-Key, in: header, required: true, schema: {type: string, minLength: 8}}]
+      responses: {'201': {description: Confirmed gift transaction}, '409': {description: Insufficient balance or invalid room state}}
+  /api/v1/payments/orders:
+    post:
+      summary: Create a server-priced PayPal order
+      responses: {'201': {description: PayPal approval URL and stored order}, '503': {description: Provider not configured}}
+  /api/v1/payments/orders/{id}/capture:
+    post:
+      summary: Capture and reconcile a PayPal order
+      parameters: [{name: id, in: path, required: true, schema: {type: string}}]
+      responses: {'200': {description: Applied exactly-once capture}}
+  /api/v1/payments/webhooks/paypal:
+    post:
+      security: []
+      summary: Verify PayPal webhook signature before processing
+      responses: {'200': {description: Verified event processed or explicitly marked unhandled}}
+  /api/v1/payouts:
+    post:
+      summary: Request eligible PayPal creator payout
+      responses: {'202': {description: Provider accepted submission; not a settlement confirmation}, '503': {description: Payout integration disabled}}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

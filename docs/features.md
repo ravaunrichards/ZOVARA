@@ -1,0 +1,5 @@
+# Feature status and verified boundaries
+
+The machine-readable inventory in `reports/implementation-inventory.json` is the detailed authority. The app includes responsive primary navigation; Supabase Auth/profile flows; database-backed post publishing/feed; a 104-gift catalog and atomic gift transaction function; the 50-level badge catalog; 1,000 style combinations; payment order/capture routes; and LiveKit room/token routes.
+
+Still partial or not implemented as complete product flows: post media association after upload, transcoding/adaptive media delivery, full likes/comments/reposts/bookmarks, privacy and block management UI, complete inbox/call/voice-note delivery, moderation staff tools and appeals, room guest approval interface/polls/Q&A, real cross-instance event fan-out, complete refund/chargeback/payout webhook reconciliation, admin analytics dashboard, video editor timeline/effects/export, native store packaging, TV store-specific app packages, provider sandbox test suites, and production operational controls. The interface labels these boundaries where exposed; the repo inventory must be updated as features are completed.
