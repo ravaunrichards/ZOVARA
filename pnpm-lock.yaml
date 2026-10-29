@@ -1,0 +1,18 @@
+lockfileVersion: '9.0'
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+importers:
+  .: {}
+  apps/admin: {}
+  apps/creator-studio: {}
+  apps/web: {}
+  packages/api-contracts: {}
+  packages/authorization: {}
+  packages/configuration: {}
+  packages/design-system: {}
+  packages/gifting: {}
+  packages/localization: {}
+  packages/validation: {}
+  services/api: {}
+  services/background-workers: {}

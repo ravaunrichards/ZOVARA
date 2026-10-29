@@ -1,0 +1,56 @@
+services:
+  - type: web
+    name: zovara-api
+    runtime: node
+    plan: starter
+    buildCommand: npm install --ignore-scripts
+    startCommand: node services/api/src/server.mjs
+    healthCheckPath: /healthz
+    autoDeploy: false
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "10000"
+      - key: PUBLIC_APP_URL
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: PAYPAL_ENVIRONMENT
+        value: production
+      - key: PAYPAL_CLIENT_ID
+        sync: false
+      - key: PAYPAL_CLIENT_SECRET
+        sync: false
+      - key: PAYPAL_WEBHOOK_ID
+        sync: false
+      - key: PAYPAL_PAYOUTS_ENABLED
+        value: "false"
+      - key: LIVEKIT_URL
+        sync: false
+      - key: LIVEKIT_API_KEY
+        sync: false
+      - key: LIVEKIT_API_SECRET
+        sync: false
+      - key: SUPABASE_MEDIA_BUCKET
+        value: media
+  - type: worker
+    name: zovara-background-worker
+    runtime: node
+    plan: starter
+    buildCommand: npm install --ignore-scripts
+    startCommand: node services/background-workers/src/worker.mjs
+    autoDeploy: false
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
