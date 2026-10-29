@@ -24,7 +24,7 @@ jobs:
         shell: bash
         run: |
           if command -v gradle >/dev/null && [ -n "${ANDROID_HOME:-}" ]; then
-            cd apps/mobile/android && gradle assembleDebug
+            cd apps/android && gradle :app:assembleDebug
           else
             echo "Android SDK/Gradle unavailable on this runner step; build documented, not claimed."
           fi
