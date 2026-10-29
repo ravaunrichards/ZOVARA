@@ -1,0 +1,1 @@
+Security-sensitive functions are installed by migrations `0004`–`0006`: atomic gift transaction, gifter-level refresh, authenticated payment capture finalization, service-only verified webhook reconciliation, creator payout reservation, durable-job claims, and append-only ledger protection. Only verified server routes should call privileged service-role functions.

@@ -1,0 +1,3 @@
+-- Run after all migrations. Returns tables expected by this foundation and RLS status.
+select table_schema,table_name,rowsecurity from information_schema.tables t join pg_class c on c.relname=t.table_name join pg_namespace n on n.oid=c.relnamespace and n.nspname=t.table_schema where table_schema='public' and table_type='BASE TABLE' order by table_name;
+select routine_schema,routine_name,security_type from information_schema.routines where routine_schema='public' and routine_name in ('send_gift_transaction','finalize_coin_purchase','finalize_paypal_webhook','request_creator_payout','claim_background_jobs');

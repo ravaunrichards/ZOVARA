@@ -1,0 +1,1 @@
+RLS is enabled by migration `0007_rls_policies.sql`. Test with real JWTs for `anon`, `authenticated`, and `service_role` before public launch. Never put the service-role key in a client. Treat recursive or nested policies as needing runtime tests; if Supabase reports recursion or policy conflicts, resolve those before production access is enabled.

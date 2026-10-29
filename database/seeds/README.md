@@ -1,0 +1,1 @@
+Run `pnpm catalog:seeds` after editing the JSON registries to rebuild `database/seeds/catalog.sql`. Seed SQL uses unique gift/badge identifiers and should be reviewed before applying to a live database.
