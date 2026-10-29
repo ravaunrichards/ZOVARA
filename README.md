@@ -56,3 +56,8 @@ See `.env.example` and `docs/deployment.md`. In production, keep `SUPABASE_SERVI
 ## License and third-party names
 
 See `LICENSE` and `NOTICE`. This build is not affiliated with any referenced provider.
+
+
+## Repository completeness audit
+
+The repository audit records which areas are real implementation and which remain documentation-only or provider/device dependent. Review [the latest repository audit](reports/repository-audit-2026-10-29.md) and [the release gates](verification/RELEASE-GATES.md) before treating any platform as complete. A README-only folder is not counted as an implemented feature.
