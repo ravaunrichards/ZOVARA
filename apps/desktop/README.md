@@ -1,0 +1,3 @@
+# Desktop wrapper source
+
+The Electron entrypoint is provided with Node integration disabled, context isolation, sandboxing, a strict origin allowlist, and a large desktop window. To build locally, install Electron with the root package manager in an environment with registry access (`pnpm add -D electron`) then launch `pnpm exec electron apps/desktop/main.cjs` after configuring `ZOVARA_WEB_URL` or starting the local API. Electron is intentionally not added to the core lockfile because the current runner has no verified package-registry download; this wrapper has not been built here. Re-run supply-chain and signing checks before releasing desktop binaries.
