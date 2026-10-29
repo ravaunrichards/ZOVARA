@@ -1,0 +1,24 @@
+name: Bug report
+description: Report a reproducible ZOVARA issue
+title: "bug: "
+labels: [bug]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: Include steps to reproduce; do not include secrets or personal data.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: ZOVARA version / commit
+    validations:
+      required: false
