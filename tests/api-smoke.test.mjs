@@ -8,7 +8,7 @@ test('public gift and gifter badge catalogs are served from source registries',a
 test('style registry summary reports exactly 1,000 generated configurations',async()=>{const s=await get('/api/v1/catalog/styles');assert.equal(s.r.status,200);assert.equal(s.body.data.count,1000);});
 test('client config never includes server-only secret names/values',async()=>{const {r,body}=await get('/api/v1/client-config');assert.equal(r.status,200);assert.equal(JSON.stringify(body).includes('SUPABASE_SERVICE_ROLE_KEY'),false);assert.equal(JSON.stringify(body).includes('PAYPAL_CLIENT_SECRET'),false);assert.equal(JSON.stringify(body).includes('LIVEKIT_API_SECRET'),false);});
 test('protected identity API rejects an anonymous request',async()=>{const r=await fetch(base+'/api/v1/me');assert.equal(r.status,401);const b=await r.json();assert.equal(b.error.code,'UNAUTHENTICATED');});
-test('feed reports missing Supabase instead of making up posts',async()=>{const r=await fetch(base+'/api/v1/feed');assert.ok([502,503].includes(r.status));const b=await r.json();assert.equal(b.data,null);});
+test('feed reports a generic unavailable state without exposing provider configuration',async()=>{const r=await fetch(base+'/api/v1/feed');assert.ok([502,503].includes(r.status));const b=await r.json();assert.equal(b.data,null);assert.equal(b.error.code,'TEMPORARILY_UNAVAILABLE');assert.equal(b.error.message,'This feature is temporarily unavailable. Please try again later.');assert.doesNotMatch(JSON.stringify(b),/supabase|service_role|configuration_required|provider/i);});
 
 test('internal implementation inventory is not exposed to anonymous users',async()=>{
  const {r,body}=await get('/api/v1/features');
