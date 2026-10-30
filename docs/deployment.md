@@ -49,7 +49,7 @@ Copy `.env.example` to `.env` locally. In Render, configure the same keys under 
 | `LIVEKIT_URL` | Zovara LiveKit server URL | API |
 | `LIVEKIT_API_KEY` | Zovara LiveKit API key | API |
 | `LIVEKIT_API_SECRET` | Zovara LiveKit API secret | API only; secret |
-| `LIVEKIT_DEFAULT_ROOM_MAX_PARTICIPANTS` | Default LiveKit room capacity; validated to 1–1000, defaults to 100 | API |
+| `LIVEKIT_DEFAULT_ROOM_MAX_PARTICIPANTS` | LiveKit room capacity; `0` removes the app-level per-room cap, leaving capacity to the LiveKit plan/service limits | API |
 | `RATE_LIMIT_WINDOW_MS`, `RATE_LIMIT_MAX_REQUESTS` | HTTP rate-limit window and request budget | API |
 | `MAX_UPLOAD_BYTES` | Maximum accepted upload size | API |
 | `COIN_CUSTOM_MIN`, `COIN_CUSTOM_MAX` | Server-validated custom coin purchase range | API |
