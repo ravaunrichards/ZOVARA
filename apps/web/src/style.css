@@ -245,3 +245,7 @@ body.tv-mode{font-size:1.25rem}body.tv-mode .app-shell{max-width:1900px}body.tv-
 .zv-call-device{display:flex;align-items:center;gap:6px;padding:5px 8px;border:1px solid var(--line,rgba(255,255,255,.14));border-radius:12px;color:#d8dcee;font-size:11px}
 .zv-call-device select{max-width:145px;min-width:85px;background:#151d34;border:0;color:inherit;padding:6px;border-radius:8px;font-size:11px}
 @media(max-width:680px){.zv-call-overlay footer{justify-content:stretch}.zv-call-overlay footer>*{flex:1 1 42%}.zv-call-device{justify-content:space-between}.zv-call-device select{max-width:60%}}
+
+.livekit-viewer-count{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border:1px solid rgba(126,227,184,.28);border-radius:999px;background:rgba(47,190,131,.1);color:#9af0c4;font-size:12px;font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+.livekit-viewer-count:before{content:"";width:7px;height:7px;border-radius:50%;background:#52dfa0;box-shadow:0 0 10px #52dfa0}
+@media(max-width:760px){.livekit-toolbar{flex-wrap:wrap}.livekit-viewer-count{font-size:10px;padding:6px 8px}}
