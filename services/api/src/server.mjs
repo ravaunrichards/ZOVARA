@@ -258,7 +258,7 @@ async function handleApi(req,res,url,requestId){
   }
   const conversationPreferenceMatch=p.match(/^\/api\/v1\/conversations\/([0-9a-f-]+)\/preferences$/i);
   if(conversationPreferenceMatch&&method==='PATCH'){const {user,token}=await auth(req);const cid=requireUuid(conversationPreferenceMatch[1],'conversation id');const b=await bodyJson(req);const fields={};for(const k of ['is_pinned','is_archived','is_muted'])if(b[k]!==undefined)fields[k]=!!b[k];if(!Object.keys(fields).length)throw new HttpError(400,'VALIDATION_ERROR','No conversation preference was supplied');const rows=await supabase.request('/rest/v1/conversation_preferences?on_conflict=conversation_id,user_id',{method:'POST',body:{conversation_id:cid,user_id:user.id,...fields},token,headers:{Prefer:'resolution=merge-duplicates,return=representation'}});return json(res,200,{data:Array.isArray(rows)?rows[0]:rows,error:null,meta:{requestId}});}
-  const conversationHistoryMatch=p.match(/^\\/api\\/v1\\/conversations\\/([0-9a-f-]+)\\/calls$/i);
+  const conversationHistoryMatch=p.match(/^\/api\/v1\/conversations\/([0-9a-f-]+)\/calls$/i);
   if(conversationHistoryMatch&&method==='GET'){
     const {token}=await auth(req);const conversationId=requireUuid(conversationHistoryMatch[1],'conversation id');
     const calls=await supabase.request('/rest/v1/call_sessions?conversation_id=eq.'+conversationId+'&select=id,created_by,call_type,status,started_at,ended_at,created_at,ended_reason,duration_seconds&order=created_at.desc&limit=50',{token});
