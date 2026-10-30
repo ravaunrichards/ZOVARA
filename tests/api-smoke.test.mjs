@@ -10,11 +10,11 @@ test('client config never includes server-only secret names/values',async()=>{co
 test('protected identity API rejects an anonymous request',async()=>{const r=await fetch(base+'/api/v1/me');assert.equal(r.status,401);const b=await r.json();assert.equal(b.error.code,'UNAUTHENTICATED');});
 test('feed reports missing Supabase instead of making up posts',async()=>{const r=await fetch(base+'/api/v1/feed');assert.ok([502,503].includes(r.status));const b=await r.json();assert.equal(b.data,null);});
 
-test('implementation inventory endpoint returns the feature registry used by the web client',async()=>{
+test('internal implementation inventory is not exposed to anonymous users',async()=>{
  const {r,body}=await get('/api/v1/features');
- assert.equal(r.status,200);
- assert.ok(Array.isArray(body.data.features));
- assert.ok(body.data.features.length>0);
+ assert.equal(r.status,401);
+ assert.equal(body.error.code,'UNAUTHENTICATED');
+ assert.equal(body.data,null);
 });
 test('Supabase exact-count helper reads Content-Range without loading every relationship row',async()=>{
  let requestUrl='',requestOptions=null;
