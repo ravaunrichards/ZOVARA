@@ -1,0 +1,29 @@
+{
+  "environment": "production",
+  "nodeEnv": "production",
+  "port": 10000,
+  "publicAppUrl": "https://zovara-api.onrender.com",
+  "corsOrigins": [
+    "https://zovara-api.onrender.com"
+  ],
+  "paypalEnvironment": "sandbox",
+  "paypalPayoutsEnabled": false,
+  "supabaseMediaBucket": "media",
+  "secretValuesCommitted": false,
+  "requiredServerSecrets": [
+    "SUPABASE_URL",
+    "SUPABASE_ANON_KEY",
+    "SUPABASE_SERVICE_ROLE_KEY",
+    "LIVEKIT_URL",
+    "LIVEKIT_API_KEY",
+    "LIVEKIT_API_SECRET",
+    "PAYPAL_CLIENT_ID",
+    "PAYPAL_CLIENT_SECRET",
+    "PAYPAL_WEBHOOK_ID"
+  ],
+  "notes": [
+    "Switch PayPal to production only after live credentials and webhook verification are complete.",
+    "Do not commit service-role, PayPal client-secret, or LiveKit API-secret values.",
+    "The Render runtime must receive private values through its encrypted environment-variable store."
+  ]
+}
