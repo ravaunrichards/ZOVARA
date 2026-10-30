@@ -2,20 +2,22 @@ services:
   - type: web
     name: zovara-api
     runtime: node
-    plan: starter
-    buildCommand: npm install --ignore-scripts
+    plan: free
+    buildCommand: npm install --ignore-scripts && npm run verify
     startCommand: node services/api/src/server.mjs
     healthCheckPath: /healthz
-    autoDeploy: false
+    autoDeploy: true
     envVars:
       - key: NODE_ENV
         value: production
+      - key: NODE_VERSION
+        value: 22.16.0
       - key: PORT
         value: "10000"
       - key: PUBLIC_APP_URL
-        sync: false
+        value: https://zovara-api.onrender.com
       - key: CORS_ORIGINS
-        sync: false
+        value: https://zovara-api.onrender.com
       - key: SUPABASE_URL
         sync: false
       - key: SUPABASE_ANON_KEY
@@ -23,7 +25,7 @@ services:
       - key: SUPABASE_SERVICE_ROLE_KEY
         sync: false
       - key: PAYPAL_ENVIRONMENT
-        value: production
+        value: sandbox
       - key: PAYPAL_CLIENT_ID
         sync: false
       - key: PAYPAL_CLIENT_SECRET
