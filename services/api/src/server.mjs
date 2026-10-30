@@ -35,12 +35,45 @@ async function rpc(name,body,{token,service=false}={}){return supabase.request(`
 async function selectOne(table,query,{token,service=false}={}){const rows=await supabase.request(`/rest/v1/${table}?${query}`,{token,service});return Array.isArray(rows)?rows[0]||null:rows;}
 async function insertOne(table,body,{token,service=false}={}){const rows=await supabase.request(`/rest/v1/${table}?select=*`,{method:'POST',body,token,service,headers:{Prefer:'return=representation'}});return Array.isArray(rows)?rows[0]||null:rows;}
 async function patchRows(table,query,body,{token,service=false}={}){return supabase.request(`/rest/v1/${table}?${query}`,{method:'PATCH',body,token,service,headers:{Prefer:'return=representation'}});}
+async function syncLiveRoomPresence(session, livekitPeople){
+ if(!supabase.serviceConfigured())return new Map();
+ const liveIds=[...new Set((livekitPeople||[]).map(person=>String(person.identity||'')).filter(id=>isUuid(id)&&id!==session.host_id))];
+ const query=`/rest/v1/live_participants?live_session_id=eq.${session.id}&select=user_id,role,status,can_publish_audio,can_publish_video`;
+ const rows=await supabase.request(query,{service:true});
+ const byUser=new Map((rows||[]).map(row=>[row.user_id,row]));
+ const liveSet=new Set(liveIds);
+ for(const row of rows||[]){
+  if(row.status==='joined'&&!liveSet.has(row.user_id)){
+   await patchRows('live_participants',`live_session_id=eq.${session.id}&user_id=eq.${row.user_id}&status=eq.joined`,{status:'left',left_at:new Date().toISOString(),can_publish_audio:false,can_publish_video:false},{service:true});
+  }
+ }
+ const roles=new Map();
+ for(const userId of liveIds){
+  const old=byUser.get(userId);
+  if(old&&['removed','declined'].includes(old.status)){roles.set(userId,old.role);continue;}
+  const privileged=!!old&&['guest','cohost','moderator'].includes(old.role)&&['invited','joined'].includes(old.status);
+  const role=privileged?old.role:'viewer';
+  roles.set(userId,role);
+  if(!old||old.status!=='joined'){
+   await supabase.request('/rest/v1/live_participants?on_conflict=live_session_id,user_id',{
+    method:'POST',
+    body:{live_session_id:session.id,user_id:userId,role,status:'joined',can_publish_audio:privileged&&!!old.can_publish_audio,can_publish_video:privileged&&!!old.can_publish_video,joined_at:new Date().toISOString(),left_at:null},
+    service:true,
+    headers:{Prefer:'resolution=merge-duplicates,return=minimal'}
+   });
+  }
+ }
+ return roles;
+}
 function apiFeatureList(){return {version:'v1',providerStatus:{supabase:supabase.configured()?'configured':'not_configured',paypal:paypal.configured()?'configured':'not_configured',livekit:livekit.configured()?'configured':'not_configured',payoutsEnabled:config.paypalPayoutsEnabled},productStatus:'foundation-partial'};}
 async function handleApi(req,res,url,requestId){
  const method=req.method||'GET', p=url.pathname;
  if(method==='GET'&&p==='/api/v1/health')return json(res,200,{data:{status:'ok',time:new Date().toISOString()},error:null,meta:{requestId}});
  if(method==='GET'&&p==='/api/v1/client-config')return json(res,200,{data:{supabaseUrl:config.supabaseUrl||null,supabaseAnonKey:config.supabaseAnonKey||null},error:null,meta:{requestId}});
  if(method==='GET'&&p==='/api/v1/features'){
+   const {user,token}=await auth(req);
+   const profile=await selectOne('profiles',`id=eq.${user.id}&select=role`,{token});
+   if(profile?.role!=='admin')throw new HttpError(404,'NOT_FOUND','Resource not found');
    const inventory=JSON.parse(await readFile(featuresPath,'utf8'));
    return json(res,200,{data:inventory,error:null,meta:{requestId}});
  }
@@ -53,11 +86,41 @@ async function handleApi(req,res,url,requestId){
    return json(res,200,{data:rows,error:null,meta:{requestId}});
  }
  if(method==='GET'&&p==='/api/v1/live'){
-    const rows=await supabase.request('/rest/v1/live_sessions?select=id,host_id,title,started_at&status=eq.live&visibility=eq.public&order=started_at.desc&limit=30');
+    const rows=await supabase.request('/rest/v1/live_sessions?select=id,host_id,title,visibility,room_name,started_at&status=eq.live&visibility=eq.public&order=started_at.desc&limit=30');
     const hostIds=[...new Set((rows||[]).map(x=>x.host_id))];
     const profiles=hostIds.length?await supabase.request('/rest/v1/profiles?select=id,handle,display_name,avatar_path&id=in.('+hostIds.join(',')+')'):[];
-    const byId=new Map((profiles||[]).map(x=>[x.id,x]));
-    return json(res,200,{data:(rows||[]).map(x=>({id:x.id,title:x.title,started_at:x.started_at,host:byId.get(x.host_id)||null})),error:null,meta:{requestId}});
+    const hostMap=new Map((profiles||[]).map(x=>[x.id,x]));
+    const results=await Promise.all((rows||[]).map(async session=>{
+      if(!livekit.configured()){
+        return {id:session.id,title:session.title,visibility:session.visibility,started_at:session.started_at,host:hostMap.get(session.host_id)||null,current_viewer_count:0,viewer_count:0,viewer_count_verified:false,viewers:[]};
+      }
+      try{
+        const room=await livekit.listParticipants(session.room_name);
+        const people=Array.isArray(room?.participants)?room.participants:[];
+        let roleMap=new Map();
+        try{roleMap=await syncLiveRoomPresence(session,people);}catch(error){log('warn','live_presence_sync_deferred',{sessionId:session.id,code:error.code||'SYNC_FAILED'});}
+        const remotePeople=people.filter(person=>isUuid(String(person.identity||''))&&person.identity!==session.host_id);
+        const viewerPeople=remotePeople.filter(person=>!['guest','cohost','moderator'].includes(roleMap.get(person.identity)||'viewer'));
+        const ids=[...new Set(remotePeople.map(person=>person.identity))];
+        const profilesForViewers=ids.length?await supabase.request('/rest/v1/profiles?select=id,handle,display_name&id=in.('+ids.join(',')+')'):[];
+        const viewerMap=new Map((profilesForViewers||[]).map(profile=>[profile.id,profile]));
+        const viewers=viewerPeople.map(person=>{
+          const profile=viewerMap.get(person.identity)||{};
+          const name=profile.display_name||String(person.name||'').replace(/\s*\(@[A-Za-z0-9_.-]+\)\s*$/,'').trim();
+          const username=profile.handle||String(person.name||'').match(/@([A-Za-z0-9_.-]+)/)?.[1]||'';
+          return name&&username?{name,username}:null;
+        }).filter(Boolean);
+        return {id:session.id,title:session.title,visibility:session.visibility,started_at:session.started_at,host:hostMap.get(session.host_id)||null,current_viewer_count:viewerPeople.length,viewer_count:viewerPeople.length,viewer_count_verified:true,viewers};
+      }catch(error){
+        if(error.providerStatus===404&&supabase.serviceConfigured()){
+          await patchRows('live_sessions',`id=eq.${session.id}&status=eq.live`,{status:'ended',ended_at:new Date().toISOString(),current_viewer_count:0},{service:true}).catch(()=>{});
+          return null;
+        }
+        log('warn','live_room_count_unavailable',{sessionId:session.id,code:error.code||'LIVEKIT_UNAVAILABLE'});
+        return {id:session.id,title:session.title,visibility:session.visibility,started_at:session.started_at,host:hostMap.get(session.host_id)||null,current_viewer_count:0,viewer_count:0,viewer_count_verified:false,viewers:[]};
+      }
+    }));
+    return json(res,200,{data:results.filter(Boolean),error:null,meta:{requestId}});
   }
   if(method==='GET'&&p==='/api/v1/search/profiles'){
    const q=cleanText(url.searchParams.get('q')||'',40);if(q.length<2)return json(res,200,{data:[],error:null,meta:{requestId}});
@@ -67,12 +130,21 @@ async function handleApi(req,res,url,requestId){
  if(method==='GET'&&p==='/api/v1/me'){
    const {user,token}=await auth(req);
    const profile=await selectOne('profiles',`id=eq.${user.id}&select=id,handle,display_name,bio,avatar_path,cover_path,role,visibility,country_code,locale,timezone,is_verified,created_at`,{token});
-   const [followers,following,posts]=await Promise.all([
-     supabase.count(`/rest/v1/follows?select=follower_id&followed_id=eq.${user.id}`,{token}).catch(()=>null),
-     supabase.count(`/rest/v1/follows?select=followed_id&follower_id=eq.${user.id}`,{token}).catch(()=>null),
-     supabase.count(`/rest/v1/posts?select=id&author_id=eq.${user.id}&status=eq.published&deleted_at=is.null`,{token}).catch(()=>null)
-   ]);
-   return json(res,200,{data:{user:{id:user.id,email:user.email},profile,stats:{followers,following,posts}},error:null,meta:{requestId}});
+   if(!profile)throw new HttpError(404,'PROFILE_NOT_FOUND','Your profile is not ready yet. Please refresh.');
+   const stats=await rpc('get_profile_stats',{p_profile_id:user.id},{token});
+   return json(res,200,{data:{user:{id:user.id,email:user.email},profile,stats},error:null,meta:{requestId}});
+ }
+ const publicProfileMatch=p.match(/^\/api\/v1\/profiles\/([a-z0-9_.-]+)$/i);
+ if(method==='GET'&&publicProfileMatch){
+   const handle=decodeURIComponent(publicProfileMatch[1]).toLowerCase();
+   if(!isSafeHandle(handle))throw new HttpError(400,'VALIDATION_ERROR','Invalid username');
+   const viewerToken=bearer(req);
+   const viewer=viewerToken?await supabase.userFromToken(viewerToken):null;
+   const profile=await selectOne('profiles',`handle=eq.${encodeURIComponent(handle)}&visibility=eq.public&deleted_at=is.null&select=id,handle,display_name,bio,avatar_path,cover_path,role,visibility,is_verified,created_at`,{token:viewerToken});
+   if(!profile)throw new HttpError(404,'NOT_FOUND','This profile is not available.');
+   if(viewer&&viewer.id!==profile.id)await rpc('record_profile_view',{p_profile_id:profile.id},{token:viewerToken});
+   const stats=await rpc('get_profile_stats',{p_profile_id:profile.id},{token:viewerToken});
+   return json(res,200,{data:{profile,stats,isFollowing:false},error:null,meta:{requestId}});
  }
  if(method==='PATCH'&&p==='/api/v1/me'){
    const {user,token}=await auth(req);const b=await bodyJson(req);const fields={};
@@ -276,7 +348,9 @@ async function handleApi(req,res,url,requestId){
       const startedAt=new Date().toISOString();
       const rows=await patchRows('live_sessions','id=eq.'+id+'&host_id=eq.'+user.id,{status:'live',started_at:startedAt},{token});
       if(!Array.isArray(rows)||!rows.length)throw new HttpError(403,'FORBIDDEN','Live session could not be activated for this account');
-      const participantToken=livekit.createParticipantToken({identity:user.id,room:roomName,canPublish:true,canSubscribe:true,canPublishData:true});
+      const profile=await selectOne('profiles',`id=eq.${user.id}&select=handle,display_name`,{token});
+      const participantName=cleanText(`${profile?.display_name||profile?.handle||'ZOVARA creator'}${profile?.handle?` (@${profile.handle})`:''}`,80);
+      const participantToken=livekit.createParticipantToken({identity:user.id,name:participantName,room:roomName,canPublish:true,canSubscribe:true,canPublishData:true});
       return json(res,201,{data:{id:session.id,title:session.title,status:'live',serverUrl:config.livekitUrl,participantToken,host:true},error:null,meta:{requestId}});
     }catch(error){
       if(roomCreated)await livekit.deleteRoom(roomName).catch(()=>{});
@@ -290,13 +364,12 @@ async function handleApi(req,res,url,requestId){
     if(!livekit.configured())throw new HttpError(503,'CONFIGURATION_REQUIRED','Livestreaming is not available yet');
     const live=await selectOne('live_sessions','id=eq.'+liveId+'&select=id,host_id,room_name,status,title',{token});
     if(!live||live.status!=='live')throw new HttpError(404,'NOT_FOUND','Live session is not active');
-    let isHost=live.host_id===user.id,canPublish=isHost;
-    if(!isHost){
-      const joined=await rpc('join_live_session',{p_live_session_id:liveId},{token});
-      canPublish=!!(joined.canPublishAudio&&joined.canPublishVideo);
-    }
-    const participantToken=livekit.createParticipantToken({identity:user.id,room:live.room_name,canPublish,canSubscribe:true,canPublishData:true});
-    return json(res,200,{data:{token:participantToken,serverUrl:config.livekitUrl,host:isHost},error:null,meta:{requestId}});
+    const isHost=live.host_id===user.id;
+    const authorization=isHost?{canPublishAudio:true,canPublishVideo:true,role:'host'}:await rpc('join_live_session',{p_live_session_id:liveId},{token});
+    const profile=await selectOne('profiles',`id=eq.${user.id}&select=handle,display_name`,{token});
+    const participantName=cleanText(`${profile?.display_name||profile?.handle||'ZOVARA creator'}${profile?.handle?` (@${profile.handle})`:''}`,80);
+    const participantToken=livekit.createParticipantToken({identity:user.id,name:participantName,room:live.room_name,canPublish:isHost||!!(authorization.canPublishAudio&&authorization.canPublishVideo),canSubscribe:true,canPublishData:true});
+    return json(res,200,{data:{token:participantToken,serverUrl:config.livekitUrl,host:isHost,role:authorization.role|| (isHost?'host':'viewer')},error:null,meta:{requestId}});
   }
   const liveLeaveMatch=p.match(/^\/api\/v1\/lives\/([0-9a-f-]+)\/leave$/i);
   if(liveLeaveMatch&&method==='POST'){
@@ -337,8 +410,8 @@ async function handleApi(req,res,url,requestId){
    const result=await insertOne('live_guest_requests',{live_session_id:liveId,requester_id:user.id,requested_role:requestedRole,status:'pending'},{token});return json(res,201,{data:result,error:null,meta:{requestId}});
  }
  if(method==='GET'&&p==='/api/v1/wallet'){
-   const {user,token}=await auth(req);const wallet=await selectOne('wallets',`user_id=eq.${user.id}&select=user_id,coin_balance,locked_coins,updated_at`,{token});const earnings=await selectOne('creator_earnings',`creator_id=eq.${user.id}&select=pending_usd_cents,available_usd_cents,paid_usd_cents`,{token});const gifter=await selectOne('gifter_profiles',`user_id=eq.${user.id}&select=eligible_coins_spent,level,updated_at`,{token});
-   return json(res,200,{data:{coins:wallet?.coin_balance||0,lockedCoins:wallet?.locked_coins||0,earnings:{pendingUsdCents:earnings?.pending_usd_cents||0,availableUsdCents:earnings?.available_usd_cents||0,paidUsdCents:earnings?.paid_usd_cents||0},gifterLevel:gifter?.level||0,eligibleCoinsSpent:gifter?.eligible_coins_spent||0},error:null,meta:{requestId}});
+   const {user,token}=await auth(req);const wallet=await selectOne('wallets',`user_id=eq.${user.id}&select=user_id,coin_balance,locked_coins,updated_at`,{token});if(!wallet)throw new HttpError(503,'ACCOUNT_SETUP_PENDING','Your wallet is being prepared. Please refresh shortly.');const earnings=await selectOne('creator_earnings',`creator_id=eq.${user.id}&select=pending_usd_cents,available_usd_cents,paid_usd_cents`,{token});const gifter=await selectOne('gifter_profiles',`user_id=eq.${user.id}&select=eligible_coins_spent,level,updated_at`,{token});
+   return json(res,200,{data:{coins:wallet.coin_balance,lockedCoins:wallet.locked_coins,earnings:{pendingUsdCents:earnings?.pending_usd_cents||0,availableUsdCents:earnings?.available_usd_cents||0,paidUsdCents:earnings?.paid_usd_cents||0},gifterLevel:gifter?.level||0,eligibleCoinsSpent:gifter?.eligible_coins_spent||0},error:null,meta:{requestId}});
  }
  if(method==='GET'&&p==='/api/v1/wallet/ledger'){
    const {user,token}=await auth(req);const rows=await supabase.request(`/rest/v1/ledger_entries?user_id=eq.${user.id}&select=id,entry_type,currency,amount_minor,balance_after,reference_type,reference_id,metadata,created_at&order=created_at.desc&limit=100`,{token});return json(res,200,{data:rows,error:null,meta:{requestId}});
