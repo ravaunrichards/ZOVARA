@@ -161,8 +161,19 @@ async function handleApi(req,res,url,requestId){
     if(!livekit.configured())return json(res,200,{data:[],error:null,meta:{requestId,viewerCountSource:'livekit',viewerCountsVerified:false}});
     if(supabase.serviceConfigured()){
       const staleBefore=encodeURIComponent(new Date(Date.now()-180000).toISOString());
-      const stale=await supabase.request('/rest/v1/live_sessions?status=eq.scheduled&scheduled_at=is.null&created_at=lt.'+staleBefore+'&select=id,room_name',{service:true}).catch(()=>[]);
-      for(const session of stale||[])await expireStaleLiveSession(session,'failed');
+      const stale=await supabase.request('/rest/v1/live_sessions?status=eq.scheduled&scheduled_at=is.null&created_at=lt.'+staleBefore+'&select=id,host_id,room_name',{service:true}).catch(()=>[]);
+      for(const session of stale||[]){
+        try{
+          const room=await livekit.listParticipants(session.room_name);
+          const participants=Array.isArray(room?.participants)?room.participants:[];
+          // A host that is connected but has not finished activation must not be cancelled.
+          if(participants.some(person=>String(person.identity||'')===session.host_id))continue;
+          await expireStaleLiveSession(session,'failed');
+        }catch(error){
+          if(error.providerStatus===404)await expireStaleLiveSession(session,'failed');
+          else log('warn','scheduled_live_cleanup_deferred',{sessionId:session.id,code:error.code||'LIVEKIT_UNAVAILABLE'});
+        }
+      }
     }
     const rows=await supabase.request('/rest/v1/live_sessions?select=id,host_id,title,visibility,room_name,started_at,created_at,actual_peak_viewers,current_viewer_count&status=eq.live&visibility=eq.public&order=started_at.desc&limit=50');
     const hostIds=[...new Set((rows||[]).map(x=>x.host_id))];
