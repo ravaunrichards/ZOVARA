@@ -215,7 +215,9 @@ async function handleApi(req,res,url,requestId){
     const profileMap=new Map((profiles||[]).map(x=>[x.id,x]));
     const latest=new Map();for(const message of messages||[])if(!latest.has(message.conversation_id))latest.set(message.conversation_id,message);
     const peers=new Map();for(const member of members||[])if(member.user_id!==user.id){if(!peers.has(member.conversation_id))peers.set(member.conversation_id,[]);peers.get(member.conversation_id).push(profileMap.get(member.user_id)||{display_name:'ZOVARA member'});}
-    const data=(conversations||[]).map(conversation=>{const message=latest.get(conversation.id);return {id:conversation.id,kind:conversation.kind,title:conversation.title,createdAt:conversation.created_at,peer:peers.get(conversation.id)?.[0]||null,lastMessage:message?{body:message.body,kind:message.kind,createdAt:message.created_at,mine:message.sender_id===user.id}:null};}).sort((a,b)=>new Date(b.lastMessage?.createdAt||b.createdAt)-new Date(a.lastMessage?.createdAt||a.createdAt));
+    const preferences=await supabase.request('/rest/v1/conversation_preferences?user_id=eq.'+user.id+'&conversation_id=in.('+idList+')&select=conversation_id,is_pinned,is_archived,is_muted',{token});
+    const preferenceMap=new Map((preferences||[]).map(x=>[x.conversation_id,x]));
+    const data=(conversations||[]).map(conversation=>{const message=latest.get(conversation.id);return {id:conversation.id,kind:conversation.kind,title:conversation.title,createdAt:conversation.created_at,peer:peers.get(conversation.id)?.[0]||null,lastMessage:message?{body:message.body,kind:message.kind,createdAt:message.created_at,mine:message.sender_id===user.id}:null,preferences:preferenceMap.get(conversation.id)||{is_pinned:false,is_archived:false,is_muted:false}};}).filter(x=>!x.preferences.is_archived).sort((a,b)=>Number(b.preferences.is_pinned)-Number(a.preferences.is_pinned)||new Date(b.lastMessage?.createdAt||b.createdAt)-new Date(a.lastMessage?.createdAt||a.createdAt));
     return json(res,200,{data,error:null,meta:{requestId}});
   }
   const conversationMessagesMatch=p.match(/^\/api\/v1\/conversations\/([0-9a-f-]+)\/messages$/i);
@@ -277,7 +279,7 @@ async function handleApi(req,res,url,requestId){
       const participantToken=livekit.createParticipantToken({identity:user.id,room:call.room_name,canPublish:true,canSubscribe:true,canPublishData:true});
       return json(res,200,{data:{...result,callId,callType:call.call_type,serverUrl:config.livekitUrl,token:participantToken},error:null,meta:{requestId}});
     }
-    if(result.status==='ended'&&livekit.configured())await livekit.deleteRoom(call.room_name).catch(()=>{});
+    if(['ended','missed'].includes(result.status)&&livekit.configured())await livekit.deleteRoom(call.room_name).catch(()=>{});
     return json(res,200,{data:result,error:null,meta:{requestId}});
   }
   if(method==='GET'&&p==='/api/v1/feed'){
@@ -286,7 +288,7 @@ async function handleApi(req,res,url,requestId){
    else if(mode==='following'){if(!token)throw new HttpError(401,'UNAUTHENTICATED','Sign in to load the Following feed');user=await supabase.userFromToken(token);const edges=await supabase.request(`/rest/v1/follows?follower_id=eq.${user.id}&select=followed_id&limit=1000`,{token});const ids=(edges||[]).map(x=>x.followed_id);if(!ids.length)return json(res,200,{data:[],error:null,meta:{requestId}});filters.push(`author_id=in.(${ids.join(',')})`);}
    else if(token)user=await supabase.userFromToken(token);
    filters.push('status=eq.published','deleted_at=is.null');if(!url.searchParams.has('authorId')&&mode!=='following')filters.push('visibility=eq.public');
-   const query=`select=id,author_id,body,hashtags,visibility,status,published_at,created_at&${filters.join('&')}&order=published_at.desc.nullslast&limit=30`;
+   const query=`select=id,author_id,body,hashtags,visibility,status,creation_options,cover_media_id,published_at,created_at&${filters.join('&')}&order=published_at.desc.nullslast&limit=30`;
    const rows=await supabase.request(`/rest/v1/posts?${query}`,{token});const ids=[...new Set((rows||[]).map(x=>x.author_id))];let profiles=[],likes=[],liked=[];
    if(ids.length){const inList=ids.join(',');profiles=await supabase.request(`/rest/v1/profiles?select=id,handle,display_name,avatar_path,bio&id=in.(${inList})`,{token});}
    const postIds=[...new Set((rows||[]).map(x=>x.id))];if(postIds.length){const q=`/rest/v1/post_likes?select=post_id&post_id=in.(${postIds.join(',')})`;likes=await supabase.request(q,{token});if(user)liked=await supabase.request(`/rest/v1/post_likes?select=post_id&user_id=eq.${user.id}&post_id=in.(${postIds.join(',')})`,{token});}
@@ -294,11 +296,11 @@ async function handleApi(req,res,url,requestId){
  }
  const postMatch=p.match(/^\/api\/v1\/posts\/([0-9a-f-]+)$/i);
  if(postMatch&&method==='GET'){
-   const postId=requireUuid(postMatch[1],'post id');const token=bearer(req);const viewer=token?await supabase.userFromToken(token):null;const row=await selectOne('posts',`id=eq.${postId}&select=id,author_id,body,hashtags,visibility,status,deleted_at,comments_enabled,like_count,published_at,created_at`,{token});if(!row||row.status!=='published'||row.deleted_at)throw new HttpError(404,'NOT_FOUND','Post not found');
+   const postId=requireUuid(postMatch[1],'post id');const token=bearer(req);const viewer=token?await supabase.userFromToken(token):null;const row=await selectOne('posts',`id=eq.${postId}&select=id,author_id,body,hashtags,visibility,status,creation_options,cover_media_id,deleted_at,comments_enabled,like_count,published_at,created_at`,{token});if(!row||row.status!=='published'||row.deleted_at)throw new HttpError(404,'NOT_FOUND','Post not found');
    let permitted=row.visibility==='public'||row.author_id===viewer?.id;
    if(!permitted&&viewer&&row.visibility==='followers'){const edge=await selectOne('follows',`follower_id=eq.${viewer.id}&followed_id=eq.${row.author_id}&select=follower_id`,{token});permitted=!!edge;}
    if(!permitted&&viewer&&row.visibility==='friends'){const friendship=await supabase.request(`/rest/v1/friendships?or=(and(requester_id.eq.${viewer.id},addressee_id.eq.${row.author_id}),and(requester_id.eq.${row.author_id},addressee_id.eq.${viewer.id}))&status=eq.accepted&select=id&limit=1`,{token});permitted=Array.isArray(friendship)&&friendship.length>0;}
-   if(!permitted)throw new HttpError(404,'NOT_FOUND','Post not found');const author=await selectOne('profiles',`id=eq.${row.author_id}&select=id,handle,display_name,avatar_path,bio`,{token});let likeCount=Number(row.like_count)||0,likedByMe=false;if(viewer){const mine=await selectOne('post_likes',`post_id=eq.${postId}&user_id=eq.${viewer.id}&select=post_id`,{token});likedByMe=!!mine;}return json(res,200,{data:{...row,author,likeCount,likedByMe},error:null,meta:{requestId}});
+   if(!permitted)throw new HttpError(404,'NOT_FOUND','Post not found');const author=await selectOne('profiles',`id=eq.${row.author_id}&select=id,handle,display_name,avatar_path,bio`,{token});let likeCount=Number(row.like_count)||0,likedByMe=false;if(viewer){const mine=await selectOne('post_likes',`post_id=eq.${postId}&user_id=eq.${viewer.id}&select=post_id`,{token});likedByMe=!!mine;}const [enriched]=await enrichPostsWithMedia([{...row,author,likeCount,likedByMe}],token);return json(res,200,{data:enriched,error:null,meta:{requestId}});
  }
  const likeMatch=p.match(/^\/api\/v1\/posts\/([0-9a-f-]+)\/like$/i);
  if(likeMatch&&(method==='POST'||method==='DELETE')){
@@ -344,7 +346,7 @@ async function handleApi(req,res,url,requestId){
    if(!['public','followers','friends','private','subscriber'].includes(visibility))throw new HttpError(400,'VALIDATION_ERROR','Invalid audience');
    const mediaIds=Array.isArray(b.mediaIds)?b.mediaIds.slice(0,10).map(id=>requireUuid(id,'media id')):[];
    const hashtags=Array.isArray(b.hashtags)?b.hashtags.slice(0,30).map(x=>cleanText(x,60).replace(/^#/,'')).filter(Boolean):[];
-   const row=await rpc('create_post_with_media',{p_body:body,p_visibility:visibility,p_media_ids:mediaIds,p_hashtags:hashtags,p_comments_enabled:b.commentsEnabled!==false},{token});
+   const row=await rpc('create_post_with_media',{p_body:body,p_visibility:visibility,p_media_ids:mediaIds,p_hashtags:hashtags,p_comments_enabled:b.commentsEnabled!==false,p_options:b.creationOptions&&typeof b.creationOptions==='object'?b.creationOptions:{}},{token});
    return json(res,201,{data:row,error:null,meta:{requestId}});
  }
  if(method==='GET'&&p==='/api/v1/media/view-url'){
@@ -366,7 +368,7 @@ async function handleApi(req,res,url,requestId){
  }
  if(method==='POST'&&p==='/api/v1/media/upload-url'){
    const {user}=await auth(req);const b=await bodyJson(req);const filename=cleanText(b.filename,120).replace(/[^a-zA-Z0-9_.-]/g,'_');const mime=cleanText(b.mimeType,100);const size=Number(b.size);
-   if(!filename||!['image/jpeg','image/png','image/webp','image/gif','video/mp4','video/webm','audio/webm','audio/mpeg'].includes(mime)||!Number.isSafeInteger(size)||size<1||size>config.maxUploadBytes)throw new HttpError(400,'VALIDATION_ERROR','Filename, supported media MIME type, or file size is invalid');
+    if(!filename||!['image/jpeg','image/png','image/webp','image/gif','video/mp4','video/webm','audio/webm','audio/mpeg','audio/mp4','audio/ogg'].includes(mime)||!Number.isSafeInteger(size)||size<1||size>config.maxUploadBytes)throw new HttpError(400,'VALIDATION_ERROR','Filename, supported media MIME type, or file size is invalid');
    const objectPath=`${user.id}/${randomUUID()}-${filename}`;const encoded=objectPath.split('/').map(encodeURIComponent).join('/');
    const base=config.supabaseUrl.replace(/\/+$/,'');
    const r=await fetch(`${base}/storage/v1/object/upload/sign/${encodeURIComponent(config.mediaBucket)}/${encoded}`,{method:'POST',headers:{apikey:config.supabaseServiceRoleKey,Authorization:`Bearer ${config.supabaseServiceRoleKey}`,'Content-Type':'application/json'},body:JSON.stringify({upsert:false}),signal:AbortSignal.timeout(15000)});
