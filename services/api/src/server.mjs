@@ -169,6 +169,21 @@ async function handleApi(req,res,url,requestId){
    const stats=await rpc('get_profile_stats',{p_profile_id:user.id},{token});
    return json(res,200,{data:{user:{id:user.id,email:user.email},profile,stats},error:null,meta:{requestId}});
  }
+ if(method==='GET'&&p==='/api/v1/me/settings'){
+   const {user,token}=await auth(req);let settings=await selectOne('account_settings','user_id=eq.'+user.id+'&select=user_id,allow_messages_from,allow_calls_from,allow_group_invites,online_status_visible,read_receipts_enabled,push_enabled,quiet_hours,allow_voice_messages,allow_media_messages,typing_indicators_enabled,call_notifications_enabled',{token});
+   if(!settings)settings=await insertOne('account_settings',{user_id:user.id},{token});
+   return json(res,200,{data:settings,error:null,meta:{requestId}});
+ }
+ if(method==='PATCH'&&p==='/api/v1/me/settings'){
+   const {user,token}=await auth(req);const b=await bodyJson(req);const fields={};
+   for(const key of ['allow_messages_from','allow_calls_from','allow_group_invites'])if(b[key]!==undefined){if(!['everyone','followers','friends','nobody'].includes(b[key]))throw new HttpError(400,'VALIDATION_ERROR','Invalid account privacy option');fields[key]=b[key];}
+   for(const key of ['online_status_visible','read_receipts_enabled','push_enabled','allow_voice_messages','allow_media_messages','typing_indicators_enabled','call_notifications_enabled'])if(b[key]!==undefined){if(typeof b[key]!=='boolean')throw new HttpError(400,'VALIDATION_ERROR','Account setting must be a boolean');fields[key]=b[key];}
+   if(b.quiet_hours!==undefined){if(!b.quiet_hours||typeof b.quiet_hours!=='object'||Array.isArray(b.quiet_hours))throw new HttpError(400,'VALIDATION_ERROR','Quiet hours must be an object');fields.quiet_hours=b.quiet_hours;}
+   if(!Object.keys(fields).length)throw new HttpError(400,'VALIDATION_ERROR','No account settings were provided');
+   fields.user_id=user.id;fields.updated_at=new Date().toISOString();
+   const rows=await supabase.request('/rest/v1/account_settings?on_conflict=user_id',{method:'POST',body:fields,token,headers:{Prefer:'resolution=merge-duplicates,return=representation'}});
+   return json(res,200,{data:Array.isArray(rows)?rows[0]:rows,error:null,meta:{requestId}});
+ }
  const publicProfileMatch=p.match(/^\/api\/v1\/profiles\/([a-z0-9_.-]+)$/i);
  if(method==='GET'&&publicProfileMatch){
    const handle=decodeURIComponent(publicProfileMatch[1]).toLowerCase();
