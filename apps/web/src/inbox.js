@@ -55,7 +55,7 @@ export function initInbox({api,token,state,toast}){
   incomingPoll=conversationPoll=null;await leaveConversationChannel();if(userChannel){await realtime.removeChannel(userChannel).catch(()=>{});userChannel=null;}
   if(realtime){realtime.removeAllChannels();realtime=null;}
   conversations=[];currentId=null;currentConversation=null;messages=[];stopRecording();
-  if(callRoom)await endCall(false);
+  if(callRoom)await endCall(true);
   renderConversationList();renderThreadEmpty();
  }
  function renderConversationList(){
@@ -227,6 +227,19 @@ export function initInbox({api,token,state,toast}){
    if(key==='is_archived'){currentId=null;currentConversation=null;renderThreadEmpty();}
   }catch(error){toast(error.message,'error');}
  }
+ async function showCallHistory(){
+  const host=$('zv-call-history');if(!host||!currentId)return;
+  if(!host.hidden){host.hidden=true;return;}
+  host.hidden=false;host.innerHTML='<p class="muted">Loading call history…</p>';
+  try{
+   const rows=await api('/api/v1/conversations/'+encodeURIComponent(currentId)+'/calls');
+   host.innerHTML=(rows||[]).map(c=>{
+    const duration=Number(c.duration_seconds)||0;const time=fmt(c.created_at);
+    const status=String(c.status||'unknown').replaceAll('_',' ');
+    return '<div class="zv-call-history-row"><span class="zv-call-history-icon">'+(c.call_type==='video'?'▣':'☎')+'</span><span><b>'+(c.call_type==='video'?'Video call':'Voice call')+'</b><small>'+esc(time)+' · '+esc(status)+(duration?' · '+Math.floor(duration/60)+':'+String(duration%60).padStart(2,'0'):'')+'</small></span></div>';
+   }).join('')||'<p class="muted">No calls in this conversation yet.</p>';
+  }catch(error){host.innerHTML='<p class="muted">Call history could not be loaded: '+esc(error.message)+'</p>';}
+ }
  async function refreshIncomingCalls(){
   if(!token())return;
   if(messagingSettings.call_notifications_enabled===false){if(incomingCard)incomingCard.hidden=true;return;}
@@ -287,6 +300,7 @@ export function initInbox({api,token,state,toast}){
  }
  function updateCallControls(){
   $('zv-call-mic').textContent=callMic?'Mute microphone':'Unmute microphone';
+  $('zv-call-camera').hidden=callType==='audio';$('zv-call-screen').hidden=callType==='audio';
   $('zv-call-camera').textContent=callCamera?'Turn camera off':'Turn camera on';
   $('zv-call-screen').textContent=screenShare?'Stop screen share':'Share screen';
  }
@@ -342,6 +356,7 @@ export function initInbox({api,token,state,toast}){
    if(act.dataset.inboxAction==='create-group')await createGroup();
    if(act.dataset.inboxAction==='voice-note')await toggleVoiceRecording();
    if(act.dataset.inboxAction==='attach')$('zv-message-file').click();
+   if(act.dataset.inboxAction==='call-history')await showCallHistory();
    if(act.dataset.inboxAction==='audio-call')await startCall('audio');
    if(act.dataset.inboxAction==='video-call')await startCall('video');
    if(act.dataset.inboxAction==='archive')await setConversationPreference('is_archived',true);
