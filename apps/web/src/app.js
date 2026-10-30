@@ -84,8 +84,20 @@ async function connectLiveKit(info){if(!window.LivekitClient){toast('LiveKit bro
 function startLivePolling(){clearInterval(state.chatTimer);clearInterval(state.giftTimer);if(!state.activeLive)return;refreshLiveChat();refreshLiveGifts();state.chatTimer=setInterval(refreshLiveChat,3500);state.giftTimer=setInterval(refreshLiveGifts,4500);}
 async function refreshLiveChat(){if(!state.activeLive||!token())return;try{const rows=await api(`/api/v1/lives/${encodeURIComponent(state.activeLive.id)}/chat`);const root=$('live-chat-messages');if(!root)return;const before=root.scrollTop,nearBottom=root.scrollHeight-root.clientHeight-before<70;root.innerHTML=(rows||[]).map(m=>`<div class="chat-line"><b>${esc(m.sender?.display_name||m.sender?.handle||'Viewer')}</b><span>${esc(m.body)}</span></div>`).join('');if(nearBottom)root.scrollTop=root.scrollHeight;}catch{}}
 async function refreshLiveGifts(){if(!state.activeLive)return;try{const rows=await api(`/api/v1/lives/${encodeURIComponent(state.activeLive.id)}/gifts`);for(const gift of rows||[]){if(state.lastGiftIds.has(gift.id))continue;state.lastGiftIds.add(gift.id);if(state.lastGiftIds.size>300)state.lastGiftIds.delete(state.lastGiftIds.values().next().value);const node=$('live-gift-alert');if(node){node.hidden=false;node.innerHTML=`<img src="/assets/gifts/${esc(gift.gift_id)}.svg" alt=""><span><b>${esc(gift.sender?.display_name||'Viewer')}</b> sent <b>${esc(gift.gift?.name||gift.gift_id)}</b></span>`;node.classList.remove('gift-enter');void node.offsetWidth;node.classList.add('gift-enter');}}}catch{}}
-async function endLive(){if(!state.activeLive)return;const wasHost=!!state.activeLive.host;try{if(wasHost)await api(`/api/v1/lives/${encodeURIComponent(state.activeLive.id)}/end`,{method:'POST',body:{}});await closeLivePlayer();toast(wasHost?'Live session ended.':'Left the live session.','success');}catch(e){toast(e.message,'error');}}
-async function closeLivePlayer(){clearInterval(state.chatTimer);clearInterval(state.giftTimer);if(state.liveRoom){try{await state.liveRoom.disconnect();}catch{}}state.liveRoom=null;$('livekit-player').hidden=true;document.body.style.overflow='';$('live-gift-alert').hidden=true;state.activeLive=null;loadLiveRooms();}
+async function endLive(){if(!state.activeLive)return;const wasHost=!!state.activeLive.host;const saved=await closeLivePlayer();if(saved)toast(wasHost?'Live session ended.':'Left the live session.','success');}
+async function closeLivePlayer(){
+ const active=state.activeLive;
+ let saved=true;
+ if(active&&token()){
+  const action=active.host?'end':'leave';
+  try{await api(`/api/v1/lives/${encodeURIComponent(active.id)}/${action}`,{method:'POST',body:{}});}
+  catch(e){saved=false;toast(`Media disconnected, but the server could not update the live session: ${e.message}`,'error');}
+ }
+ clearInterval(state.chatTimer);clearInterval(state.giftTimer);
+ if(state.liveRoom){try{await state.liveRoom.disconnect();}catch{}}
+ state.liveRoom=null;$('livekit-player').hidden=true;document.body.style.overflow='';$('live-gift-alert').hidden=true;state.activeLive=null;loadLiveRooms();
+ return saved;
+}
 function toggleGiftTray(){if(!state.activeLive){toast('Join a live room before sending a gift.');return;}const tray=$('gift-tray');tray.hidden=!tray.hidden;if(!tray.hidden)renderGiftTray();}
 function renderGiftTray(){const root=$('gift-tray-list');if(!root)return;const recent=state.gifts.slice(0,100);root.innerHTML=recent.map(g=>`<button class="gift-choice" data-action="send-gift" data-id="${esc(g.id)}"><img src="/${esc(g.asset)}" alt=""><b>${esc(g.name)}</b><small>${number(g.coinPrice)} coins</small></button>`).join('');}
 async function sendGift(id){if(!state.activeLive){toast('Join a live room before sending a gift.');return;}if(!token()){openAuth();return;}const gift=state.gifts.find(g=>g.id===id);if(!gift)return;try{const r=await api(`/api/v1/lives/${encodeURIComponent(state.activeLive.id)}/gifts`,{method:'POST',headers:{'Idempotency-Key':`gift-${crypto.randomUUID()}`},body:{giftId:id}});toast(`${gift.name} sent · ${number(r.coinAmount||gift.coinPrice)} coins`,'success');const alert=$('live-gift-alert');alert.hidden=false;alert.innerHTML=`<img src="/${esc(gift.asset)}" alt=""><span><b>You</b> sent <b>${esc(gift.name)}</b></span>`;alert.classList.add('gift-enter');$('gift-tray').hidden=true;await loadWallet();}catch(e){toast(e.message,'error');}}
