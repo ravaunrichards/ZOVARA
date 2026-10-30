@@ -96,3 +96,5 @@ body.tv-mode{font-size:1.25rem}body.tv-mode .app-shell{max-width:1900px}body.tv-
 .live-viewer-name{border-radius:999px;padding:4px 9px;background:rgba(255,255,255,.07);font-size:.78rem}
 .live-viewer-name small{opacity:.68}
 @media(max-width:640px){.profile-stats{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:14px}.profile-stats>div span{font-size:.72rem}}
+
+.profile-stats>div[hidden]{display:none!important}
