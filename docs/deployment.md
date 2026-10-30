@@ -9,11 +9,11 @@ The active Render web service is **zovara-api**:
 - Branch: `main`
 - Runtime: Node.js 22.16.0
 - API and web/PWA: served by the same Node service
-- Liveness check: `GET /healthz`
-- API health and provider status: `GET /api/v1/health`
+- API liveness route in source: `GET /healthz`
+- Provider status route: `GET /api/v1/health`
 - Public client configuration: `GET /api/v1/client-config`
 
-The latest observed Render deploy completed successfully and the process started. A successful liveness check means the server process is alive; it does **not** mean Supabase, PayPal, or LiveKit is connected. Check `/api/v1/client-config` and Render logs for provider status before declaring a feature operational.
+The latest observed Render deploy completed successfully and the process startup was logged. This confirms the Node process started; it does **not** prove that the public health route or external providers have been verified. The Render service's active build command is currently `npm install --ignore-scripts`. The updated `render.yaml` blueprint declares `npm run verify` and `/healthz` as the Render health check; those blueprint settings still need to be synced/applied to the existing service before Render enforces them.
 
 ## Local development
 
@@ -51,6 +51,7 @@ Copy `.env.example` to `.env` locally. In Render, configure the same keys under 
 | `LIVEKIT_URL` | Zovara LiveKit server URL | API |
 | `LIVEKIT_API_KEY` | Zovara LiveKit API key | API |
 | `LIVEKIT_API_SECRET` | Zovara LiveKit API secret | API only; secret |
+| `LIVEKIT_DEFAULT_ROOM_MAX_PARTICIPANTS` | Default LiveKit room capacity; validated to 1–1000, defaults to 100 | API |
 | `RATE_LIMIT_WINDOW_MS`, `RATE_LIMIT_MAX_REQUESTS` | HTTP rate-limit window and request budget | API |
 | `MAX_UPLOAD_BYTES` | Maximum accepted upload size | API |
 | `COIN_CUSTOM_MIN`, `COIN_CUSTOM_MAX` | Server-validated custom coin purchase range | API |
@@ -91,7 +92,7 @@ Copy `.env.example` to `.env` locally. In Render, configure the same keys under 
 
 ## Render deployment
 
-The `render.yaml` web service definition pins Node 22.16.0, runs repository verification during build, enables automatic deployment from `main`, and uses `/healthz` as its liveness check. The worker definition is a separate background process and is not the same service as the API. Do not provision a paid worker until its queue handlers and provider configuration are ready.
+The `render.yaml` web service definition pins Node 22.16.0, runs repository verification during build, enables automatic deployment from `main`, and uses `/healthz` as its liveness check. The existing Render service may retain its dashboard-level build command and health-check setting until the blueprint is synchronized. The worker definition is a separate background process and is not the same service as the API. Do not provision a paid worker until its queue handlers and provider configuration are ready.
 
 After updating service environment values, inspect the Render deploy result and logs. Confirm:
 
