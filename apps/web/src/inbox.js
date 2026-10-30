@@ -101,6 +101,9 @@ export function initInbox({api,token,state,toast}){
   if(await ensureRealtime()){
    channel=realtime.channel('conversation:'+id,{config:{private:true,presence:{key:profileId()}}})
     .on('broadcast',{event:'message.new'},()=>loadMessages(id))
+    .on('broadcast',{event:'message.updated'},()=>loadMessages(id))
+    .on('broadcast',{event:'message.deleted'},()=>loadMessages(id))
+    .on('broadcast',{event:'message.receipt'},()=>loadMessages(id))
     .on('broadcast',{event:'typing'},payload=>showTyping(payload.payload||payload))
     .on('broadcast',{event:'message.reaction'},()=>loadMessages(id))
     .on('presence',{event:'sync'},()=>renderThreadPresence())
@@ -351,7 +354,7 @@ export function initInbox({api,token,state,toast}){
   const act=e.target.closest('[data-inbox-action]');if(act){
    if(act.dataset.inboxAction==='new-chat')$('zv-new-chat-dialog').showModal();
    if(act.dataset.inboxAction==='close-reply'){$('zv-replying-to').hidden=true;delete $('zv-replying-to').dataset.messageId;}
-   if(act.dataset.inboxAction==='group'){$('zv-new-chat-dialog').dataset.mode='group';$('zv-new-chat-title').textContent='Create a group';$('zv-group-fields').hidden=false;selectedMembers.clear();renderSelectedMembers();}
+   if(act.dataset.inboxAction==='group'){$('zv-new-chat-dialog').dataset.mode='group';$('zv-new-chat-title').textContent='Create a group';$('zv-group-fields').hidden=false;selectedMembers.clear();renderSelectedMembers();if(!$('zv-new-chat-dialog').open)$('zv-new-chat-dialog').showModal();}
    if(act.dataset.inboxAction==='direct'){$('zv-new-chat-dialog').dataset.mode='direct';$('zv-new-chat-title').textContent='New message';$('zv-group-fields').hidden=true;}
    if(act.dataset.inboxAction==='create-group')await createGroup();
    if(act.dataset.inboxAction==='voice-note')await toggleVoiceRecording();
