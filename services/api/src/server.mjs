@@ -39,6 +39,11 @@ function apiFeatureList(){return {version:'v1',providerStatus:{supabase:supabase
 async function handleApi(req,res,url,requestId){
  const method=req.method||'GET', p=url.pathname;
  if(method==='GET'&&p==='/api/v1/health')return json(res,200,{data:{status:'ok',service:'zovara-api',version:'0.1.0',time:new Date().toISOString(),providers:apiFeatureList().providerStatus},error:null,meta:{requestId}});
+ if(method==='GET'&&p==='/api/v1/health/livekit'){
+   const provider=await livekit.healthCheck();
+   const status=provider.reachable?200:503;
+   return json(res,status,{data:{provider:'livekit',...provider},error:provider.reachable?null:{code:provider.code,message:provider.code==='CONFIGURATION_REQUIRED'?'LiveKit credentials are not configured':'LiveKit room service could not be reached'},meta:{requestId}});
+ }
  if(method==='GET'&&p==='/api/v1/client-config')return json(res,200,{data:{supabaseUrl:config.supabaseUrl||null,supabaseAnonKey:config.supabaseAnonKey||null,livekitUrl:config.livekitUrl||null,paypalEnvironment:config.paypalEnvironment,providers:apiFeatureList().providerStatus},error:null,meta:{requestId}});
  if(method==='GET'&&p==='/api/v1/features')return json(res,200,{data:JSON.parse(await readFile(featuresPath,'utf8')),error:null,meta:{requestId}});
  if(method==='GET'&&p==='/api/v1/catalog/gifts')return json(res,200,{data:JSON.parse(await readFile(giftsPath,'utf8')),error:null,meta:{requestId}});
@@ -156,15 +161,28 @@ async function handleApi(req,res,url,requestId){
    const result=await rpc('send_gift_transaction',{p_live_session_id:liveId,p_gift_id:giftId,p_idempotency_key:key},{token});return json(res,201,{data:result,error:null,meta:{requestId}});
  }
  if(method==='POST'&&p==='/api/v1/lives'){
-   const {user,token}=await auth(req);if(!livekit.configured())throw new HttpError(503,'CONFIGURATION_REQUIRED','LiveKit is not configured; no live session was started');
-   const b=await bodyJson(req);const title=cleanText(b.title||'Live on ZOVARA',120);const visibility=b.visibility||'public';if(!['public','private','followers','subscribers','age_restricted'].includes(visibility))throw new HttpError(400,'VALIDATION_ERROR','Invalid live visibility');
-   const id=randomUUID(), roomName=`zovara-${id}`;const session=await insertOne('live_sessions',{id,host_id:user.id,title,visibility,status:'scheduled',room_name:roomName},{token});
-   try{await livekit.createRoom(roomName,config.livekitDefaultRoomMaxParticipants||100);}
-   catch(e){await patchRows('live_sessions',`id=eq.${id}`,{status:'failed',ended_at:new Date().toISOString()},{service:true}).catch(()=>{});throw e;}
-   await patchRows('live_sessions',`id=eq.${id}`,{status:'live',started_at:new Date().toISOString()},{service:true});
-   await insertOne('live_participants',{live_session_id:id,user_id:user.id,role:'host',status:'joined',can_publish_audio:true,can_publish_video:true,joined_at:new Date().toISOString()},{service:true});
-   const tokenValue=livekit.createParticipantToken({identity:user.id,name:cleanText(user.user_metadata?.display_name||user.email?.split('@')[0]||'Creator',80),room:roomName,canPublish:true,canSubscribe:true,canPublishData:true});
-   return json(res,201,{data:{...session,status:'live',livekitUrl:config.livekitUrl,participantToken:tokenValue,permissions:{canPublish:true,canModerate:true}},error:null,meta:{requestId}});
+   const {user,token}=await auth(req);
+   if(!livekit.configured())throw new HttpError(503,'CONFIGURATION_REQUIRED','LiveKit is not configured; no live session was started');
+   const b=await bodyJson(req);
+   const title=cleanText(b.title||'Live on ZOVARA',120);
+   const visibility=b.visibility||'public';
+   if(!['public','private','followers','subscribers','age_restricted'].includes(visibility))throw new HttpError(400,'VALIDATION_ERROR','Invalid live visibility');
+   const id=randomUUID(),roomName='zovara-'+id;
+   const session=await insertOne('live_sessions',{id,host_id:user.id,title,visibility,status:'scheduled',room_name:roomName},{token});
+   let roomCreated=false;
+   try{
+     await livekit.createRoom(roomName,config.livekitDefaultRoomMaxParticipants||100);
+     roomCreated=true;
+     const startedAt=new Date().toISOString();
+     await patchRows('live_sessions','id=eq.'+id,{status:'live',started_at:startedAt},{service:true});
+     await insertOne('live_participants',{live_session_id:id,user_id:user.id,role:'host',status:'joined',can_publish_audio:true,can_publish_video:true,joined_at:startedAt},{service:true});
+     const tokenValue=livekit.createParticipantToken({identity:user.id,name:cleanText(user.user_metadata?.display_name||user.email?.split('@')[0]||'Creator',80),room:roomName,canPublish:true,canSubscribe:true,canPublishData:true});
+     return json(res,201,{data:{...session,status:'live',livekitUrl:config.livekitUrl,participantToken:tokenValue,permissions:{canPublish:true,canModerate:true}},error:null,meta:{requestId}});
+   }catch(error){
+     if(roomCreated)await livekit.deleteRoom(roomName).catch(()=>{});
+     await patchRows('live_sessions','id=eq.'+id,{status:'failed',ended_at:new Date().toISOString()},{service:true}).catch(()=>{});
+     throw error;
+   }
  }
  const liveTokenMatch=p.match(/^\/api\/v1\/lives\/([0-9a-f-]+)\/token$/i);
  if(liveTokenMatch&&method==='POST'){
@@ -188,6 +206,18 @@ async function handleApi(req,res,url,requestId){
    const tokenValue=livekit.createParticipantToken({identity:user.id,name:cleanText(user.user_metadata?.display_name||user.email?.split('@')[0]||'Viewer',80),room:live.room_name,canPublish,canSubscribe:true,canPublishData:true});
    return json(res,200,{data:{token:tokenValue,serverUrl:config.livekitUrl,role:host?'host':(participant?.role||'viewer'),permissions:{canPublish,canModerate}},error:null,meta:{requestId}});
  }
+ const liveLeaveMatch=p.match(/^\\/api\\/v1\\/lives\\/([0-9a-f-]+)\\/leave$/i);
+ if(liveLeaveMatch&&method==='POST'){
+   const {user}=await auth(req);
+   const liveId=requireUuid(liveLeaveMatch[1],'live session id');
+   const live=await selectOne('live_sessions','id=eq.'+liveId+'&select=id,host_id,status',{service:true});
+   if(!live)throw new HttpError(404,'NOT_FOUND','Live session not found');
+   if(live.host_id===user.id)throw new HttpError(409,'CONFLICT','The host must end the livestream instead of leaving it');
+   const participant=await selectOne('live_participants','live_session_id=eq.'+liveId+'&user_id=eq.'+user.id+'&select=id,status',{service:true});
+   if(!participant||participant.status!=='joined')return json(res,200,{data:{liveSessionId:liveId,left:false,replayed:true},error:null,meta:{requestId}});
+   await patchRows('live_participants','live_session_id=eq.'+liveId+'&user_id=eq.'+user.id+'&status=eq.joined',{status:'left',left_at:new Date().toISOString(),can_publish_audio:false,can_publish_video:false},{service:true});
+   return json(res,200,{data:{liveSessionId:liveId,left:true},error:null,meta:{requestId}});
+ }
  const liveChatMatch=p.match(/^\/api\/v1\/lives\/([0-9a-f-]+)\/chat$/i);
  if(liveChatMatch&&(method==='GET'||method==='POST')){
    const {user,token}=await auth(req);const liveId=requireUuid(liveChatMatch[1],'live session id');const live=await selectOne('live_sessions',`id=eq.${liveId}&select=id,status,host_id,visibility`,{token});if(!live||live.status!=='live')throw new HttpError(404,'NOT_FOUND','Live room is not active');
@@ -202,10 +232,18 @@ async function handleApi(req,res,url,requestId){
  if(guestDecisionMatch&&method==='POST'){
    const {user}=await auth(req);const liveId=requireUuid(guestDecisionMatch[1],'live session id'),requestIdParam=requireUuid(guestDecisionMatch[2],'guest request id');const live=await selectOne('live_sessions',`id=eq.${liveId}&select=id,host_id,room_name,status`,{service:true});if(!live)throw new HttpError(404,'NOT_FOUND','Live room not found');if(live.host_id!==user.id)throw new HttpError(403,'FORBIDDEN','Only the room host can decide guest requests');const b=await bodyJson(req);if(!['accepted','rejected'].includes(b.decision))throw new HttpError(400,'VALIDATION_ERROR','Decision must be accepted or rejected');const gr=await selectOne('live_guest_requests',`id=eq.${requestIdParam}&live_session_id=eq.${liveId}&status=eq.pending&select=id,requester_id,requested_role`,{service:true});if(!gr)throw new HttpError(404,'NOT_FOUND','Pending guest request not found');await patchRows('live_guest_requests',`id=eq.${gr.id}`,{status:b.decision,handled_by:user.id,handled_at:new Date().toISOString()},{service:true});if(b.decision==='rejected')return json(res,200,{data:{requestId:gr.id,status:'rejected'},error:null,meta:{requestId}});await insertOne('live_participants',{live_session_id:liveId,user_id:gr.requester_id,role:gr.requested_role,status:'joined',can_publish_audio:true,can_publish_video:true,joined_at:new Date().toISOString()},{service:true}).catch(async e=>{await patchRows('live_participants',`live_session_id=eq.${liveId}&user_id=eq.${gr.requester_id}`,{role:gr.requested_role,status:'joined',can_publish_audio:true,can_publish_video:true,joined_at:new Date().toISOString()},{service:true});});const profile=await selectOne('profiles',`id=eq.${gr.requester_id}&select=display_name,handle`,{service:true});const tok=livekit.createParticipantToken({identity:gr.requester_id,name:cleanText(profile?.display_name||profile?.handle||'Guest',80),room:live.room_name,canPublish:true});return json(res,200,{data:{requestId:gr.id,status:'accepted',role:gr.requested_role,serverUrl:config.livekitUrl,token:tok},error:null,meta:{requestId}});
  }
- const liveEndMatch=p.match(/^\/api\/v1\/lives\/([0-9a-f-]+)\/end$/i);
+ const liveEndMatch=p.match(/^\\/api\\/v1\\/lives\\/([0-9a-f-]+)\\/end$/i);
  if(liveEndMatch&&method==='POST'){
-   const {user}=await auth(req);const liveId=requireUuid(liveEndMatch[1],'live session id');const live=await selectOne('live_sessions',`id=eq.${liveId}&select=id,host_id,room_name,status`,{service:true});if(!live)throw new HttpError(404,'NOT_FOUND','Live session not found');if(live.host_id!==user.id)throw new HttpError(403,'FORBIDDEN','Only the host can end this live session');if(live.status==='ended')return json(res,200,{data:{id:liveId,status:'ended',replayed:true},error:null,meta:{requestId}});
-   if(livekit.configured())await livekit.deleteRoom(live.room_name);await patchRows('live_sessions',`id=eq.${liveId}`,{status:'ended',ended_at:new Date().toISOString(),current_viewer_count:0},{service:true});
+   const {user}=await auth(req);
+   const liveId=requireUuid(liveEndMatch[1],'live session id');
+   const live=await selectOne('live_sessions','id=eq.'+liveId+'&select=id,host_id,room_name,status',{service:true});
+   if(!live)throw new HttpError(404,'NOT_FOUND','Live session not found');
+   if(live.host_id!==user.id)throw new HttpError(403,'FORBIDDEN','Only the host can end this live session');
+   if(live.status==='ended')return json(res,200,{data:{id:liveId,status:'ended',replayed:true},error:null,meta:{requestId}});
+   if(livekit.configured())await livekit.deleteRoom(live.room_name);
+   const endedAt=new Date().toISOString();
+   await patchRows('live_participants','live_session_id=eq.'+liveId+'&status=eq.joined',{status:'left',left_at:endedAt,can_publish_audio:false,can_publish_video:false},{service:true});
+   await patchRows('live_sessions','id=eq.'+liveId,{status:'ended',ended_at:endedAt,current_viewer_count:0},{service:true});
    return json(res,200,{data:{id:liveId,status:'ended'},error:null,meta:{requestId}});
  }
  const guestMatch=p.match(/^\/api\/v1\/lives\/([0-9a-f-]+)\/guest-requests$/i);
@@ -258,7 +296,7 @@ async function handleApi(req,res,url,requestId){
       const batchId=batch.batch_header?.payout_batch_id;await rpc('update_payout_provider_status',{p_payout_id:payoutId,p_provider_batch_id:batchId,p_status:'submitted',p_failure_reason:null},{service:true});return json(res,202,{data:{payoutRequestId:payoutId,providerBatchId:batchId,status:'submitted',amountUsd:(amountCents/100).toFixed(2),currency:'USD',message:'PayPal accepted the payout request. This is not confirmation that funds arrived.'},error:null,meta:{requestId}});
    }catch(e){await rpc('update_payout_provider_status',{p_payout_id:payoutId,p_provider_batch_id:null,p_status:'failed',p_failure_reason:cleanText(e.message,300)},{service:true}).catch(()=>{});throw e;}
  }
- if(method==='GET'&&p==='/api/v1/routes')return json(res,200,{data:{routes:['GET /healthz','GET /api/v1/health','GET /api/v1/client-config','GET /api/v1/features','GET /api/v1/catalog/gifts','GET /api/v1/catalog/gifter-levels','GET /api/v1/catalog/styles','GET /api/v1/catalog/icons','GET /api/v1/wallet/packages','GET /api/v1/live','GET /api/v1/search/profiles','GET/PATCH /api/v1/me','GET /api/v1/feed','GET /api/v1/posts/:id','POST /api/v1/posts/:id/like','DELETE /api/v1/posts/:id/like','GET/POST /api/v1/posts/:id/comments','POST /api/v1/posts/:id/save','POST /api/v1/reports','GET /api/v1/notifications','GET /api/v1/me/blocks','POST/DELETE /api/v1/profiles/:id/block','POST /api/v1/posts','POST /api/v1/media/upload-url','POST/DELETE /api/v1/profiles/:id/follow','POST /api/v1/lives','POST /api/v1/lives/:id/token','POST /api/v1/lives/:id/end','POST /api/v1/lives/:id/guest-requests','POST /api/v1/lives/:id/guest-requests/:requestId/decision','GET/POST /api/v1/lives/:id/chat','GET/POST /api/v1/lives/:id/gifts','GET /api/v1/wallet','GET /api/v1/wallet/ledger','POST /api/v1/payments/orders','POST /api/v1/payments/orders/:id/capture','POST /api/v1/payments/webhooks/paypal','POST /api/v1/payouts']},error:null,meta:{requestId}});
+ if(method==='GET'&&p==='/api/v1/routes')return json(res,200,{data:{routes:['GET /healthz','GET /api/v1/health','GET /api/v1/client-config','GET /api/v1/features','GET /api/v1/catalog/gifts','GET /api/v1/catalog/gifter-levels','GET /api/v1/catalog/styles','GET /api/v1/catalog/icons','GET /api/v1/wallet/packages','GET /api/v1/live','GET /api/v1/search/profiles','GET/PATCH /api/v1/me','GET /api/v1/feed','GET /api/v1/posts/:id','POST /api/v1/posts/:id/like','DELETE /api/v1/posts/:id/like','GET/POST /api/v1/posts/:id/comments','POST /api/v1/posts/:id/save','POST /api/v1/reports','GET /api/v1/notifications','GET /api/v1/me/blocks','POST/DELETE /api/v1/profiles/:id/block','POST /api/v1/posts','POST /api/v1/media/upload-url','POST/DELETE /api/v1/profiles/:id/follow','POST /api/v1/lives','POST /api/v1/lives/:id/token','POST /api/v1/lives/:id/leave','POST /api/v1/lives/:id/end','POST /api/v1/lives/:id/guest-requests','POST /api/v1/lives/:id/guest-requests/:requestId/decision','GET/POST /api/v1/lives/:id/chat','GET/POST /api/v1/lives/:id/gifts','GET /api/v1/wallet','GET /api/v1/wallet/ledger','POST /api/v1/payments/orders','POST /api/v1/payments/orders/:id/capture','POST /api/v1/payments/webhooks/paypal','POST /api/v1/payouts']},error:null,meta:{requestId}});
  throw new HttpError(404,'NOT_FOUND','API route not found');
 }
 
