@@ -11,6 +11,7 @@ export function initInbox({api,token,state,toast}){
  const callGrid=$('zv-call-grid');
  const callLabel=$('zv-call-label');
  const incomingCard=$('zv-incoming-call');
+ if(incomingCard&&callOverlay){document.body.append(incomingCard,callOverlay);}
  const selectedGroup=$('zv-selected-members');
  const profileId=()=>state.me?.profile?.id||state.me?.user?.id||null;
 
@@ -310,6 +311,8 @@ export function initInbox({api,token,state,toast}){
   try{channel.send({type:'broadcast',event:'typing',payload:{userId:profileId(),name:state.me.profile.display_name}});}catch{}
   clearTimeout(typingTimer);typingTimer=setTimeout(()=>{try{channel?.send({type:'broadcast',event:'typing',payload:{userId:profileId(),stopped:true}});}catch{}},1200);
  }
+ incomingCard?.addEventListener('click',async e=>{const button=e.target.closest('[data-call-incoming]');if(button)await decideCall(button.dataset.callIncoming);});
+ callOverlay?.addEventListener('click',async e=>{const button=e.target.closest('[data-call-control]');if(!button)return;if(button.dataset.callControl==='end')await endCall(true);else await handleCallControl(button.dataset.callControl);});
  root.addEventListener('click',async e=>{
   const open=e.target.closest('[data-inbox-open]');if(open){await openConversation(open.dataset.inboxOpen);return;}
   const person=e.target.closest('[data-person-id]');if(person){
