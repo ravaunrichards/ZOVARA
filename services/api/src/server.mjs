@@ -43,6 +43,7 @@ async function rpc(name,body,{token,service=false}={}){return supabase.request(`
 async function selectOne(table,query,{token,service=false}={}){const rows=await supabase.request(`/rest/v1/${table}?${query}`,{token,service});return Array.isArray(rows)?rows[0]||null:rows;}
 async function insertOne(table,body,{token,service=false}={}){const rows=await supabase.request(`/rest/v1/${table}?select=*`,{method:'POST',body,token,service,headers:{Prefer:'return=representation'}});return Array.isArray(rows)?rows[0]||null:rows;}
 async function patchRows(table,query,body,{token,service=false}={}){return supabase.request(`/rest/v1/${table}?${query}`,{method:'PATCH',body,token,service,headers:{Prefer:'return=representation'}});}
+const livePresenceCache=new Map();
 async function syncLiveRoomPresence(session, livekitPeople){
  if(!supabase.serviceConfigured())return new Map();
  const liveIds=[...new Set((livekitPeople||[]).map(person=>String(person.identity||'')).filter(id=>isUuid(id)&&id!==session.host_id))];
@@ -72,6 +73,46 @@ async function syncLiveRoomPresence(session, livekitPeople){
   }
  }
  return roles;
+}
+async function getLiveRoomSnapshot(session,{cacheMs=3000}={}){
+ const cached=livePresenceCache.get(session.id);
+ if(cached&&cached.expiresAt>Date.now())return cached.value;
+ const room=await livekit.listParticipants(session.room_name);
+ const people=Array.isArray(room?.participants)?room.participants:[];
+ const hostOnline=people.some(person=>String(person.identity||'')===session.host_id);
+ let roleMap=new Map();
+ try{roleMap=await syncLiveRoomPresence(session,people);}
+ catch(error){log('warn','live_presence_sync_deferred',{sessionId:session.id,code:error.code||'SYNC_FAILED'});}
+ const remotePeople=people.filter(person=>String(person.identity||'')&&String(person.identity)!==session.host_id);
+ const viewerPeople=remotePeople.filter(person=>!['guest','cohost','moderator'].includes(roleMap.get(String(person.identity))||'viewer'));
+ const profileIds=[...new Set(viewerPeople.map(person=>String(person.identity||'')).filter(isUuid))];
+ const profiles=profileIds.length?await supabase.request('/rest/v1/profiles?select=id,handle,display_name&id=in.('+profileIds.join(',')+')'):[]; 
+ const profileMap=new Map((profiles||[]).map(profile=>[profile.id,profile]));
+ const viewers=viewerPeople.map(person=>{
+  const identity=String(person.identity||'');
+  if(!isUuid(identity))return null;
+  const profile=profileMap.get(identity)||{};
+  const name=profile.display_name||String(person.name||'').replace(/\\s*\\(@[A-Za-z0-9_.-]+\\)\\s*$/,'').trim();
+  const username=profile.handle||String(person.name||'').match(/@([A-Za-z0-9_.-]+)/)?.[1]||'';
+  return name&&username?{name,username}:null;
+ }).filter(Boolean);
+ const viewerCount=viewerPeople.length;
+ if(hostOnline&&supabase.serviceConfigured()){
+  const peak=Math.max(Number(session.actual_peak_viewers)||0,viewerCount);
+  await patchRows('live_sessions','id=eq.'+session.id+'&status=eq.live',{current_viewer_count:viewerCount,actual_peak_viewers:peak},{service:true}).catch(error=>log('warn','live_count_persist_failed',{sessionId:session.id,code:error.code||'LIVE_COUNT_SYNC_FAILED'}));
+ }
+ const value={hostOnline,participants:people.length,viewerCount,viewers};
+ livePresenceCache.set(session.id,{expiresAt:Date.now()+cacheMs,value});
+ return value;
+}
+async function expireStaleLiveSession(session,status='ended'){
+ const now=new Date().toISOString();
+ if(supabase.serviceConfigured()){
+  await patchRows('live_sessions','id=eq.'+session.id,{status,ended_at:now,current_viewer_count:0},{service:true}).catch(()=>{});
+  await patchRows('live_participants','live_session_id=eq.'+session.id+'&status=in.(joined,invited,requested)',{status:'left',left_at:now,can_publish_audio:false,can_publish_video:false},{service:true}).catch(()=>{});
+ }
+ livePresenceCache.delete(session.id);
+ if(livekit.configured())await livekit.deleteRoom(session.room_name).catch(error=>log('warn','stale_live_room_cleanup_failed',{sessionId:session.id,code:error.code||'LIVEKIT_ERROR'}));
 }
 function apiFeatureList(){return {version:'v1',providerStatus:{supabase:supabase.configured()?'configured':'not_configured',paypal:paypal.configured()?'configured':'not_configured',livekit:livekit.configured()?'configured':'not_configured',payoutsEnabled:config.paypalPayoutsEnabled},productStatus:'foundation-partial'};}
 async function signedMediaUrl(bucket,objectPath,expiresIn=3600){
