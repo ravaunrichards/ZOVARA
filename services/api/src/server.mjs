@@ -490,6 +490,11 @@ async function handleApi(req,res,url,requestId){
     await getLiveRoomSnapshot(active,{cacheMs:0}).catch(error=>log('warn','live_initial_presence_sync_failed',{sessionId:liveId,code:error.code||'LIVEKIT_UNAVAILABLE'}));
     return json(res,200,{data:{id:liveId,status:'live',started_at:startedAt},error:null,meta:{requestId}});
   }
+  if(method==='GET'&&p==='/api/v1/live/health'){
+    const result=await livekit.healthCheck();
+    const status=result.reachable?200:503;
+    return json(res,status,{data:{provider:'livekit',configured:!!result.configured,reachable:!!result.reachable,code:result.code||null},error:result.reachable?null:{code:result.code||'LIVEKIT_UNAVAILABLE',message:'LiveKit room service is not reachable'},meta:{requestId}});
+  }
   const livePresenceMatch=p.match(/^\/api\/v1\/lives\/([0-9a-f-]+)\/presence$/i);
   if(livePresenceMatch&&method==='GET'){
     const liveId=requireUuid(livePresenceMatch[1],'live session id');
