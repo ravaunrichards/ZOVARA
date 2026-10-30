@@ -17,7 +17,11 @@ export class SupabaseProvider {
   if(body!==undefined)h['Content-Type']='application/json';
   const response=await this.fetch(`${base}${path.startsWith('/')?path:`/${path}`}`,{method,headers:h,body:body===undefined?undefined:JSON.stringify(body),signal:AbortSignal.timeout(15000)});
   const text=await response.text(); let data=null; try{data=text?JSON.parse(text):null;}catch{data={message:text.slice(0,300)};}
-  if(!response.ok){const message=(data&&typeof data.message==='string'?data.message:(data&&typeof data.msg==='string'?data.msg:'Supabase request failed'));throw new ProviderError(message,response.status,response.status===401?'UNAUTHENTICATED':'PROVIDER_ERROR');}
+  if(!response.ok){
+   const message=(data&&typeof data.message==='string'?data.message:(data&&typeof data.msg==='string'?data.msg:(data&&typeof data.hint==='string'?data.hint:'Supabase request failed')));
+   const denied=response.status===403||data?.code==='42501'||/permission denied|row level security|row-level security|insufficient privilege|not authorized/i.test(message);
+   throw new ProviderError(message,denied?403:response.status,denied?'FORBIDDEN':response.status===401?'UNAUTHENTICATED':'PROVIDER_ERROR');
+  }
   return data;
  }
  async userFromToken(token){
