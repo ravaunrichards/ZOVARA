@@ -240,3 +240,8 @@ body.tv-mode{font-size:1.25rem}body.tv-mode .app-shell{max-width:1900px}body.tv-
 .zv-call-history-icon{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:rgba(139,92,246,.17);font-size:17px}
 .zv-call-history-row>span:nth-child(2){display:flex;flex-direction:column;gap:3px}
 .zv-call-history-row small{color:var(--muted,#a5aec4);font-size:11px}
+
+.zv-call-duration{min-width:58px;text-align:center;font-variant-numeric:tabular-nums;color:#e8e2ff;font-weight:800;padding:10px 12px;border-radius:12px;background:rgba(139,92,246,.15)}
+.zv-call-device{display:flex;align-items:center;gap:6px;padding:5px 8px;border:1px solid var(--line,rgba(255,255,255,.14));border-radius:12px;color:#d8dcee;font-size:11px}
+.zv-call-device select{max-width:145px;min-width:85px;background:#151d34;border:0;color:inherit;padding:6px;border-radius:8px;font-size:11px}
+@media(max-width:680px){.zv-call-overlay footer{justify-content:stretch}.zv-call-overlay footer>*{flex:1 1 42%}.zv-call-device{justify-content:space-between}.zv-call-device select{max-width:60%}}
