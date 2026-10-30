@@ -97,6 +97,8 @@ async function handleApi(req,res,url,requestId){
       try{
         const room=await livekit.listParticipants(session.room_name);
         const people=Array.isArray(room?.participants)?room.participants:[];
+        // Require the actual host connection: a DB row alone is not a live broadcast.
+        if(!people.some(person=>String(person.identity||'')===session.host_id))return null;
         let roleMap=new Map();
         try{roleMap=await syncLiveRoomPresence(session,people);}catch(error){log('warn','live_presence_sync_deferred',{sessionId:session.id,code:error.code||'SYNC_FAILED'});}
         const remotePeople=people.filter(person=>isUuid(String(person.identity||''))&&person.identity!==session.host_id);
