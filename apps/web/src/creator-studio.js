@@ -1,7 +1,7 @@
 export function initCreatorStudio({api,token,state,toast}){
  const $=id=>document.getElementById(id);
  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
- let mode='video',items=[],cameraStream=null,recorder=null,recordChunks=[],recordStart=0,currentDraftId=null;
+ let mode='video',items=[],cameraStream=null,recorder=null,recordChunks=[],recordStart=0,currentDraftId=null,recordTimerInterval=null;
  const stage=$('studio-preview-stage');
  if(!stage)return;
  const effectMap={normal:'none',warm:'sepia(.22) saturate(1.25)',cool:'hue-rotate(12deg) saturate(1.08)',mono:'grayscale(1)',vivid:'saturate(1.55) contrast(1.08)',dream:'brightness(1.08) saturate(1.25) blur(.15px)'};
@@ -11,7 +11,7 @@ export function initCreatorStudio({api,token,state,toast}){
   const file=$('studio-file');file.accept=mode==='photo'?'image/*':mode==='video'?'video/*':'image/*,video/*';
   file.multiple=mode==='photo';
   $('studio-media-label').textContent=mode==='photo'?'Choose photos':'Choose a video or photo';
-  $('studio-camera-start').hidden=mode==='text';$('studio-record').hidden=mode!=='video';
+  $('studio-camera-start').hidden=mode==='text';$('studio-capture-photo').hidden=mode!=='photo';$('studio-record').hidden=mode!=='video';
   renderPreview();
  }
  function setPreviewEffect(){
@@ -65,6 +65,21 @@ export function initCreatorStudio({api,token,state,toast}){
    $('studio-camera-start').textContent='Close camera';toast('Camera ready. Recording starts only when you tap Record.','success');
   }catch(error){toast(error.message||'Camera or microphone permission was not granted.','error');}
  }
+ async function capturePhoto(){
+  if(mode!=='photo'){toast('Choose Photo mode first.');return;}
+  if(items.length>=10){toast('A photo post can contain up to 10 images.','error');return;}
+  if(!cameraStream)await startCamera();
+  if(!cameraStream)return;
+  const video=$('studio-camera-preview');if(!video.videoWidth||!video.videoHeight){toast('The camera is still starting. Try again in a moment.');return;}
+  const canvas=document.createElement('canvas');canvas.width=video.videoWidth;canvas.height=video.videoHeight;
+  const context=canvas.getContext('2d');if(!context){toast('Photo capture is unavailable in this browser.','error');return;}
+  context.drawImage(video,0,0,canvas.width,canvas.height);
+  const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/jpeg',.92));
+  if(!blob){toast('Could not capture this photo.','error');return;}
+  const file=new File([blob],'zovara-photo-'+Date.now()+'.jpg',{type:'image/jpeg'});
+  items.push({file,url:URL.createObjectURL(blob),type:'image/jpeg',assetId:null});
+  stopCamera();renderPreview();toast('Photo captured.','success');
+ }
  async function toggleRecord(){
   if(recorder?.state==='recording'){recorder.stop();return;}
   if(!cameraStream)await startCamera();
@@ -78,13 +93,15 @@ export function initCreatorStudio({api,token,state,toast}){
     const blob=new Blob(recordChunks,{type:recorder.mimeType||'video/webm'});
     const file=new File([blob],'zovara-video.'+(blob.type.includes('mp4')?'mp4':'webm'),{type:blob.type});
     const url=URL.createObjectURL(blob);items=[{file,url,type:blob.type,assetId:null}];
-    stopCamera();recorder=null;renderPreview();toast('Video recorded. Add a caption and publish when ready.','success');
+    clearInterval(recordTimerInterval);recordTimerInterval=null;stopCamera();recorder=null;renderPreview();toast('Video recorded. Add a caption and publish when ready.','success');
    };
    recorder.start(500);$('studio-record').textContent='Stop recording';$('studio-record').classList.add('recording');
-   $('studio-record-timer').hidden=false;
+   $('studio-record-timer').hidden=false;$('studio-record-timer').textContent='● REC 00:00';
+   clearInterval(recordTimerInterval);recordTimerInterval=setInterval(()=>{const seconds=Math.floor((Date.now()-recordStart)/1000);$('studio-record-timer').textContent='● REC '+String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0');},250);
   }catch(error){toast(error.message,'error');}
  }
  function stopCamera(){
+  if(recorder?.state==='recording'){recorder.stop();}
   cameraStream?.getTracks().forEach(t=>t.stop());cameraStream=null;
   $('studio-camera-preview').srcObject=null;$('studio-camera-preview').hidden=true;
   $('studio-camera-start').textContent='Open camera';$('studio-record').textContent='Record video';$('studio-record').classList.remove('recording');$('studio-record-timer').hidden=true;
@@ -147,6 +164,7 @@ export function initCreatorStudio({api,token,state,toast}){
  document.querySelectorAll('[data-studio-mode]').forEach(b=>b.addEventListener('click',()=>switchMode(b.dataset.studioMode)));
  $('studio-file')?.addEventListener('change',e=>{addFiles(e.target.files||[]);e.target.value='';});
  $('studio-camera-start')?.addEventListener('click',()=>cameraStream?stopCamera():startCamera());
+ $('studio-capture-photo')?.addEventListener('click',capturePhoto);
  $('studio-record')?.addEventListener('click',toggleRecord);
  $('studio-effect')?.addEventListener('change',setPreviewEffect);
  $('studio-speed')?.addEventListener('change',updateSpeed);
