@@ -158,45 +158,39 @@ async function handleApi(req,res,url,requestId){
    return json(res,200,{data:rows,error:null,meta:{requestId}});
  }
  if(method==='GET'&&p==='/api/v1/live'){
-    const rows=await supabase.request('/rest/v1/live_sessions?select=id,host_id,title,visibility,room_name,started_at&status=eq.live&visibility=eq.public&order=started_at.desc&limit=30');
+    if(!livekit.configured())return json(res,200,{data:[],error:null,meta:{requestId,viewerCountSource:'livekit',viewerCountsVerified:false}});
+    if(supabase.serviceConfigured()){
+      const staleBefore=encodeURIComponent(new Date(Date.now()-180000).toISOString());
+      const stale=await supabase.request('/rest/v1/live_sessions?status=eq.scheduled&scheduled_at=is.null&created_at=lt.'+staleBefore+'&select=id,room_name',{service:true}).catch(()=>[]);
+      for(const session of stale||[])await expireStaleLiveSession(session,'failed');
+    }
+    const rows=await supabase.request('/rest/v1/live_sessions?select=id,host_id,title,visibility,room_name,started_at,created_at,actual_peak_viewers,current_viewer_count&status=eq.live&visibility=eq.public&order=started_at.desc&limit=50');
     const hostIds=[...new Set((rows||[]).map(x=>x.host_id))];
     const profiles=hostIds.length?await supabase.request('/rest/v1/profiles?select=id,handle,display_name,avatar_path&id=in.('+hostIds.join(',')+')'):[];
     const hostMap=new Map((profiles||[]).map(x=>[x.id,x]));
     const results=await Promise.all((rows||[]).map(async session=>{
-      if(!livekit.configured()){
-        // Do not advertise DB rows as live when the media service cannot verify them.
-        return null;
-      }
       try{
-        const room=await livekit.listParticipants(session.room_name);
-        const people=Array.isArray(room?.participants)?room.participants:[];
-        // Require the actual host connection: a DB row alone is not a live broadcast.
-        if(!people.some(person=>String(person.identity||'')===session.host_id))return null;
-        let roleMap=new Map();
-        try{roleMap=await syncLiveRoomPresence(session,people);}catch(error){log('warn','live_presence_sync_deferred',{sessionId:session.id,code:error.code||'SYNC_FAILED'});}
-        const remotePeople=people.filter(person=>isUuid(String(person.identity||''))&&person.identity!==session.host_id);
-        const viewerPeople=remotePeople.filter(person=>!['guest','cohost','moderator'].includes(roleMap.get(person.identity)||'viewer'));
-        const ids=[...new Set(remotePeople.map(person=>person.identity))];
-        const profilesForViewers=ids.length?await supabase.request('/rest/v1/profiles?select=id,handle,display_name&id=in.('+ids.join(',')+')'):[];
-        const viewerMap=new Map((profilesForViewers||[]).map(profile=>[profile.id,profile]));
-        const viewers=viewerPeople.map(person=>{
-          const profile=viewerMap.get(person.identity)||{};
-          const name=profile.display_name||String(person.name||'').replace(/\s*\(@[A-Za-z0-9_.-]+\)\s*$/,'').trim();
-          const username=profile.handle||String(person.name||'').match(/@([A-Za-z0-9_.-]+)/)?.[1]||'';
-          return name&&username?{name,username}:null;
-        }).filter(Boolean);
-        return {id:session.id,title:session.title,visibility:session.visibility,started_at:session.started_at,host:hostMap.get(session.host_id)||null,current_viewer_count:viewerPeople.length,viewer_count:viewerPeople.length,viewer_count_verified:true,viewers};
-      }catch(error){
-        if(error.providerStatus===404&&supabase.serviceConfigured()){
-          await patchRows('live_sessions',`id=eq.${session.id}&status=eq.live`,{status:'ended',ended_at:new Date().toISOString(),current_viewer_count:0},{service:true}).catch(()=>{});
+        const snapshot=await getLiveRoomSnapshot(session);
+        if(!snapshot.hostOnline){
+          const ageMs=Date.now()-Date.parse(session.started_at||session.created_at);
+          if(ageMs>45000)await expireStaleLiveSession(session,'ended');
           return null;
         }
+        return {
+          id:session.id,title:session.title,visibility:session.visibility,started_at:session.started_at,
+          host:hostMap.get(session.host_id)||null,
+          current_viewer_count:snapshot.viewerCount,viewer_count:snapshot.viewerCount,
+          viewer_count_verified:true,viewer_count_source:'livekit',
+          actual_peak_viewers:Math.max(Number(session.actual_peak_viewers)||0,snapshot.viewerCount),
+          viewers:snapshot.viewers
+        };
+      }catch(error){
+        if(error.providerStatus===404){await expireStaleLiveSession(session,'ended');return null;}
         log('warn','live_room_count_unavailable',{sessionId:session.id,code:error.code||'LIVEKIT_UNAVAILABLE'});
-        // No media-service confirmation means the room is not shown as LIVE.
         return null;
       }
     }));
-    return json(res,200,{data:results.filter(Boolean),error:null,meta:{requestId}});
+    return json(res,200,{data:results.filter(Boolean),error:null,meta:{requestId,viewerCountSource:'livekit',viewerCountsVerified:true}});
   }
   if(method==='GET'&&p==='/api/v1/search/profiles'){
    const q=cleanText(url.searchParams.get('q')||'',40);if(q.length<2)return json(res,200,{data:[],error:null,meta:{requestId}});
