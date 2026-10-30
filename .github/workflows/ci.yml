@@ -20,11 +20,15 @@ jobs:
         run: node --test tests/*.test.mjs
       - name: Secret scan (baseline)
         run: node scripts/scan-secrets.mjs
+      - name: Set up compatible Gradle for Android Gradle Plugin 8.11.2
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.14.3'
       - name: Compile Android project if SDK is installed
         shell: bash
         run: |
           if command -v gradle >/dev/null && [ -n "${ANDROID_HOME:-}" ]; then
             cd apps/android && gradle :app:assembleDebug
           else
-            echo "Android SDK/Gradle unavailable on this runner step; build documented, not claimed."
+            echo "Android SDK unavailable on this runner; Android build not claimed."
           fi
