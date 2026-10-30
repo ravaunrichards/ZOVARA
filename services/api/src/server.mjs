@@ -40,6 +40,10 @@ async function handleApi(req,res,url,requestId){
  const method=req.method||'GET', p=url.pathname;
  if(method==='GET'&&p==='/api/v1/health')return json(res,200,{data:{status:'ok',time:new Date().toISOString()},error:null,meta:{requestId}});
  if(method==='GET'&&p==='/api/v1/client-config')return json(res,200,{data:{supabaseUrl:config.supabaseUrl||null,supabaseAnonKey:config.supabaseAnonKey||null},error:null,meta:{requestId}});
+ if(method==='GET'&&p==='/api/v1/features'){
+   const inventory=JSON.parse(await readFile(featuresPath,'utf8'));
+   return json(res,200,{data:inventory,error:null,meta:{requestId}});
+ }
  if(method==='GET'&&p==='/api/v1/catalog/gifts')return json(res,200,{data:JSON.parse(await readFile(giftsPath,'utf8')),error:null,meta:{requestId}});
  if(method==='GET'&&p==='/api/v1/catalog/gifter-levels')return json(res,200,{data:JSON.parse(await readFile(levelsPath,'utf8')),error:null,meta:{requestId}});
  if(method==='GET'&&p==='/api/v1/catalog/styles') {const reg=JSON.parse(await readFile(stylesPath,'utf8'));return json(res,200,{data:{version:reg.version,count:reg.count,combinationDimensions:reg.combinationDimensions},error:null,meta:{requestId}});}
@@ -61,8 +65,14 @@ async function handleApi(req,res,url,requestId){
    return json(res,200,{data:rows,error:null,meta:{requestId}});
  }
  if(method==='GET'&&p==='/api/v1/me'){
-   const {user,token}=await auth(req);const profile=await selectOne('profiles',`id=eq.${user.id}&select=id,handle,display_name,bio,avatar_path,cover_path,role,visibility,country_code,locale,timezone,is_verified,created_at`,{token});
-   return json(res,200,{data:{user:{id:user.id,email:user.email},profile},error:null,meta:{requestId}});
+   const {user,token}=await auth(req);
+   const profile=await selectOne('profiles',`id=eq.${user.id}&select=id,handle,display_name,bio,avatar_path,cover_path,role,visibility,country_code,locale,timezone,is_verified,created_at`,{token});
+   const [followers,following,posts]=await Promise.all([
+     supabase.count(`/rest/v1/follows?select=follower_id&followed_id=eq.${user.id}`,{token}).catch(()=>null),
+     supabase.count(`/rest/v1/follows?select=followed_id&follower_id=eq.${user.id}`,{token}).catch(()=>null),
+     supabase.count(`/rest/v1/posts?select=id&author_id=eq.${user.id}&status=eq.published&deleted_at=is.null`,{token}).catch(()=>null)
+   ]);
+   return json(res,200,{data:{user:{id:user.id,email:user.email},profile,stats:{followers,following,posts}},error:null,meta:{requestId}});
  }
  if(method==='PATCH'&&p==='/api/v1/me'){
    const {user,token}=await auth(req);const b=await bodyJson(req);const fields={};
@@ -212,11 +222,27 @@ async function handleApi(req,res,url,requestId){
    if(Array.isArray(b.mediaIds)&&b.mediaIds.length){for(let i=0;i<Math.min(10,b.mediaIds.length);i++){const mid=b.mediaIds[i];if(!isUuid(mid))throw new HttpError(400,'VALIDATION_ERROR','Invalid media identifier');await insertOne('post_media',{post_id:row.id,media_id:mid,position:i},{token});}}
    return json(res,201,{data:row,error:null,meta:{requestId}});
  }
+ if(method==='GET'&&p==='/api/v1/media/view-url'){
+   const {user}=await auth(req);
+   const objectPath=cleanText(url.searchParams.get('path')||'',500);
+   const parts=objectPath.split('/');
+   if(parts.length<2||parts[0]!==user.id||parts.some(x=>x==='.'||x==='..'))throw new HttpError(403,'FORBIDDEN','Media path must belong to the signed-in account');
+   if(!supabase.serviceConfigured())throw new HttpError(503,'CONFIGURATION_REQUIRED','Supabase Storage signing is not configured');
+   const base=config.supabaseUrl.replace(/\/+$/,'');
+   const encoded=parts.map(encodeURIComponent).join('/');
+   const response=await fetch(`${base}/storage/v1/object/sign/${encodeURIComponent(config.mediaBucket)}/${encoded}`,{method:'POST',headers:{apikey:config.supabaseServiceRoleKey,Authorization:`Bearer ${config.supabaseServiceRoleKey}`,'Content-Type':'application/json'},body:JSON.stringify({expiresIn:3600}),signal:AbortSignal.timeout(15000)});
+   const payload=await response.json().catch(()=>({}));
+   if(!response.ok)throw new HttpError(502,'PROVIDER_ERROR','Could not create a signed profile image URL. Check the media bucket and storage permissions.');
+   const signed=payload.signedURL||payload.signedUrl||payload.url;
+   if(!signed)throw new HttpError(502,'PROVIDER_ERROR','Storage did not return a signed profile image URL');
+   const imageUrl=signed.startsWith('http')?signed:`${base}/storage/v1${signed.startsWith('/')?signed:`/${signed}`}`;
+   return json(res,200,{data:{url:imageUrl,expiresIn:3600},error:null,meta:{requestId}});
+ }
  if(method==='POST'&&p==='/api/v1/media/upload-url'){
    const {user}=await auth(req);const b=await bodyJson(req);const filename=cleanText(b.filename,120).replace(/[^a-zA-Z0-9_.-]/g,'_');const mime=cleanText(b.mimeType,100);const size=Number(b.size);
    if(!filename||!['image/jpeg','image/png','image/webp','image/gif','video/mp4','video/webm','audio/webm','audio/mpeg'].includes(mime)||!Number.isSafeInteger(size)||size<1||size>config.maxUploadBytes)throw new HttpError(400,'VALIDATION_ERROR','Filename, supported media MIME type, or file size is invalid');
    const objectPath=`${user.id}/${randomUUID()}-${filename}`;const encoded=objectPath.split('/').map(encodeURIComponent).join('/');
-   const base=config.supabaseUrl.replace(/\/$/,'');if(!supabase.serviceConfigured())throw new HttpError(503,'CONFIGURATION_REQUIRED','Supabase Storage server credentials are not configured');
+   const base=config.supabaseUrl.replace(/\/+$/,'');
    const r=await fetch(`${base}/storage/v1/object/upload/sign/${encodeURIComponent(config.mediaBucket)}/${encoded}`,{method:'POST',headers:{apikey:config.supabaseServiceRoleKey,Authorization:`Bearer ${config.supabaseServiceRoleKey}`,'Content-Type':'application/json'},body:JSON.stringify({upsert:false}),signal:AbortSignal.timeout(15000)});
    const d=await r.json().catch(()=>({}));if(!r.ok)throw new HttpError(502,'PROVIDER_ERROR','Could not create signed upload URL. Confirm the private media bucket exists and storage policies are configured.');
    const signed= d.signedURL || d.signedUrl || d.url;if(!signed)throw new HttpError(502,'PROVIDER_ERROR','Storage provider did not return a signed upload URL');

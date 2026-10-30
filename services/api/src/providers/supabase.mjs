@@ -24,6 +24,22 @@ export class SupabaseProvider {
   }
   return data;
  }
+ async count(path,{token}={}){
+  if(!this.configured())throw new ProviderError('Supabase integration is not configured. Set the required server environment variables.',503,'CONFIGURATION_REQUIRED');
+  const base=this.config.supabaseUrl.replace(/\/+$/,'');
+  const auth=token||this.config.supabaseAnonKey;
+  const requestUrl=base+(path.startsWith('/')?path:'/'+path);
+  const response=await this.fetch(requestUrl,{method:'HEAD',headers:{apikey:this.config.supabaseAnonKey,Authorization:'Bearer '+auth,Accept:'application/json',Prefer:'count=exact',Range:'0-0'},signal:AbortSignal.timeout(15000)});
+  if(!response.ok){
+   const text=await response.text().catch(()=> '');let payload=null;try{payload=text?JSON.parse(text):null;}catch{}
+   const message=payload?.message||payload?.msg||payload?.hint||'Supabase count request failed';
+   const denied=response.status===403||payload?.code==='42501'||/permission denied|row level security|row-level security|insufficient privilege|not authorized/i.test(message);
+   throw new ProviderError(message,denied?403:response.status,denied?'FORBIDDEN':response.status===401?'UNAUTHENTICATED':'PROVIDER_ERROR');
+  }
+  const range=response.headers.get('content-range')||'';const match=range.match(/\/(\d+|\*)$/);
+  if(!match||match[1]==='*')throw new ProviderError('Supabase did not return an exact count for this query.',502,'PROVIDER_ERROR');
+  return Number(match[1]);
+ }
  async userFromToken(token){
   if(!token) {const e=new Error('Sign in is required');e.statusCode=401;e.code='UNAUTHENTICATED';throw e;}
   if(!this.configured()) throw new ProviderError('Supabase Auth is not configured.',503,'CONFIGURATION_REQUIRED');
