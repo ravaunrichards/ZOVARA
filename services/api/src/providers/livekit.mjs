@@ -22,10 +22,10 @@ function roomServiceBase(rawUrl){
     error.code='LIVEKIT_CONFIGURATION_INVALID';
     throw error;
   }
-  endpoint.pathname=endpoint.pathname.replace(/\\/rtc\\/?$/,'').replace(/\\/+$/,'');
+  endpoint.pathname=endpoint.pathname.replace(/\/rtc\/?$/,'').replace(/\/+$/,'');
   endpoint.search='';
   endpoint.hash='';
-  return endpoint.toString().replace(/\\/$/,'');
+  return endpoint.toString().replace(/\/$/,'');
 }
 
 export class LiveKitProvider{
