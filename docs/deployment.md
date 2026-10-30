@@ -1,19 +1,17 @@
 # Development, provider setup, and deployment
 
-## Current deployment
+## Render deployment target
 
-The active Render web service is **zovara-api**:
+The repository declares a Render web service named `zovara-api` in `render.yaml`:
 
-- URL: https://zovara-api.onrender.com
-- Repository: https://github.com/ravaunrichards/Zovara
+- Repository: `ravaunrichards/Zovara`
 - Branch: `main`
 - Runtime: Node.js 22.16.0
 - API and web/PWA: served by the same Node service
-- API liveness route in source: `GET /healthz`
-- Provider status route: `GET /api/v1/health`
-- Public client configuration: `GET /api/v1/client-config`
+- Liveness route: `GET /healthz`
+- Internal diagnostics: retained in server logs and admin-only tools; not shown in ordinary user screens
 
-The latest observed Render deploy completed successfully and the process startup was logged. This confirms the Node process started; it does **not** prove that the public health route or external providers have been verified. The Render service's active build command is currently `npm install --ignore-scripts`. The updated `render.yaml` blueprint declares `npm run verify` and `/healthz` as the Render health check; those blueprint settings still need to be synced/applied to the existing service before Render enforces them.
+The Render workspace and live service settings have not been verified in this pass. Do not infer that the blueprint has been synchronized or that a production deployment is healthy from the repository declaration alone. After access to the intended workspace is confirmed, verify service names, environment variables, blueprint sync, deployment result, and the public health endpoint. A successful Node process start does not verify Supabase, LiveKit, PayPal, messaging, or payout behavior.
 
 ## Local development
 
@@ -70,7 +68,7 @@ Copy `.env.example` to `.env` locally. In Render, configure the same keys under 
 
 1. Create a dedicated Supabase organization/project for Zovara; do not select the ZUNO project.
 2. Enable Auth providers and set the production Site URL and exact allowed redirect URLs.
-3. Apply only the seven canonical migrations in `database/migrations`, in numeric order from `0001` to `0007`. Review migration inventory first; do not apply legacy duplicates. Migration `0007` explicitly grants Data API table privileges to `anon`/`authenticated` under RLS and full server-side table privileges to `service_role`; its server-only table revocations must remain in force.
+3. Apply the seven canonical base migrations in numeric order from `0001` to `0007`. Then apply the follow-up migrations `0012_wallet_profile_views_livekit_authorization.sql` and `0013_profile_stats_rls_and_trigger_grants.sql`. Do not apply the retained legacy duplicate sets. Migration `0007` grants Data API privileges under RLS and keeps server-only tables restricted; `0012` provisions wallets/earnings on profile creation and adds profile-view metrics; `0013` restricts trigger execution and makes profile-stat reads use caller RLS.
 4. Create a private Storage bucket named `media`. Apply owner-scoped policies and file type/size restrictions.
 5. Set `SUPABASE_URL`, `SUPABASE_ANON_KEY`, and `SUPABASE_SERVICE_ROLE_KEY` on the Zovara API service. The service-role key is never sent to clients.
 6. Run `database/verification/check_schema.sql`, inspect security/performance advisors, and test RLS using real anonymous and authenticated sessions.
