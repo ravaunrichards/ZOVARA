@@ -1,0 +1,25 @@
+{
+  "environment": "development",
+  "nodeEnv": "development",
+  "port": 3000,
+  "publicAppUrl": "http://localhost:3000",
+  "corsOrigins": [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
+  ],
+  "paypalEnvironment": "sandbox",
+  "paypalPayoutsEnabled": false,
+  "supabaseMediaBucket": "media",
+  "secretValuesCommitted": false,
+  "requiredServerSecrets": [
+    "SUPABASE_URL",
+    "SUPABASE_ANON_KEY",
+    "SUPABASE_SERVICE_ROLE_KEY",
+    "LIVEKIT_URL",
+    "LIVEKIT_API_KEY",
+    "LIVEKIT_API_SECRET",
+    "PAYPAL_CLIENT_ID",
+    "PAYPAL_CLIENT_SECRET",
+    "PAYPAL_WEBHOOK_ID"
+  ]
+}
