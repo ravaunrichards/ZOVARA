@@ -1,4 +1,4 @@
-import test,{before,after} from 'node:test';import assert from 'node:assert/strict';import {createServer} from '../services/api/src/server.mjs';import {SupabaseProvider} from '../services/api/src/providers/supabase.mjs';
+import test,{before,after} from 'node:test';import assert from 'node:assert/strict';import {readFile} from 'node:fs/promises';import {createServer} from '../services/api/src/server.mjs';import {SupabaseProvider} from '../services/api/src/providers/supabase.mjs';
 let server,base;
 before(async()=>{server=createServer();await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve);});base=`http://127.0.0.1:${server.address().port}`;});
 after(async()=>{if(server)await new Promise(resolve=>server.close(resolve));});
@@ -9,6 +9,13 @@ test('style registry summary reports exactly 1,000 generated configurations',asy
 test('client config never includes server-only secret names/values',async()=>{const {r,body}=await get('/api/v1/client-config');assert.equal(r.status,200);assert.equal(JSON.stringify(body).includes('SUPABASE_SERVICE_ROLE_KEY'),false);assert.equal(JSON.stringify(body).includes('PAYPAL_CLIENT_SECRET'),false);assert.equal(JSON.stringify(body).includes('LIVEKIT_API_SECRET'),false);});
 test('protected identity API rejects an anonymous request',async()=>{const r=await fetch(base+'/api/v1/me');assert.equal(r.status,401);const b=await r.json();assert.equal(b.error.code,'UNAUTHENTICATED');});
 test('feed reports a generic unavailable state without exposing provider configuration',async()=>{const r=await fetch(base+'/api/v1/feed');assert.ok([502,503].includes(r.status));const b=await r.json();assert.equal(b.data,null);assert.equal(b.error.code,'TEMPORARILY_UNAVAILABLE');assert.equal(b.error.message,'This feature is temporarily unavailable. Please try again later.');assert.doesNotMatch(JSON.stringify(b),/supabase|service_role|configuration_required|provider/i);});
+
+test('ordinary user screens do not expose internal providers or service setup',async()=>{
+ const html=await readFile(new URL('../apps/web/index.html',import.meta.url),'utf8');
+ const app=await readFile(new URL('../apps/web/src/app.js',import.meta.url),'utf8');
+ for(const phrase of ['Connected services','provider policies','configured Supabase project','server-authorized LiveKit token','implementation inventory'])assert.equal(html.toLowerCase().includes(phrase.toLowerCase()),false,`unexpected user-facing copy: ${phrase}`);
+ for(const phrase of ['Supabase is not configured','Connect Supabase to load real posts','Provider status:','LiveKit browser SDK failed'])assert.equal(app.includes(phrase),false,`unexpected user-facing app copy: ${phrase}`);
+});
 
 test('internal implementation inventory is not exposed to anonymous users',async()=>{
  const {r,body}=await get('/api/v1/features');
