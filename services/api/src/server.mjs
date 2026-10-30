@@ -539,11 +539,22 @@ async function handleApi(req,res,url,requestId){
     return json(res,200,{data:result,error:null,meta:{requestId}});
   }
   const liveChatMatch=p.match(/^\/api\/v1\/lives\/([0-9a-f-]+)\/chat$/i);
- if(liveChatMatch&&(method==='GET'||method==='POST')){
-   const {user,token}=await auth(req);const liveId=requireUuid(liveChatMatch[1],'live session id');const live=await selectOne('live_sessions',`id=eq.${liveId}&select=id,status,host_id,visibility`,{token});if(!live||live.status!=='live')throw new HttpError(404,'NOT_FOUND','Live room is not active');
-   if(method==='POST'){const b=await bodyJson(req);const body=cleanText(b.body,1000);if(!body)throw new HttpError(400,'VALIDATION_ERROR','Chat message cannot be empty');const row=await insertOne('live_chat_messages',{live_session_id:liveId,sender_id:user.id,body,status:'visible'},{token});return json(res,201,{data:row,error:null,meta:{requestId}});}
-   const rows=await supabase.request(`/rest/v1/live_chat_messages?live_session_id=eq.${liveId}&status=eq.visible&select=id,sender_id,body,created_at&order=created_at.asc&limit=100`,{token});const ids=[...new Set(rows.map(x=>x.sender_id))];const profiles=ids.length?await supabase.request(`/rest/v1/profiles?select=id,handle,display_name&id=in.(${ids.join(',')})`,{token}):[];const map=new Map(profiles.map(x=>[x.id,x]));return json(res,200,{data:rows.map(x=>({...x,sender:map.get(x.sender_id)||null})),error:null,meta:{requestId}});
- }
+  if(liveChatMatch&&(method==='GET'||method==='POST')){
+    const token=bearer(req);const user=token?await supabase.userFromToken(token):null;const liveId=requireUuid(liveChatMatch[1],'live session id');
+    if(method==='POST'&&!user)throw new HttpError(401,'UNAUTHENTICATED','Sign in to send messages in LIVE chat');
+    const live=await selectOne('live_sessions',`id=eq.${liveId}&select=id,status,host_id,visibility`,{token});
+    if(!live||live.status!=='live'||live.visibility!=='public'&&!user)throw new HttpError(404,'NOT_FOUND','Live room is not active or is not public');
+    if(method==='POST'){
+      await rpc('join_live_session',{p_live_session_id:liveId},{token});
+      const b=await bodyJson(req);const body=cleanText(b.body,1000);if(!body)throw new HttpError(400,'VALIDATION_ERROR','Chat message cannot be empty');
+      const row=await insertOne('live_chat_messages',{live_session_id:liveId,sender_id:user.id,body,status:'visible'},{token});
+      return json(res,201,{data:row,error:null,meta:{requestId}});
+    }
+    const rows=await supabase.request(`/rest/v1/live_chat_messages?live_session_id=eq.${liveId}&status=eq.visible&select=id,sender_id,body,created_at&order=created_at.asc&limit=100`,{token});
+    const ids=[...new Set(rows.map(x=>x.sender_id))];const profiles=ids.length?await supabase.request(`/rest/v1/profiles?select=id,handle,display_name&id=in.(${ids.join(',')})`,{token}):[];
+    const map=new Map(profiles.map(x=>[x.id,x]));
+    return json(res,200,{data:rows.map(x=>({...x,sender:map.get(x.sender_id)||null})),error:null,meta:{requestId}});
+  }
  const liveGiftsMatch=p.match(/^\/api\/v1\/lives\/([0-9a-f-]+)\/gifts$/i);
  if(liveGiftsMatch&&method==='GET'){
    const token=bearer(req);const liveId=requireUuid(liveGiftsMatch[1],'live session id');if(token)await supabase.userFromToken(token);const rows=await supabase.request(`/rest/v1/gift_transactions?live_session_id=eq.${liveId}&status=eq.confirmed&select=id,gift_id,sender_id,coin_amount,created_at&order=created_at.desc&limit=30`,{token});const giftIds=[...new Set(rows.map(x=>x.gift_id))],userIds=[...new Set(rows.map(x=>x.sender_id))];const gifts=giftIds.length?await supabase.request(`/rest/v1/gifts?select=id,name,category,coin_price&id=in.(${giftIds.join(',')})`,{token}):[];const profiles=userIds.length?await supabase.request(`/rest/v1/profiles?select=id,handle,display_name&id=in.(${userIds.join(',')})`,{token}):[];const gm=new Map(gifts.map(x=>[x.id,x])),pm=new Map(profiles.map(x=>[x.id,x]));return json(res,200,{data:rows.map(x=>({...x,gift:gm.get(x.gift_id)||null,sender:pm.get(x.sender_id)||null})),error:null,meta:{requestId}});
