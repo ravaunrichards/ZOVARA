@@ -480,9 +480,14 @@ async function handleApi(req,res,url,requestId){
     if(live.host_id!==user.id)throw new HttpError(403,'FORBIDDEN','Only the host can activate this live session');
     if(live.status==='live')return json(res,200,{data:{id:live.id,status:'live',replayed:true},error:null,meta:{requestId}});
     if(live.status!=='scheduled')throw new HttpError(409,'LIVE_SESSION_NOT_STARTING','This live session is not waiting for its host');
-    const room=await livekit.listParticipants(live.room_name);
-    const people=Array.isArray(room?.participants)?room.participants:[];
-    if(!people.some(person=>String(person.identity||'')===user.id))throw new HttpError(409,'LIVE_HOST_NOT_CONNECTED','Connect the host to the live room before activating it');
+    let hostConfirmed=false;
+    for(let attempt=0;attempt<6;attempt++){
+      const room=await livekit.listParticipants(live.room_name);
+      const people=Array.isArray(room?.participants)?room.participants:[];
+      if(people.some(person=>String(person.identity||'')===user.id)){hostConfirmed=true;break;}
+      if(attempt<5)await new Promise(resolve=>setTimeout(resolve,400));
+    }
+    if(!hostConfirmed)throw new HttpError(409,'LIVE_HOST_NOT_CONNECTED','LiveKit has not reported the host as connected yet. Keep the broadcast open and retry activation.');
     const startedAt=new Date().toISOString();
     const rows=await patchRows('live_sessions','id=eq.'+liveId+'&host_id=eq.'+user.id+'&status=eq.scheduled',{status:'live',started_at:startedAt,ended_at:null,current_viewer_count:0},{token});
     if(!Array.isArray(rows)||!rows.length)throw new HttpError(409,'LIVE_ACTIVATION_CONFLICT','This live session could not be activated');
