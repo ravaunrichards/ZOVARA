@@ -41,7 +41,7 @@ services:
       - key: LIVEKIT_API_SECRET
         sync: false
       - key: LIVEKIT_DEFAULT_ROOM_MAX_PARTICIPANTS
-        value: "100"
+        value: "0"
       - key: SUPABASE_MEDIA_BUCKET
         value: media
       - key: MAX_UPLOAD_BYTES
