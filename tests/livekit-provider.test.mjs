@@ -61,6 +61,30 @@ test('participant token is scoped to one room with the supplied publish permissi
   assert.ok(payload.exp-payload.iat<=300);
 });
 
+test('room viewer lookup uses a room-scoped admin grant',async()=>{
+  let requestUrl='';
+  let requestBody=null;
+  let tokenPayload=null;
+  const provider=new LiveKitProvider({
+    livekitUrl:'wss://zovara-test.livekit.cloud',
+    livekitApiKey:'zovara-test-key',
+    livekitApiSecret:'zovara-test-secret'
+  },async(url,options)=>{
+    requestUrl=String(url);
+    requestBody=JSON.parse(options.body);
+    tokenPayload=decodePayload(options.headers.Authorization.slice('Bearer '.length));
+    return new Response(JSON.stringify({participants:[{identity:'user-123',name:'Jane (@jane)'}]}),{status:200});
+  });
+
+  const result=await provider.listParticipants('zovara-live-room');
+  assert.equal(requestUrl,'https://zovara-test.livekit.cloud/twirp/livekit.RoomService/ListParticipants');
+  assert.deepEqual(requestBody,{room:'zovara-live-room'});
+  assert.equal(tokenPayload.sub,'zovara-room-service');
+  assert.equal(tokenPayload.video.roomAdmin,true);
+  assert.equal(tokenPayload.video.room,'zovara-live-room');
+  assert.equal(result.participants[0].name,'Jane (@jane)');
+});
+
 test('LiveKit health check verifies room-list authorization without exposing room data',async()=>{
   let requestUrl='';
   let requestPayload;
