@@ -100,7 +100,7 @@ export class LiveKitProvider{
     }
   }
 
-  async createRoom(roomName,maxParticipants=100){
+  async createRoom(roomName,maxParticipants=0){
     const token=this.token({identity:'zovara-room-service',video:{roomCreate:true}});
     return this.roomRequest('CreateRoom',{name:roomName,maxParticipants,emptyTimeout:300},token);
   }
