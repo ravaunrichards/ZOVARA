@@ -92,7 +92,8 @@ async function handleApi(req,res,url,requestId){
     const hostMap=new Map((profiles||[]).map(x=>[x.id,x]));
     const results=await Promise.all((rows||[]).map(async session=>{
       if(!livekit.configured()){
-        return {id:session.id,title:session.title,visibility:session.visibility,started_at:session.started_at,host:hostMap.get(session.host_id)||null,current_viewer_count:0,viewer_count:0,viewer_count_verified:false,viewers:[]};
+        // Do not advertise DB rows as live when the media service cannot verify them.
+        return null;
       }
       try{
         const room=await livekit.listParticipants(session.room_name);
@@ -119,7 +120,8 @@ async function handleApi(req,res,url,requestId){
           return null;
         }
         log('warn','live_room_count_unavailable',{sessionId:session.id,code:error.code||'LIVEKIT_UNAVAILABLE'});
-        return {id:session.id,title:session.title,visibility:session.visibility,started_at:session.started_at,host:hostMap.get(session.host_id)||null,current_viewer_count:0,viewer_count:0,viewer_count_verified:false,viewers:[]};
+        // No media-service confirmation means the room is not shown as LIVE.
+        return null;
       }
     }));
     return json(res,200,{data:results.filter(Boolean),error:null,meta:{requestId}});
