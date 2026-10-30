@@ -5,6 +5,7 @@ export function initInbox({api,token,state,toast}){
  let conversations=[],currentId=null,currentConversation=null,messages=[],channel=null,userChannel=null,realtime=null;
  let callRoom=null,callId=null,callType=null,callIsCaller=false,callMic=true,callCamera=true,screenShare=false;
  let typingTimer=null,typingStop=null,incomingPoll=null,conversationPoll=null,recorder=null,recordStream=null,recordChunks=[],selectedMembers=new Map();
+ let messagingSettings={online_status_visible:true,read_receipts_enabled:true,allow_voice_messages:true,allow_media_messages:true,typing_indicators_enabled:true,call_notifications_enabled:true};
  const root=$('view-inbox');
  if(!root)return;
  const callOverlay=$('zv-call-overlay');
@@ -15,9 +16,11 @@ export function initInbox({api,token,state,toast}){
  const selectedGroup=$('zv-selected-members');
  const profileId=()=>state.me?.profile?.id||state.me?.user?.id||null;
 
+ async function loadMessagingSettings(){try{messagingSettings=await api('/api/v1/me/settings');}catch(error){console.warn('Messaging preferences unavailable; server defaults remain active.',error);}}
  async function ensureRealtime(){
   if(!token()||!state.config?.supabaseUrl||!state.config?.supabaseAnonKey||!window.supabase?.createClient)return false;
   try{
+   if(!messagingSettings||!Object.keys(messagingSettings).length)await loadMessagingSettings();
    if(!realtime)realtime=window.supabase.createClient(state.config.supabaseUrl,state.config.supabaseAnonKey,{auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false},realtime:{params:{eventsPerSecond:10}}});
    await realtime.realtime.setAuth(token());
    const uid=profileId();
@@ -26,7 +29,7 @@ export function initInbox({api,token,state,toast}){
      .on('broadcast',{event:'call.invite'},()=>refreshIncomingCalls())
      .on('broadcast',{event:'call.state'},()=>refreshIncomingCalls())
      .on('presence',{event:'sync'},()=>renderOnlinePresence())
-     .subscribe(async status=>{if(status==='SUBSCRIBED'){try{await userChannel.track({userId:uid,onlineAt:new Date().toISOString()});}catch{}}});
+     .subscribe(async status=>{if(status==='SUBSCRIBED'&&messagingSettings.online_status_visible!==false){try{await userChannel.track({userId:uid,onlineAt:new Date().toISOString()});}catch{}}});
    }
    return true;
   }catch(error){console.warn('Inbox realtime unavailable; polling fallback remains active.',error);return false;}
@@ -42,11 +45,11 @@ export function initInbox({api,token,state,toast}){
  function show(){
   if(!token()){toast('Sign in to open your inbox.');return;}
   loadConversations();
-  ensureRealtime().then(()=>refreshIncomingCalls());
+  loadMessagingSettings().then(()=>ensureRealtime()).then(()=>refreshIncomingCalls());
   if(!incomingPoll)incomingPoll=setInterval(refreshIncomingCalls,8000);
   if(!conversationPoll)conversationPoll=setInterval(()=>{if(currentId&&!channel)loadMessages(currentId);},12000);
  }
- async function signedIn(){if(!token())return;await ensureRealtime();await loadConversations();await refreshIncomingCalls();}
+ async function signedIn(){if(!token())return;await loadMessagingSettings();await ensureRealtime();await loadConversations();await refreshIncomingCalls();}
  async function logout(){
   if(incomingPoll)clearInterval(incomingPoll);if(conversationPoll)clearInterval(conversationPoll);
   incomingPoll=conversationPoll=null;await leaveConversationChannel();if(userChannel){await realtime.removeChannel(userChannel).catch(()=>{});userChannel=null;}
@@ -102,7 +105,7 @@ export function initInbox({api,token,state,toast}){
     .on('broadcast',{event:'message.reaction'},()=>loadMessages(id))
     .on('presence',{event:'sync'},()=>renderThreadPresence())
     .subscribe(async status=>{
-      if(status==='SUBSCRIBED'){
+      if(status==='SUBSCRIBED'&&messagingSettings.online_status_visible!==false){
        try{await channel.track({userId:profileId(),onlineAt:new Date().toISOString()});}catch{}
       }
     });
@@ -226,6 +229,7 @@ export function initInbox({api,token,state,toast}){
  }
  async function refreshIncomingCalls(){
   if(!token())return;
+  if(messagingSettings.call_notifications_enabled===false){if(incomingCard)incomingCard.hidden=true;return;}
   try{
    const calls=await api('/api/v1/calls/incoming');
    if(callId||!calls?.length){if(incomingCard)incomingCard.hidden=true;return;}
@@ -307,7 +311,7 @@ export function initInbox({api,token,state,toast}){
   }catch(error){toast(error.message,'error');}
  }
  function typeStart(){
-  if(!channel||!state.me?.profile?.id)return;
+  if(!channel||!state.me?.profile?.id||messagingSettings.typing_indicators_enabled===false)return;
   try{channel.send({type:'broadcast',event:'typing',payload:{userId:profileId(),name:state.me.profile.display_name}});}catch{}
   clearTimeout(typingTimer);typingTimer=setTimeout(()=>{try{channel?.send({type:'broadcast',event:'typing',payload:{userId:profileId(),stopped:true}});}catch{}},1200);
  }
