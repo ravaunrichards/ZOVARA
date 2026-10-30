@@ -44,7 +44,7 @@ async function handleApi(req,res,url,requestId){
    const status=provider.reachable?200:503;
    return json(res,status,{data:{provider:'livekit',...provider},error:provider.reachable?null:{code:provider.code,message:provider.code==='CONFIGURATION_REQUIRED'?'LiveKit credentials are not configured':'LiveKit room service could not be reached'},meta:{requestId}});
  }
- if(method==='GET'&&p==='/api/v1/client-config')return json(res,200,{data:{supabaseUrl:config.supabaseUrl||null,supabaseAnonKey:config.supabaseAnonKey||null,livekitUrl:config.livekitUrl||null,paypalEnvironment:config.paypalEnvironment,providers:apiFeatureList().providerStatus},error:null,meta:{requestId}});
+ if(method==='GET'&&p==='/api/v1/client-config')return json(res,200,{data:{supabaseUrl:config.supabaseUrl||null,supabaseAnonKey:config.supabaseAnonKey||null,livekitUrl:livekit.configured()?config.livekitUrl:null,paypalEnvironment:config.paypalEnvironment,providers:apiFeatureList().providerStatus},error:null,meta:{requestId}});
  if(method==='GET'&&p==='/api/v1/features')return json(res,200,{data:JSON.parse(await readFile(featuresPath,'utf8')),error:null,meta:{requestId}});
  if(method==='GET'&&p==='/api/v1/catalog/gifts')return json(res,200,{data:JSON.parse(await readFile(giftsPath,'utf8')),error:null,meta:{requestId}});
  if(method==='GET'&&p==='/api/v1/catalog/gifter-levels')return json(res,200,{data:JSON.parse(await readFile(levelsPath,'utf8')),error:null,meta:{requestId}});

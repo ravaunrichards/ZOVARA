@@ -35,7 +35,11 @@ export class LiveKitProvider{
   }
 
   configured(){
-    return Boolean(this.config.livekitUrl&&this.config.livekitApiKey&&this.config.livekitApiSecret);
+    const isRealValue=value=>{
+      const normalized=String(value??'').trim();
+      return Boolean(normalized)&&!/(?:replace[_ -]?with|placeholder|change[_ -]?me|your[_ -])/i.test(normalized);
+    };
+    return isRealValue(this.config.livekitUrl)&&isRealValue(this.config.livekitApiKey)&&isRealValue(this.config.livekitApiSecret);
   }
 
   token(claims){

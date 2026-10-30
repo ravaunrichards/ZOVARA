@@ -58,6 +58,22 @@ Required Render secrets (values are provider-issued; no example values are valid
 
 The PayPal checkout code currently uses the Sandbox API host unless `PAYPAL_ENVIRONMENT=production`. Do not switch to production until live credentials, webhook configuration, and payment reconciliation have been verified.
 
+## Temporary Render placeholders
+
+The following clearly labeled placeholders may be stored in the Zovara Render service until real provider credentials are available. They are not valid credentials. Zovara's provider configuration checks explicitly reject values containing `REPLACE_WITH`, so health checks continue to report the providers as not configured and no calls are sent to fake provider endpoints.
+
+| Render variable | Temporary value |
+|---|---|
+| `LIVEKIT_URL` | `wss://REPLACE_WITH_ZOVARA_PROJECT.livekit.cloud` |
+| `LIVEKIT_API_KEY` | `REPLACE_WITH_ZOVARA_LIVEKIT_API_KEY` |
+| `LIVEKIT_API_SECRET` | `REPLACE_WITH_ZOVARA_LIVEKIT_API_SECRET` |
+| `PAYPAL_CLIENT_ID` | `REPLACE_WITH_ZOVARA_PAYPAL_SANDBOX_CLIENT_ID` |
+| `PAYPAL_CLIENT_SECRET` | `REPLACE_WITH_ZOVARA_PAYPAL_SANDBOX_CLIENT_SECRET` |
+| `PAYPAL_WEBHOOK_ID` | `REPLACE_WITH_ZOVARA_PAYPAL_SANDBOX_WEBHOOK_ID` |
+
+Replace each value in Render with the corresponding provider-issued credential. Keep `PAYPAL_ENVIRONMENT=sandbox` until sandbox checkout, capture, and webhook verification pass. Keep payouts disabled.
+
+
 ## Verification
 
 - API liveness: `GET /healthz`
