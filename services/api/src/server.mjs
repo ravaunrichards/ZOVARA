@@ -76,7 +76,7 @@ async function syncLiveRoomPresence(session, livekitPeople){
 function apiFeatureList(){return {version:'v1',providerStatus:{supabase:supabase.configured()?'configured':'not_configured',paypal:paypal.configured()?'configured':'not_configured',livekit:livekit.configured()?'configured':'not_configured',payoutsEnabled:config.paypalPayoutsEnabled},productStatus:'foundation-partial'};}
 async function signedMediaUrl(bucket,objectPath,expiresIn=3600){
  if(!supabase.serviceConfigured())throw new HttpError(503,'CONFIGURATION_REQUIRED','Private media signing is not configured');
- const base=config.supabaseUrl.replace(/\\/+$/,'');
+ const base=config.supabaseUrl.replace(/\/+$/,'');
  const encoded=String(objectPath).split('/').map(encodeURIComponent).join('/');
  const response=await fetch(base+'/storage/v1/object/sign/'+encodeURIComponent(bucket)+'/'+encoded,{method:'POST',headers:{apikey:config.supabaseServiceRoleKey,Authorization:'Bearer '+config.supabaseServiceRoleKey,'Content-Type':'application/json'},body:JSON.stringify({expiresIn}),signal:AbortSignal.timeout(15000)});
  const payload=await response.json().catch(()=>({}));
@@ -228,13 +228,18 @@ async function handleApi(req,res,url,requestId){
       return json(res,201,{data:result,error:null,meta:{requestId}});
     }
     const rows=await supabase.request('/rest/v1/messages?conversation_id=eq.'+conversationId+'&deleted_at=is.null&select=id,conversation_id,sender_id,body,kind,media_id,reply_to,created_at,client_message_id&order=created_at.asc&limit=100',{token});
-    const senderIds=[...new Set((rows||[]).map(x=>x.sender_id))];
-    const profiles=senderIds.length?await supabase.request('/rest/v1/profiles?select=id,handle,display_name,avatar_path&id=in.('+senderIds.join(',')+')',{token}):[];
-    const profileMap=new Map((profiles||[]).map(x=>[x.id,x]));
+    const senderIds=[...new Set((rows||[]).map(x=>x.sender_id))];const messageIds=(rows||[]).map(x=>x.id);
+    const [profiles,reactions,receipts]=await Promise.all([
+      senderIds.length?supabase.request('/rest/v1/profiles?select=id,handle,display_name,avatar_path&id=in.('+senderIds.join(',')+')',{token}):[],
+      messageIds.length?supabase.request('/rest/v1/message_reactions?select=message_id,user_id,emoji&message_id=in.('+messageIds.join(',')+')',{token}):[],
+      messageIds.length?supabase.request('/rest/v1/message_receipts?select=message_id,user_id,delivered_at,read_at&message_id=in.('+messageIds.join(',')+')',{token}):[]
+    ]);
+    const profileMap=new Map((profiles||[]).map(x=>[x.id,x]));const reactionMap=new Map();for(const x of reactions||[]){if(!reactionMap.has(x.message_id))reactionMap.set(x.message_id,[]);reactionMap.get(x.message_id).push({emoji:x.emoji,userId:x.user_id,mine:x.user_id===user.id});}
+    const receiptMap=new Map();for(const x of receipts||[]){if(!receiptMap.has(x.message_id))receiptMap.set(x.message_id,[]);receiptMap.get(x.message_id).push({userId:x.user_id,deliveredAt:x.delivered_at,readAt:x.read_at});}
     await rpc('mark_conversation_read',{p_conversation_id:conversationId},{token});
-    return json(res,200,{data:(rows||[]).map(x=>({...x,mine:x.sender_id===user.id,sender:profileMap.get(x.sender_id)||{display_name:'ZOVARA member'}})),error:null,meta:{requestId}});
+    return json(res,200,{data:(rows||[]).map(x=>({...x,mine:x.sender_id===user.id,sender:profileMap.get(x.sender_id)||{display_name:'ZOVARA member'},reactions:reactionMap.get(x.id)||[],receipts:receiptMap.get(x.id)||[]})),error:null,meta:{requestId}});
   }
-  const conversationPreferenceMatch=p.match(/^\\/api\\/v1\\/conversations\\/([0-9a-f-]+)\\/preferences$/i);
+  const conversationPreferenceMatch=p.match(/^\/api\/v1\/conversations\/([0-9a-f-]+)\/preferences$/i);
   if(conversationPreferenceMatch&&method==='PATCH'){const {user,token}=await auth(req);const cid=requireUuid(conversationPreferenceMatch[1],'conversation id');const b=await bodyJson(req);const fields={};for(const k of ['is_pinned','is_archived','is_muted'])if(b[k]!==undefined)fields[k]=!!b[k];if(!Object.keys(fields).length)throw new HttpError(400,'VALIDATION_ERROR','No conversation preference was supplied');const rows=await supabase.request('/rest/v1/conversation_preferences?on_conflict=conversation_id,user_id',{method:'POST',body:{conversation_id:cid,user_id:user.id,...fields},token,headers:{Prefer:'resolution=merge-duplicates,return=representation'}});return json(res,200,{data:Array.isArray(rows)?rows[0]:rows,error:null,meta:{requestId}});}
   const conversationCallMatch=p.match(/^\/api\/v1\/conversations\/([0-9a-f-]+)\/calls$/i);
   if(conversationCallMatch&&method==='POST'){
@@ -326,13 +331,13 @@ async function handleApi(req,res,url,requestId){
  if(blockMatch&&(method==='POST'||method==='DELETE')){
    const {user,token}=await auth(req);const target=requireUuid(blockMatch[1],'profile id');if(target===user.id)throw new HttpError(400,'VALIDATION_ERROR','You cannot block your own account');if(method==='POST'){await insertOne('blocks',{blocker_id:user.id,blocked_id:target},{token}).catch(e=>{if(!String(e.message).toLowerCase().includes('duplicate')&&!String(e.message).toLowerCase().includes('unique'))throw e;});await supabase.request(`/rest/v1/follows?or=(and(follower_id.eq.${user.id},followed_id.eq.${target}),and(follower_id.eq.${target},followed_id.eq.${user.id}))`,{method:'DELETE',service:true}).catch(()=>{});}else await supabase.request(`/rest/v1/blocks?blocker_id=eq.${user.id}&blocked_id=eq.${target}`,{method:'DELETE',token});return json(res,200,{data:{userId:target,blocked:method==='POST'},error:null,meta:{requestId}});
  }
- const messageMutationMatch=p.match(/^\\/api\\/v1\\/messages\\/([0-9a-f-]+)$/i);
+  const messageMutationMatch=p.match(/^\/api\/v1\/messages\/([0-9a-f-]+)$/i);
  if(messageMutationMatch&&(method==='PATCH'||method==='DELETE')){const {token}=await auth(req);const mid=requireUuid(messageMutationMatch[1],'message id');const result=method==='PATCH'?await rpc('edit_conversation_message',{p_message_id:mid,p_body:cleanText((await bodyJson(req)).body,8000)},{token}):await rpc('delete_conversation_message',{p_message_id:mid},{token});return json(res,200,{data:result,error:null,meta:{requestId}});}
- const reactionMatch=p.match(/^\\/api\\/v1\\/messages\\/([0-9a-f-]+)\\/reactions$/i);
+  const reactionMatch=p.match(/^\/api\/v1\/messages\/([0-9a-f-]+)\/reactions$/i);
  if(reactionMatch&&(method==='POST'||method==='DELETE')){const {user,token}=await auth(req);const mid=requireUuid(reactionMatch[1],'message id');const b=method==='POST'?await bodyJson(req):{};const emoji=cleanText(b.emoji,8);const allowed=['❤️','😂','😮','😢','🙏','🔥','👏','👍','👎','💯'];if(method==='POST'&&!allowed.includes(emoji))throw new HttpError(400,'VALIDATION_ERROR','Unsupported message reaction');if(method==='POST')await insertOne('message_reactions',{message_id:mid,user_id:user.id,emoji},{token}).catch(e=>{if(!String(e.message).toLowerCase().includes('duplicate')&&!String(e.message).toLowerCase().includes('unique'))throw e;});else await supabase.request('/rest/v1/message_reactions?message_id=eq.'+mid+'&user_id=eq.'+user.id+'&emoji=eq.'+encodeURIComponent(emoji),{method:'DELETE',token});return json(res,200,{data:{messageId:mid,emoji,active:method==='POST'},error:null,meta:{requestId}});}
  if(method==='GET'&&p==='/api/v1/drafts'){const {user,token}=await auth(req);const rows=await supabase.request('/rest/v1/content_drafts?author_id=eq.'+user.id+'&select=id,caption,hashtags,visibility,media_ids,cover_media_id,comments_enabled,draft_metadata,created_at,updated_at&order=updated_at.desc&limit=50',{token});return json(res,200,{data:rows,error:null,meta:{requestId}});}
  if(method==='POST'&&p==='/api/v1/drafts'){const {user,token}=await auth(req);const b=await bodyJson(req);const row=await insertOne('content_drafts',{author_id:user.id,caption:cleanText(b.caption,4000),hashtags:Array.isArray(b.hashtags)?b.hashtags.slice(0,30).map(x=>cleanText(x,60).replace(/^#/,'')).filter(Boolean):[],visibility:['public','followers','friends','private','subscriber'].includes(b.visibility)?b.visibility:'public',media_ids:Array.isArray(b.mediaIds)?b.mediaIds.slice(0,10).filter(isUuid):[],cover_media_id:b.coverMediaId&&isUuid(b.coverMediaId)?b.coverMediaId:null,comments_enabled:b.commentsEnabled!==false,draft_metadata:b.metadata&&typeof b.metadata==='object'?b.metadata:{}},{token});return json(res,201,{data:row,error:null,meta:{requestId}});}
- const draftMatch=p.match(/^\\/api\\/v1\\/drafts\\/([0-9a-f-]+)$/i);
+  const draftMatch=p.match(/^\/api\/v1\/drafts\/([0-9a-f-]+)$/i);
  if(draftMatch&&(method==='PATCH'||method==='DELETE')){const {user,token}=await auth(req);const did=requireUuid(draftMatch[1],'draft id');if(method==='DELETE'){await supabase.request('/rest/v1/content_drafts?id=eq.'+did+'&author_id=eq.'+user.id,{method:'DELETE',token});return json(res,200,{data:{id:did,deleted:true},error:null,meta:{requestId}});}const b=await bodyJson(req),fields={updated_at:new Date().toISOString()};if(b.caption!==undefined)fields.caption=cleanText(b.caption,4000);if(b.visibility!==undefined){if(!['public','followers','friends','private','subscriber'].includes(b.visibility))throw new HttpError(400,'VALIDATION_ERROR','Invalid audience');fields.visibility=b.visibility;}if(b.mediaIds!==undefined)fields.media_ids=Array.isArray(b.mediaIds)?b.mediaIds.slice(0,10).filter(isUuid):[];if(b.hashtags!==undefined)fields.hashtags=Array.isArray(b.hashtags)?b.hashtags.slice(0,30).map(x=>cleanText(x,60).replace(/^#/,'')).filter(Boolean):[];const rows=await patchRows('content_drafts','id=eq.'+did+'&author_id=eq.'+user.id,fields,{token});return json(res,200,{data:Array.isArray(rows)?rows[0]:rows,error:null,meta:{requestId}});}
  if(method==='POST'&&p==='/api/v1/posts'){
    const {token}=await auth(req);const b=await bodyJson(req);const body=cleanText(b.body,4000);const visibility=b.visibility||'public';
