@@ -81,3 +81,18 @@ body.tv-mode{font-size:1.25rem}body.tv-mode .app-shell{max-width:1900px}body.tv-
  .profile-tabs{gap:22px}
  .profile-upload-grid{grid-template-columns:1fr}
 }
+
+/* Profile polish: compact social metrics while preserving the existing profile card. */
+.profile-stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(8px,2vw,22px);align-items:center}
+.profile-stats>div{display:flex;flex-direction:column;align-items:center;min-width:0;text-align:center}
+.profile-stats>div strong{font-size:clamp(1rem,2.2vw,1.35rem);font-weight:750;line-height:1.2}
+.profile-stats>div span{font-size:.78rem;opacity:.76;white-space:nowrap}
+.profile-actions [hidden]{display:none!important}
+.post-author-open{border:0;background:transparent;color:inherit;padding:0;font:inherit;font-weight:650;text-align:left;cursor:pointer}
+.post-author-open:hover{text-decoration:underline}
+.live-host-name{font-weight:650}
+.live-host-name span{opacity:.72;font-weight:500}
+.live-viewer-list{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.live-viewer-name{border-radius:999px;padding:4px 9px;background:rgba(255,255,255,.07);font-size:.78rem}
+.live-viewer-name small{opacity:.68}
+@media(max-width:640px){.profile-stats{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:14px}.profile-stats>div span{font-size:.72rem}}
