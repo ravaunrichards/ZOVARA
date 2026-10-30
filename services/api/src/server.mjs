@@ -206,7 +206,7 @@ async function handleApi(req,res,url,requestId){
    const tokenValue=livekit.createParticipantToken({identity:user.id,name:cleanText(user.user_metadata?.display_name||user.email?.split('@')[0]||'Viewer',80),room:live.room_name,canPublish,canSubscribe:true,canPublishData:true});
    return json(res,200,{data:{token:tokenValue,serverUrl:config.livekitUrl,role:host?'host':(participant?.role||'viewer'),permissions:{canPublish,canModerate}},error:null,meta:{requestId}});
  }
- const liveLeaveMatch=p.match(/^\\/api\\/v1\\/lives\\/([0-9a-f-]+)\\/leave$/i);
+ const liveLeaveMatch=p.match(/^\/api\/v1\/lives\/([0-9a-f-]+)\/leave$/i);
  if(liveLeaveMatch&&method==='POST'){
    const {user}=await auth(req);
    const liveId=requireUuid(liveLeaveMatch[1],'live session id');
@@ -232,7 +232,7 @@ async function handleApi(req,res,url,requestId){
  if(guestDecisionMatch&&method==='POST'){
    const {user}=await auth(req);const liveId=requireUuid(guestDecisionMatch[1],'live session id'),requestIdParam=requireUuid(guestDecisionMatch[2],'guest request id');const live=await selectOne('live_sessions',`id=eq.${liveId}&select=id,host_id,room_name,status`,{service:true});if(!live)throw new HttpError(404,'NOT_FOUND','Live room not found');if(live.host_id!==user.id)throw new HttpError(403,'FORBIDDEN','Only the room host can decide guest requests');const b=await bodyJson(req);if(!['accepted','rejected'].includes(b.decision))throw new HttpError(400,'VALIDATION_ERROR','Decision must be accepted or rejected');const gr=await selectOne('live_guest_requests',`id=eq.${requestIdParam}&live_session_id=eq.${liveId}&status=eq.pending&select=id,requester_id,requested_role`,{service:true});if(!gr)throw new HttpError(404,'NOT_FOUND','Pending guest request not found');await patchRows('live_guest_requests',`id=eq.${gr.id}`,{status:b.decision,handled_by:user.id,handled_at:new Date().toISOString()},{service:true});if(b.decision==='rejected')return json(res,200,{data:{requestId:gr.id,status:'rejected'},error:null,meta:{requestId}});await insertOne('live_participants',{live_session_id:liveId,user_id:gr.requester_id,role:gr.requested_role,status:'joined',can_publish_audio:true,can_publish_video:true,joined_at:new Date().toISOString()},{service:true}).catch(async e=>{await patchRows('live_participants',`live_session_id=eq.${liveId}&user_id=eq.${gr.requester_id}`,{role:gr.requested_role,status:'joined',can_publish_audio:true,can_publish_video:true,joined_at:new Date().toISOString()},{service:true});});const profile=await selectOne('profiles',`id=eq.${gr.requester_id}&select=display_name,handle`,{service:true});const tok=livekit.createParticipantToken({identity:gr.requester_id,name:cleanText(profile?.display_name||profile?.handle||'Guest',80),room:live.room_name,canPublish:true});return json(res,200,{data:{requestId:gr.id,status:'accepted',role:gr.requested_role,serverUrl:config.livekitUrl,token:tok},error:null,meta:{requestId}});
  }
- const liveEndMatch=p.match(/^\\/api\\/v1\\/lives\\/([0-9a-f-]+)\\/end$/i);
+ const liveEndMatch=p.match(/^\/api\/v1\/lives\/([0-9a-f-]+)\/end$/i);
  if(liveEndMatch&&method==='POST'){
    const {user}=await auth(req);
    const liveId=requireUuid(liveEndMatch[1],'live session id');
