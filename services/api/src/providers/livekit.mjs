@@ -50,6 +50,7 @@ export class LiveKitProvider{
     const payload={
       iss:this.config.livekitApiKey,
       sub:claims.identity||'zovara-service',
+      ...(claims.name?{name:String(claims.name).slice(0,80)}:{}),
       nbf:now-5,
       iat:now,
       exp:now+Math.min(3600,Math.max(60,claims.ttlSeconds||900)),
