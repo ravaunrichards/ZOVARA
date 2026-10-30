@@ -3,7 +3,7 @@ export function initInbox({api,token,state,toast}){
  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const fmt=v=>v?new Intl.DateTimeFormat(undefined,{hour:'numeric',minute:'2-digit'}).format(new Date(v)):'';
  let conversations=[],currentId=null,currentConversation=null,messages=[],channel=null,userChannel=null,realtime=null;
- let callRoom=null,callId=null,callType=null,callIsCaller=false,callMic=true,callCamera=true,screenShare=false;
+ let callRoom=null,callId=null,callType=null,callIsCaller=false,callMic=true,callCamera=true,screenShare=false,callStartedAt=0,callTimer=null;
  let typingTimer=null,typingStop=null,incomingPoll=null,conversationPoll=null,recorder=null,recordStream=null,recordChunks=[],selectedMembers=new Map();
  let messagingSettings={online_status_visible:true,read_receipts_enabled:true,allow_voice_messages:true,allow_media_messages:true,typing_indicators_enabled:true,call_notifications_enabled:true};
  const root=$('view-inbox');
@@ -298,8 +298,38 @@ export function initInbox({api,token,state,toast}){
     for(const pub of p.trackPublications.values())if(pub.track)attachTrack(pub.track,p);
     if(!callGrid.querySelector('[data-identity="'+CSS.escape(p.identity)+'"]'))createCallTile(p.identity,p.name||p.identity);
    }
-   updateCallControls();
+   updateCallControls();callStartedAt=Date.now();startCallTimer();await populateCallDevices();
   }catch(error){await room.disconnect().catch(()=>{});callRoom=null;callId=null;callOverlay.hidden=true;toast('Could not connect the call: '+error.message,'error');}
+ }
+ function startCallTimer(){
+  clearInterval(callTimer);const node=$('zv-call-duration');
+  const tick=()=>{if(node&&callStartedAt){const total=Math.floor((Date.now()-callStartedAt)/1000);node.textContent=String(Math.floor(total/60)).padStart(2,'0')+':'+String(total%60).padStart(2,'0');}};
+  tick();callTimer=setInterval(tick,1000);
+ }
+ async function populateCallDevices(){
+  if(!navigator.mediaDevices?.enumerateDevices)return;
+  try{
+   const devices=await navigator.mediaDevices.enumerateDevices();
+   for(const [kind,id] of [['audioinput','zv-call-mic-device'],['videoinput','zv-call-camera-device'],['audiooutput','zv-call-speaker-device']]){
+    const select=$(id);if(!select)continue;const previous=select.value;
+    const defaults={audioinput:'Default microphone',videoinput:'Default camera',audiooutput:'Default speaker'};
+    select.innerHTML='<option value="">'+defaults[kind]+'</option>'+devices.filter(d=>d.kind===kind).map((d,i)=>'<option value="'+esc(d.deviceId)+'">'+esc(d.label||kind+' '+(i+1))+'</option>').join('');
+    if([...select.options].some(o=>o.value===previous))select.value=previous;
+   }
+  }catch(error){console.warn('Call device enumeration is not available.',error);}
+ }
+ async function switchCallDevice(select){
+  if(!callRoom||!select)return;
+  const kind=select.dataset.callDevice,deviceId=select.value;
+  if(!deviceId)return;
+  try{
+   if(typeof callRoom.switchActiveDevice==='function')await callRoom.switchActiveDevice(kind,deviceId,true);
+   else if(kind==='audiooutput'){
+    for(const media of callGrid.querySelectorAll('audio,video'))if(typeof media.setSinkId==='function')await media.setSinkId(deviceId);
+    else throw new Error('This browser does not support speaker selection.');
+   }else throw new Error('This call client does not support changing this device while connected.');
+   toast('Call device changed.','success');
+  }catch(error){toast(error.message,'error');}
  }
  function updateCallControls(){
   $('zv-call-mic').textContent=callMic?'Mute microphone':'Unmute microphone';
@@ -311,7 +341,7 @@ export function initInbox({api,token,state,toast}){
   const id=callId;const room=callRoom;callId=null;callRoom=null;
   if(room)await room.disconnect().catch(()=>{});
   if(notify&&id){try{await api('/api/v1/calls/'+encodeURIComponent(id)+'/decision',{method:'POST',body:{action:callIsCaller?'end':'leave'}});}catch(error){toast(error.message,'error');}}
-  callOverlay.hidden=true;callGrid.innerHTML='';callType=null;screenShare=false;await refreshIncomingCalls();await loadConversations();
+  clearInterval(callTimer);callTimer=null;callStartedAt=0;if($('zv-call-duration'))$('zv-call-duration').textContent='00:00';callOverlay.hidden=true;callGrid.innerHTML='';callType=null;screenShare=false;await refreshIncomingCalls();await loadConversations();
  }
  async function handleCallControl(action){
   if(!callRoom)return;
@@ -333,6 +363,7 @@ export function initInbox({api,token,state,toast}){
   clearTimeout(typingTimer);typingTimer=setTimeout(()=>{try{channel?.send({type:'broadcast',event:'typing',payload:{userId:profileId(),stopped:true}});}catch{}},1200);
  }
  incomingCard?.addEventListener('click',async e=>{const button=e.target.closest('[data-call-incoming]');if(button)await decideCall(button.dataset.callIncoming);});
+ callOverlay?.addEventListener('change',async e=>{const select=e.target.closest('[data-call-device]');if(select)await switchCallDevice(select);});
  callOverlay?.addEventListener('click',async e=>{const button=e.target.closest('[data-call-control]');if(!button)return;if(button.dataset.callControl==='end')await endCall(true);else await handleCallControl(button.dataset.callControl);});
  root.addEventListener('click',async e=>{
   const open=e.target.closest('[data-inbox-open]');if(open){await openConversation(open.dataset.inboxOpen);return;}
