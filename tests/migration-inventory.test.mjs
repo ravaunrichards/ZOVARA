@@ -42,3 +42,11 @@ test('explicit Supabase Data API grants are present and server-only access remai
   assert.ok(grantsAt >= 0 && revokesAt > grantsAt, 'server-only revokes must follow the broad RLS-protected grant');
   assert.match(sql, /revoke all on public\.background_jobs,public\.event_outbox,public\.payment_events,public\.financial_audit_log,public\.moderation_actions,public\.scheduled_tasks from anon,authenticated;/i);
 });
+
+test('profile statistics and account trigger hardening migration is present', async () => {
+  const sql = await readFile(path.join(migrationDir, '0013_profile_stats_rls_and_trigger_grants.sql'), 'utf8');
+  assert.match(sql, /security invoker/i);
+  assert.match(sql, /revoke all on function public\.ensure_profile_account_foundations\(\) from public, anon, authenticated/i);
+  assert.match(sql, /profile_views_viewer_id_idx/i);
+  assert.match(sql, /profileViews/i);
+});
