@@ -258,6 +258,12 @@ async function handleApi(req,res,url,requestId){
   }
   const conversationPreferenceMatch=p.match(/^\/api\/v1\/conversations\/([0-9a-f-]+)\/preferences$/i);
   if(conversationPreferenceMatch&&method==='PATCH'){const {user,token}=await auth(req);const cid=requireUuid(conversationPreferenceMatch[1],'conversation id');const b=await bodyJson(req);const fields={};for(const k of ['is_pinned','is_archived','is_muted'])if(b[k]!==undefined)fields[k]=!!b[k];if(!Object.keys(fields).length)throw new HttpError(400,'VALIDATION_ERROR','No conversation preference was supplied');const rows=await supabase.request('/rest/v1/conversation_preferences?on_conflict=conversation_id,user_id',{method:'POST',body:{conversation_id:cid,user_id:user.id,...fields},token,headers:{Prefer:'resolution=merge-duplicates,return=representation'}});return json(res,200,{data:Array.isArray(rows)?rows[0]:rows,error:null,meta:{requestId}});}
+  const conversationHistoryMatch=p.match(/^\\/api\\/v1\\/conversations\\/([0-9a-f-]+)\\/calls$/i);
+  if(conversationHistoryMatch&&method==='GET'){
+    const {token}=await auth(req);const conversationId=requireUuid(conversationHistoryMatch[1],'conversation id');
+    const calls=await supabase.request('/rest/v1/call_sessions?conversation_id=eq.'+conversationId+'&select=id,created_by,call_type,status,started_at,ended_at,created_at,ended_reason,duration_seconds&order=created_at.desc&limit=50',{token});
+    return json(res,200,{data:calls,error:null,meta:{requestId}});
+  }
   const conversationCallMatch=p.match(/^\/api\/v1\/conversations\/([0-9a-f-]+)\/calls$/i);
   if(conversationCallMatch&&method==='POST'){
     const {user,token}=await auth(req);const conversationId=requireUuid(conversationCallMatch[1],'conversation id');const b=await bodyJson(req);
@@ -272,6 +278,10 @@ async function handleApi(req,res,url,requestId){
   }
   if(method==='GET'&&p==='/api/v1/calls/incoming'){
     const {user,token}=await auth(req);
+    if(livekit.configured()){
+      try{const expired=await rpc('expire_stale_conversation_calls',{}, {service:true});for(const item of expired||[])if(item.room_name)await livekit.deleteRoom(item.room_name).catch(()=>{});}
+      catch(error){log('warn','call_expiry_cleanup_failed',{code:error.code||'CALL_EXPIRY_CLEANUP_FAILED'});}
+    }
     const invites=await supabase.request('/rest/v1/call_participants?user_id=eq.'+user.id+'&status=eq.ringing&select=call_id,invited_at&order=invited_at.desc&limit=10',{token});
     const ids=[...new Set((invites||[]).map(x=>x.call_id))];
     if(!ids.length)return json(res,200,{data:[],error:null,meta:{requestId}});
