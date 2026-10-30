@@ -75,7 +75,86 @@ async function handleApi(req,res,url,requestId){
    if(!Object.keys(fields).length)throw new HttpError(400,'VALIDATION_ERROR','No editable profile fields were provided');
    const rows=await patchRows('profiles',`id=eq.${user.id}`,fields,{token});return json(res,200,{data:Array.isArray(rows)?rows[0]:rows,error:null,meta:{requestId}});
  }
- if(method==='GET'&&p==='/api/v1/feed'){
+ if(method==='POST'&&p==='/api/v1/conversations/direct'){
+    const {token}=await auth(req);const b=await bodyJson(req);const other=requireUuid(b.userId,'recipient id');
+    const result=await rpc('create_direct_conversation',{p_other_user_id:other},{token});
+    return json(res,201,{data:{id:result.conversationId,kind:'direct'},error:null,meta:{requestId}});
+  }
+  if(method==='GET'&&p==='/api/v1/conversations'){
+    const {user,token}=await auth(req);
+    const memberships=await supabase.request('/rest/v1/conversation_members?user_id=eq.'+user.id+'&select=conversation_id&order=joined_at.desc&limit=100',{token});
+    const ids=[...new Set((memberships||[]).map(x=>x.conversation_id))];
+    if(!ids.length)return json(res,200,{data:[],error:null,meta:{requestId}});
+    const idList=ids.join(',');
+    const [conversations,members,messages]=await Promise.all([
+      supabase.request('/rest/v1/conversations?select=id,kind,title,created_at&id=in.('+idList+')',{token}),
+      supabase.request('/rest/v1/conversation_members?select=conversation_id,user_id,role&conversation_id=in.('+idList+')&limit=800',{token}),
+      supabase.request('/rest/v1/messages?select=id,conversation_id,sender_id,body,kind,created_at&deleted_at=is.null&conversation_id=in.('+idList+')&order=created_at.desc&limit=200',{token})
+    ]);
+    const otherIds=[...new Set((members||[]).map(x=>x.user_id).filter(id=>id!==user.id))];
+    const profiles=otherIds.length?await supabase.request('/rest/v1/profiles?select=id,handle,display_name,avatar_path&id=in.('+otherIds.join(',')+')',{token}):[];
+    const profileMap=new Map((profiles||[]).map(x=>[x.id,x]));
+    const latest=new Map();for(const message of messages||[])if(!latest.has(message.conversation_id))latest.set(message.conversation_id,message);
+    const peers=new Map();for(const member of members||[])if(member.user_id!==user.id){if(!peers.has(member.conversation_id))peers.set(member.conversation_id,[]);peers.get(member.conversation_id).push(profileMap.get(member.user_id)||{display_name:'ZOVARA member'});}
+    const data=(conversations||[]).map(conversation=>{const message=latest.get(conversation.id);return {id:conversation.id,kind:conversation.kind,title:conversation.title,createdAt:conversation.created_at,peer:peers.get(conversation.id)?.[0]||null,lastMessage:message?{body:message.body,kind:message.kind,createdAt:message.created_at,mine:message.sender_id===user.id}:null};}).sort((a,b)=>new Date(b.lastMessage?.createdAt||b.createdAt)-new Date(a.lastMessage?.createdAt||a.createdAt));
+    return json(res,200,{data,error:null,meta:{requestId}});
+  }
+  const conversationMessagesMatch=p.match(/^\/api\/v1\/conversations\/([0-9a-f-]+)\/messages$/i);
+  if(conversationMessagesMatch&&(method==='GET'||method==='POST')){
+    const {user,token}=await auth(req);const conversationId=requireUuid(conversationMessagesMatch[1],'conversation id');
+    if(method==='POST'){
+      const b=await bodyJson(req);const body=cleanText(b.body,8000);const kind=b.kind||'text';
+      const clientMessageId=cleanText(req.headers['idempotency-key']||b.clientMessageId||randomUUID(),120);
+      const result=await rpc('send_conversation_message',{p_conversation_id:conversationId,p_body:body,p_kind:kind,p_media_id:b.mediaId||null,p_reply_to:b.replyTo||null,p_client_message_id:clientMessageId},{token});
+      return json(res,201,{data:result,error:null,meta:{requestId}});
+    }
+    const rows=await supabase.request('/rest/v1/messages?conversation_id=eq.'+conversationId+'&deleted_at=is.null&select=id,conversation_id,sender_id,body,kind,media_id,reply_to,created_at,client_message_id&order=created_at.asc&limit=100',{token});
+    const senderIds=[...new Set((rows||[]).map(x=>x.sender_id))];
+    const profiles=senderIds.length?await supabase.request('/rest/v1/profiles?select=id,handle,display_name,avatar_path&id=in.('+senderIds.join(',')+')',{token}):[];
+    const profileMap=new Map((profiles||[]).map(x=>[x.id,x]));
+    await rpc('mark_conversation_read',{p_conversation_id:conversationId},{token});
+    return json(res,200,{data:(rows||[]).map(x=>({...x,mine:x.sender_id===user.id,sender:profileMap.get(x.sender_id)||{display_name:'ZOVARA member'}})),error:null,meta:{requestId}});
+  }
+  const conversationCallMatch=p.match(/^\/api\/v1\/conversations\/([0-9a-f-]+)\/calls$/i);
+  if(conversationCallMatch&&method==='POST'){
+    const {user,token}=await auth(req);const conversationId=requireUuid(conversationCallMatch[1],'conversation id');const b=await bodyJson(req);
+    if(!livekit.configured())throw new HttpError(503,'CONFIGURATION_REQUIRED','Calling is not available yet');
+    const callType=b.callType==='audio'?'audio':'video';
+    const created=await rpc('start_conversation_call',{p_conversation_id:conversationId,p_call_type:callType},{token});
+    const call=await selectOne('call_sessions','id=eq.'+created.callId+'&select=id,room_name,call_type,status',{token});
+    if(!call)throw new HttpError(503,'CALL_SETUP_FAILED','Call setup could not be verified');
+    try{await livekit.createRoom(call.room_name,8);}catch(error){await rpc('update_conversation_call',{p_call_id:call.id,p_action:'end'},{token}).catch(()=>{});throw new HttpError(502,'CALL_MEDIA_UNAVAILABLE','Call media could not be started');}
+    const participantToken=livekit.createParticipantToken({identity:user.id,room:call.room_name,canPublish:true,canSubscribe:true,canPublishData:true});
+    return json(res,201,{data:{callId:call.id,callType:call.call_type,serverUrl:config.livekitUrl,token:participantToken},error:null,meta:{requestId}});
+  }
+  if(method==='GET'&&p==='/api/v1/calls/incoming'){
+    const {user,token}=await auth(req);
+    const invites=await supabase.request('/rest/v1/call_participants?user_id=eq.'+user.id+'&status=eq.ringing&select=call_id,invited_at&order=invited_at.desc&limit=10',{token});
+    const ids=[...new Set((invites||[]).map(x=>x.call_id))];
+    if(!ids.length)return json(res,200,{data:[],error:null,meta:{requestId}});
+    const calls=await supabase.request('/rest/v1/call_sessions?select=id,conversation_id,created_by,call_type,created_at&id=in.('+ids.join(',')+')',{token});
+    const callerIds=[...new Set((calls||[]).map(x=>x.created_by))];
+    const profiles=callerIds.length?await supabase.request('/rest/v1/profiles?select=id,handle,display_name&id=in.('+callerIds.join(',')+')',{token}):[];
+    const profileMap=new Map((profiles||[]).map(x=>[x.id,x]));
+    return json(res,200,{data:(calls||[]).map(c=>({id:c.id,conversationId:c.conversation_id,callType:c.call_type,createdAt:c.created_at,caller:profileMap.get(c.created_by)||{display_name:'ZOVARA member'}})),error:null,meta:{requestId}});
+  }
+  const callDecisionMatch=p.match(/^\/api\/v1\/calls\/([0-9a-f-]+)\/decision$/i);
+  if(callDecisionMatch&&method==='POST'){
+    const {user,token}=await auth(req);const callId=requireUuid(callDecisionMatch[1],'call id');const b=await bodyJson(req);const action=b.action;
+    if(action==='accept'&&!livekit.configured())throw new HttpError(503,'CONFIGURATION_REQUIRED','Calling is not available yet');
+    const call=await selectOne('call_sessions','id=eq.'+callId+'&select=id,room_name,call_type,status',{token});
+    if(!call)throw new HttpError(404,'NOT_FOUND','Call not found');
+    const result=await rpc('update_conversation_call',{p_call_id:callId,p_action:action},{token});
+    if(action==='accept'){
+      const participant=await selectOne('call_participants','call_id=eq.'+callId+'&user_id=eq.'+user.id+'&select=status',{token});
+      if(participant?.status!=='accepted')throw new HttpError(403,'FORBIDDEN','Call invitation is no longer available');
+      const participantToken=livekit.createParticipantToken({identity:user.id,room:call.room_name,canPublish:true,canSubscribe:true,canPublishData:true});
+      return json(res,200,{data:{...result,callId,callType:call.call_type,serverUrl:config.livekitUrl,token:participantToken},error:null,meta:{requestId}});
+    }
+    if(result.status==='ended'&&livekit.configured())await livekit.deleteRoom(call.room_name).catch(()=>{});
+    return json(res,200,{data:result,error:null,meta:{requestId}});
+  }
+  if(method==='GET'&&p==='/api/v1/feed'){
    const mode=url.searchParams.get('mode')||'for-you';let token=bearer(req),user=null,filters=[];
    if(url.searchParams.has('authorId')){const target=requireUuid(url.searchParams.get('authorId'),'author id');if(token)user=await supabase.userFromToken(token);filters.push(`author_id=eq.${target}`);}
    else if(mode==='following'){if(!token)throw new HttpError(401,'UNAUTHENTICATED','Sign in to load the Following feed');user=await supabase.userFromToken(token);const edges=await supabase.request(`/rest/v1/follows?follower_id=eq.${user.id}&select=followed_id&limit=1000`,{token});const ids=(edges||[]).map(x=>x.followed_id);if(!ids.length)return json(res,200,{data:[],error:null,meta:{requestId}});filters.push(`author_id=in.(${ids.join(',')})`);}
@@ -238,7 +317,15 @@ async function handleApi(req,res,url,requestId){
  if(method==='GET'&&p==='/api/v1/wallet/ledger'){
    const {user,token}=await auth(req);const rows=await supabase.request(`/rest/v1/ledger_entries?user_id=eq.${user.id}&select=id,entry_type,currency,amount_minor,balance_after,reference_type,reference_id,metadata,created_at&order=created_at.desc&limit=100`,{token});return json(res,200,{data:rows,error:null,meta:{requestId}});
  }
- if(method==='POST'&&p==='/api/v1/payments/orders'){
+ if(method==='POST'&&p==='/api/v1/wallet/convert'){
+    const {token}=await auth(req);const b=await bodyJson(req);
+    const amount=boundedInt(b.amountUsdCents,100,100000000);
+    const idempotency=cleanText(req.headers['idempotency-key']||b.idempotencyKey||'',120);
+    if(idempotency.length<8)throw new HttpError(400,'VALIDATION_ERROR','Conversion idempotency key is required');
+    const result=await rpc('convert_available_earnings_to_coins',{p_amount_usd_cents:amount,p_idempotency_key:idempotency},{token});
+    return json(res,200,{data:result,error:null,meta:{requestId}});
+  }
+  if(method==='POST'&&p==='/api/v1/payments/orders'){
    const {user,token}=await auth(req);const b=await bodyJson(req);const idempotency=cleanText(req.headers['idempotency-key']||b.idempotencyKey||randomUUID(),120);
    let packageId=null,coins,amountCents;
    if(b.packageId){packageId=cleanText(b.packageId,50);const pack=await selectOne('coin_packages',`id=eq.${encodeURIComponent(packageId)}&is_active=eq.true&is_custom=eq.false&select=id,name,coins,price_usd_cents`,{token});if(!pack)throw new HttpError(400,'VALIDATION_ERROR','Coin package is unavailable');coins=Number(pack.coins);amountCents=Number(pack.price_usd_cents);}
