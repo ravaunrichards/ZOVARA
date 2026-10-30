@@ -26,7 +26,15 @@ const stylesPath=path.join(ROOT,'assets/styles/registry.json');
 
 function log(level,event,fields={}){const row={ts:new Date().toISOString(),level,event,...fields};process.stdout.write(JSON.stringify(row)+'\n');}
 function json(res,status,obj,headers={}){res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...headers});res.end(JSON.stringify(obj));}
-function errResponse(res,error,requestId){const status=Number.isInteger(error.statusCode)?error.statusCode:500;const code=error.code||'INTERNAL_ERROR';const message=status>=500&&code==='INTERNAL_ERROR'?'Unexpected server error':String(error.message||'Request failed');json(res,status,{data:null,error:{code,message},meta:{requestId}});}
+function errResponse(res,error,requestId){
+ const status=Number.isInteger(error.statusCode)?error.statusCode:500;
+ const code=error.code||'INTERNAL_ERROR';
+ const providerFailure=['PROVIDER_ERROR','CONFIGURATION_REQUIRED','LIVEKIT_PROVIDER_ERROR','LIVEKIT_UNREACHABLE','LIVEKIT_INVALID_RESPONSE','LIVEKIT_CONFIGURATION_INVALID'].includes(code);
+ const generic=status>=500||providerFailure;
+ const publicCode=generic?'TEMPORARILY_UNAVAILABLE':code;
+ const message=generic?'This feature is temporarily unavailable. Please try again later.':String(error.message||'Request failed');
+ json(res,status,{data:null,error:{code:publicCode,message},meta:{requestId}});
+}
 function bearer(req){const h=req.headers.authorization||'';return h.startsWith('Bearer ')?h.slice(7):null;}
 async function bodyJson(req,max=1024*1024){const chunks=[];let length=0;for await(const chunk of req){length+=chunk.length;if(length>max)throw new HttpError(413,'PAYLOAD_TOO_LARGE','Request body is too large');chunks.push(chunk);}if(!chunks.length)return {};try{return JSON.parse(Buffer.concat(chunks).toString('utf8'));}catch{throw new HttpError(400,'VALIDATION_ERROR','Request body must be valid JSON');}}
 async function auth(req){return {user:await supabase.userFromToken(bearer(req)),token:bearer(req)};}
