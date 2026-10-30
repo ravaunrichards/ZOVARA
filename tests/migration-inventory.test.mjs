@@ -34,9 +34,10 @@ test('legacy alternate migration files are not selected as canonical', async () 
 test('explicit Supabase Data API grants are present and server-only access remains revoked', async () => {
   const sql = await readFile(path.join(migrationDir, '0007_rls_policies.sql'), 'utf8');
   assert.match(sql, /grant usage on schema public to anon, authenticated, service_role;/i);
-  assert.match(sql, /grant select, insert, update, delete on all tables in schema public to anon, authenticated;/i);
+  assert.match(sql, /grant select on all tables in schema public to anon;/i);
+  assert.match(sql, /grant select, insert, update, delete on all tables in schema public to authenticated;/i);
   assert.match(sql, /grant all privileges on all tables in schema public to service_role;/i);
-  const grantsAt = sql.toLowerCase().indexOf('grant select, insert, update, delete on all tables in schema public to anon, authenticated;');
+  const grantsAt = sql.toLowerCase().indexOf('grant select on all tables in schema public to anon;');
   const revokesAt = sql.toLowerCase().indexOf('revoke all on public.background_jobs');
   assert.ok(grantsAt >= 0 && revokesAt > grantsAt, 'server-only revokes must follow the broad RLS-protected grant');
   assert.match(sql, /revoke all on public\.background_jobs,public\.event_outbox,public\.payment_events,public\.financial_audit_log,public\.moderation_actions,public\.scheduled_tasks from anon,authenticated;/i);
