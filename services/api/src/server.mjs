@@ -144,7 +144,8 @@ async function handleApi(req,res,url,requestId){
    if(!profile)throw new HttpError(404,'NOT_FOUND','This profile is not available.');
    if(viewer&&viewer.id!==profile.id)await rpc('record_profile_view',{p_profile_id:profile.id},{token:viewerToken});
    const stats=await rpc('get_profile_stats',{p_profile_id:profile.id},{token:viewerToken});
-   return json(res,200,{data:{profile,stats,isFollowing:false},error:null,meta:{requestId}});
+   const following=viewer&&viewer.id!==profile.id?await selectOne('follows',`follower_id=eq.${viewer.id}&followed_id=eq.${profile.id}&select=follower_id`,{token:viewerToken}):null;
+   return json(res,200,{data:{profile,stats,isFollowing:!!following},error:null,meta:{requestId}});
  }
  if(method==='PATCH'&&p==='/api/v1/me'){
    const {user,token}=await auth(req);const b=await bodyJson(req);const fields={};
