@@ -425,7 +425,7 @@ async function handleApi(req,res,url,requestId){
     const session=await insertOne('live_sessions',{id,host_id:user.id,title,visibility,status:'scheduled',room_name:roomName},{token});
     let roomCreated=false;
     try{
-      await livekit.createRoom(roomName,config.livekitDefaultRoomMaxParticipants||100);roomCreated=true;
+      await livekit.createRoom(roomName,config.livekitDefaultRoomMaxParticipants);roomCreated=true;
       const startedAt=new Date().toISOString();
       const rows=await patchRows('live_sessions','id=eq.'+id+'&host_id=eq.'+user.id,{status:'live',started_at:startedAt},{token});
       if(!Array.isArray(rows)||!rows.length)throw new HttpError(403,'FORBIDDEN','Live session could not be activated for this account');
