@@ -18,14 +18,17 @@ Use the root `.env.example` as the local variable contract. Copy it to `.env` fo
 - `SUPABASE_MEDIA_BUCKET` — private media bucket name; currently `media`.
 
 ### LiveKit
-- `LIVEKIT_URL`, `LIVEKIT_API_KEY`, and `LIVEKIT_API_SECRET` are all required for server token signing and room-service operations.
-- `LIVEKIT_API_SECRET` must remain server-only.
+- Create or select the Zovara project in LiveKit Cloud, then copy its project WebSocket URL and API credentials from **Settings → Keys**.
+- Add `LIVEKIT_URL`, `LIVEKIT_API_KEY`, and `LIVEKIT_API_SECRET` to the Zovara Render API service. All three are required for server token signing and room-service operations.
+- Store `LIVEKIT_API_SECRET` server-side only. Never expose it to browser code.
 - `LIVEKIT_DEFAULT_ROOM_MAX_PARTICIPANTS` defaults to 100.
 
 ### PayPal
-- `PAYPAL_ENVIRONMENT` remains `sandbox` until production credentials and webhook verification are available.
-- Set `PAYPAL_CLIENT_ID`, `PAYPAL_CLIENT_SECRET`, and `PAYPAL_WEBHOOK_ID` only from the PayPal Developer dashboard.
-- `PAYPAL_PAYOUTS_ENABLED` remains `false`; do not enable payouts until account eligibility, reconciliation, and end-to-end payout verification are complete.
+- Keep `PAYPAL_ENVIRONMENT=sandbox` while validating checkout and capture.
+- Create a PayPal REST app under **Apps & Credentials → Sandbox**, then add `PAYPAL_CLIENT_ID` and `PAYPAL_CLIENT_SECRET` to the Zovara Render API service.
+- Register this exact HTTPS webhook URL on that same Sandbox app: `https://zovara-api.onrender.com/api/v1/payments/webhooks/paypal`.
+- Subscribe to `PAYMENT.CAPTURE.COMPLETED`, then copy the generated webhook ID into `PAYPAL_WEBHOOK_ID`. The current Zovara webhook handler verifies signatures and processes this event type.
+- Keep `PAYPAL_PAYOUTS_ENABLED=false`; do not enable payouts until account eligibility, reconciliation, and end-to-end payout verification are complete.
 
 ## Runtime defaults
 
@@ -36,6 +39,24 @@ The deployment contract includes `NODE_ENV`, `NODE_VERSION`, `PORT`, `PUBLIC_APP
 The Zovara Render API service has been given the active Zovara Supabase project URL and its public legacy anon key, along with production runtime defaults. The update was merged into the service environment; existing private values were not replaced or read back.
 
 Private Supabase service-role, LiveKit, and PayPal credentials must be set from their provider-issued secret values. They are intentionally not fabricated or stored in Git. The Render service tool does not expose its existing secret values, so this repository documentation does not claim those secrets are configured.
+
+## Provider activation checklist
+
+1. Open the [LiveKit Cloud dashboard](https://cloud.livekit.io/), select the Zovara project, and copy its WebSocket URL, API key, and API secret from Project Settings → Keys.
+2. Open [PayPal Developer Apps & Credentials](https://developer.paypal.com/dashboard/applications/sandbox), select or create the Zovara Sandbox REST app, and copy its client ID and secret.
+3. In that PayPal app's webhook settings, add `https://zovara-api.onrender.com/api/v1/payments/webhooks/paypal`, subscribe to `PAYMENT.CAPTURE.COMPLETED`, and copy the webhook ID.
+4. Save these values directly in the Zovara Render service's Environment page. Do not paste private secrets into GitHub, issue comments, or public chat.
+5. After the values are saved and Render redeploys, check `GET /api/v1/health/livekit` for a successful LiveKit room-service response. Confirm PayPal credentials by running an authenticated Sandbox coin checkout and capture, then confirm the PayPal webhook is accepted.
+
+Required Render secrets (values are provider-issued; no example values are valid):
+- `LIVEKIT_URL`
+- `LIVEKIT_API_KEY`
+- `LIVEKIT_API_SECRET`
+- `PAYPAL_CLIENT_ID`
+- `PAYPAL_CLIENT_SECRET`
+- `PAYPAL_WEBHOOK_ID`
+
+The PayPal checkout code currently uses the Sandbox API host unless `PAYPAL_ENVIRONMENT=production`. Do not switch to production until live credentials, webhook configuration, and payment reconciliation have been verified.
 
 ## Verification
 
