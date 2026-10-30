@@ -285,7 +285,7 @@ async function handleApi(req,res,url,requestId){
    const rows=await supabase.request(`/rest/v1/posts?${query}`,{token});const ids=[...new Set((rows||[]).map(x=>x.author_id))];let profiles=[],likes=[],liked=[];
    if(ids.length){const inList=ids.join(',');profiles=await supabase.request(`/rest/v1/profiles?select=id,handle,display_name,avatar_path,bio&id=in.(${inList})`,{token});}
    const postIds=[...new Set((rows||[]).map(x=>x.id))];if(postIds.length){const q=`/rest/v1/post_likes?select=post_id&post_id=in.(${postIds.join(',')})`;likes=await supabase.request(q,{token});if(user)liked=await supabase.request(`/rest/v1/post_likes?select=post_id&user_id=eq.${user.id}&post_id=in.(${postIds.join(',')})`,{token});}
-   const byId=new Map((profiles||[]).map(x=>[x.id,x]));const counts=new Map();for(const x of likes||[])counts.set(x.post_id,(counts.get(x.post_id)||0)+1);const likedSet=new Set((liked||[]).map(x=>x.post_id));return json(res,200,{data:(rows||[]).map(r=>({...r,author:byId.get(r.author_id)||null,likeCount:counts.get(r.id)||0,likedByMe:likedSet.has(r.id)})),error:null,meta:{requestId}});
+    const byId=new Map((profiles||[]).map(x=>[x.id,x]));const counts=new Map();for(const x of likes||[])counts.set(x.post_id,(counts.get(x.post_id)||0)+1);const likedSet=new Set((liked||[]).map(x=>x.post_id));const enriched=await enrichPostsWithMedia((rows||[]).map(r=>({...r,author:byId.get(r.author_id)||null,likeCount:counts.get(r.id)||0,likedByMe:likedSet.has(r.id)})),token);return json(res,200,{data:enriched,error:null,meta:{requestId}});
  }
  const postMatch=p.match(/^\/api\/v1\/posts\/([0-9a-f-]+)$/i);
  if(postMatch&&method==='GET'){
@@ -335,27 +335,29 @@ async function handleApi(req,res,url,requestId){
  const draftMatch=p.match(/^\\/api\\/v1\\/drafts\\/([0-9a-f-]+)$/i);
  if(draftMatch&&(method==='PATCH'||method==='DELETE')){const {user,token}=await auth(req);const did=requireUuid(draftMatch[1],'draft id');if(method==='DELETE'){await supabase.request('/rest/v1/content_drafts?id=eq.'+did+'&author_id=eq.'+user.id,{method:'DELETE',token});return json(res,200,{data:{id:did,deleted:true},error:null,meta:{requestId}});}const b=await bodyJson(req),fields={updated_at:new Date().toISOString()};if(b.caption!==undefined)fields.caption=cleanText(b.caption,4000);if(b.visibility!==undefined){if(!['public','followers','friends','private','subscriber'].includes(b.visibility))throw new HttpError(400,'VALIDATION_ERROR','Invalid audience');fields.visibility=b.visibility;}if(b.mediaIds!==undefined)fields.media_ids=Array.isArray(b.mediaIds)?b.mediaIds.slice(0,10).filter(isUuid):[];if(b.hashtags!==undefined)fields.hashtags=Array.isArray(b.hashtags)?b.hashtags.slice(0,30).map(x=>cleanText(x,60).replace(/^#/,'')).filter(Boolean):[];const rows=await patchRows('content_drafts','id=eq.'+did+'&author_id=eq.'+user.id,fields,{token});return json(res,200,{data:Array.isArray(rows)?rows[0]:rows,error:null,meta:{requestId}});}
  if(method==='POST'&&p==='/api/v1/posts'){
-   const {user,token}=await auth(req);const b=await bodyJson(req);const body=cleanText(b.body,4000);if(!body&&!Array.isArray(b.mediaIds))throw new HttpError(400,'VALIDATION_ERROR','Post text or media is required');
-   const visibility=b.visibility||'public';if(!['public','followers','friends','private','subscriber'].includes(visibility))throw new HttpError(400,'VALIDATION_ERROR','Invalid audience');
-   const row=await insertOne('posts',{author_id:user.id,body,hashtags:Array.isArray(b.hashtags)?b.hashtags.slice(0,30).map(x=>cleanText(x,60).replace(/^#/,'')).filter(Boolean):[],visibility,status:'published',published_at:new Date().toISOString(),comments_enabled:b.commentsEnabled!==false},{token});
-   if(Array.isArray(b.mediaIds)&&b.mediaIds.length){for(let i=0;i<Math.min(10,b.mediaIds.length);i++){const mid=b.mediaIds[i];if(!isUuid(mid))throw new HttpError(400,'VALIDATION_ERROR','Invalid media identifier');await insertOne('post_media',{post_id:row.id,media_id:mid,position:i},{token});}}
+   const {token}=await auth(req);const b=await bodyJson(req);const body=cleanText(b.body,4000);const visibility=b.visibility||'public';
+   if(!['public','followers','friends','private','subscriber'].includes(visibility))throw new HttpError(400,'VALIDATION_ERROR','Invalid audience');
+   const mediaIds=Array.isArray(b.mediaIds)?b.mediaIds.slice(0,10).map(id=>requireUuid(id,'media id')):[];
+   const hashtags=Array.isArray(b.hashtags)?b.hashtags.slice(0,30).map(x=>cleanText(x,60).replace(/^#/,'')).filter(Boolean):[];
+   const row=await rpc('create_post_with_media',{p_body:body,p_visibility:visibility,p_media_ids:mediaIds,p_hashtags:hashtags,p_comments_enabled:b.commentsEnabled!==false},{token});
    return json(res,201,{data:row,error:null,meta:{requestId}});
  }
  if(method==='GET'&&p==='/api/v1/media/view-url'){
-   const {user}=await auth(req);
-   const objectPath=cleanText(url.searchParams.get('path')||'',500);
-   const parts=objectPath.split('/');
-   if(parts.length<2||parts[0]!==user.id||parts.some(x=>x==='.'||x==='..'))throw new HttpError(403,'FORBIDDEN','Media path must belong to the signed-in account');
-   if(!supabase.serviceConfigured())throw new HttpError(503,'CONFIGURATION_REQUIRED','Supabase Storage signing is not configured');
-   const base=config.supabaseUrl.replace(/\/+$/,'');
-   const encoded=parts.map(encodeURIComponent).join('/');
-   const response=await fetch(`${base}/storage/v1/object/sign/${encodeURIComponent(config.mediaBucket)}/${encoded}`,{method:'POST',headers:{apikey:config.supabaseServiceRoleKey,Authorization:`Bearer ${config.supabaseServiceRoleKey}`,'Content-Type':'application/json'},body:JSON.stringify({expiresIn:3600}),signal:AbortSignal.timeout(15000)});
-   const payload=await response.json().catch(()=>({}));
-   if(!response.ok)throw new HttpError(502,'PROVIDER_ERROR','Could not create a signed profile image URL. Check the media bucket and storage permissions.');
-   const signed=payload.signedURL||payload.signedUrl||payload.url;
-   if(!signed)throw new HttpError(502,'PROVIDER_ERROR','Storage did not return a signed profile image URL');
-   const imageUrl=signed.startsWith('http')?signed:`${base}/storage/v1${signed.startsWith('/')?signed:`/${signed}`}`;
-   return json(res,200,{data:{url:imageUrl,expiresIn:3600},error:null,meta:{requestId}});
+   const token=bearer(req);const mediaId=url.searchParams.get('id');const objectPath=cleanText(url.searchParams.get('path')||'',500);let asset=null;
+   if(mediaId){if(!isUuid(mediaId))throw new HttpError(400,'VALIDATION_ERROR','Invalid media identifier');asset=await selectOne('media_assets','id=eq.'+mediaId+'&select=id,owner_id,storage_bucket,storage_path,mime_type,media_type',{token});if(!asset)throw new HttpError(404,'NOT_FOUND','Media is not available to this account');}
+   else{const {user}=await auth(req);const parts=objectPath.split('/');if(parts.length<2||parts[0]!==user.id||parts.some(x=>x==='.'||x==='..'))throw new HttpError(403,'FORBIDDEN','Media path must belong to the signed-in account');asset={storage_bucket:config.mediaBucket,storage_path:objectPath};}
+   const signedUrl=await signedMediaUrl(asset.storage_bucket,asset.storage_path);return json(res,200,{data:{url:signedUrl,expiresIn:3600,mimeType:asset.mime_type||null,mediaType:asset.media_type||null},error:null,meta:{requestId}});
+ }
+ if(method==='POST'&&p==='/api/v1/media/complete'){
+   const {user,token}=await auth(req);const b=await bodyJson(req);const objectPath=cleanText(b.path,500);const parts=objectPath.split('/');
+   if(parts.length<2||parts[0]!==user.id||parts.some(x=>!x||x==='.'||x==='..'))throw new HttpError(403,'FORBIDDEN','Upload path must belong to the signed-in account');
+   const mime=cleanText(b.mimeType,100);const size=Number(b.size);const mediaType=mime.startsWith('video/')?'video':mime.startsWith('audio/')?'audio':mime.startsWith('image/')?'image':null;
+   if(!mediaType||!Number.isSafeInteger(size)||size<1||size>config.maxUploadBytes)throw new HttpError(400,'VALIDATION_ERROR','Uploaded media type or size is invalid');
+   await signedMediaUrl(config.mediaBucket,objectPath,60);
+   const existing=await selectOne('media_assets','storage_path=eq.'+encodeURIComponent(objectPath)+'&select=id,owner_id,media_type,mime_type,byte_size,processing_status',{token});
+   if(existing){if(existing.owner_id!==user.id)throw new HttpError(403,'FORBIDDEN','Upload does not belong to this account');return json(res,200,{data:existing,error:null,meta:{requestId}});}
+   const row=await insertOne('media_assets',{owner_id:user.id,storage_bucket:config.mediaBucket,storage_path:objectPath,media_type:mediaType,mime_type:mime,byte_size:size,width:Number.isInteger(b.width)?b.width:null,height:Number.isInteger(b.height)?b.height:null,duration_ms:Number.isInteger(b.durationMs)?b.durationMs:null,alt_text:cleanText(b.altText,300),metadata:b.metadata&&typeof b.metadata==='object'?b.metadata:{}},{token});
+   return json(res,201,{data:row,error:null,meta:{requestId}});
  }
  if(method==='POST'&&p==='/api/v1/media/upload-url'){
    const {user}=await auth(req);const b=await bodyJson(req);const filename=cleanText(b.filename,120).replace(/[^a-zA-Z0-9_.-]/g,'_');const mime=cleanText(b.mimeType,100);const size=Number(b.size);
