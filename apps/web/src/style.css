@@ -233,3 +233,10 @@ body.tv-mode{font-size:1.25rem}body.tv-mode .app-shell{max-width:1900px}body.tv-
 .zv-setting-switches label{display:flex;align-items:center;gap:9px;font-size:13px;color:#d7d9e7}
 .zv-setting-switches input{accent-color:#9b83ff;width:17px;height:17px}
 @media(max-width:680px){.zv-setting-switches{grid-template-columns:1fr}.post-media-item.video video{max-height:76vh}}
+
+.zv-call-history{max-height:180px;overflow:auto;padding:8px 16px;background:rgba(139,92,246,.07);border-bottom:1px solid var(--line,rgba(255,255,255,.1))}
+.zv-call-history-row{display:flex;align-items:center;gap:11px;padding:8px 2px;border-bottom:1px solid var(--line,rgba(255,255,255,.07))}
+.zv-call-history-row:last-child{border-bottom:0}
+.zv-call-history-icon{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:rgba(139,92,246,.17);font-size:17px}
+.zv-call-history-row>span:nth-child(2){display:flex;flex-direction:column;gap:3px}
+.zv-call-history-row small{color:var(--muted,#a5aec4);font-size:11px}
