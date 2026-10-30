@@ -70,7 +70,7 @@ Copy `.env.example` to `.env` locally. In Render, configure the same keys under 
 
 1. Create a dedicated Supabase organization/project for Zovara; do not select the ZUNO project.
 2. Enable Auth providers and set the production Site URL and exact allowed redirect URLs.
-3. Apply only the seven canonical migrations in `database/migrations`, in numeric order from `0001` to `0007`. Review migration inventory first; do not apply legacy duplicates.
+3. Apply only the seven canonical migrations in `database/migrations`, in numeric order from `0001` to `0007`. Review migration inventory first; do not apply legacy duplicates. Migration `0007` explicitly grants Data API table privileges to `anon`/`authenticated` under RLS and full server-side table privileges to `service_role`; its server-only table revocations must remain in force.
 4. Create a private Storage bucket named `media`. Apply owner-scoped policies and file type/size restrictions.
 5. Set `SUPABASE_URL`, `SUPABASE_ANON_KEY`, and `SUPABASE_SERVICE_ROLE_KEY` on the Zovara API service. The service-role key is never sent to clients.
 6. Run `database/verification/check_schema.sql`, inspect security/performance advisors, and test RLS using real anonymous and authenticated sessions.
