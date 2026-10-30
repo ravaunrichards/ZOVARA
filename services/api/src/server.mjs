@@ -74,6 +74,29 @@ async function syncLiveRoomPresence(session, livekitPeople){
  return roles;
 }
 function apiFeatureList(){return {version:'v1',providerStatus:{supabase:supabase.configured()?'configured':'not_configured',paypal:paypal.configured()?'configured':'not_configured',livekit:livekit.configured()?'configured':'not_configured',payoutsEnabled:config.paypalPayoutsEnabled},productStatus:'foundation-partial'};}
+async function signedMediaUrl(bucket,objectPath,expiresIn=3600){
+ if(!supabase.serviceConfigured())throw new HttpError(503,'CONFIGURATION_REQUIRED','Private media signing is not configured');
+ const base=config.supabaseUrl.replace(/\\/+$/,'');
+ const encoded=String(objectPath).split('/').map(encodeURIComponent).join('/');
+ const response=await fetch(base+'/storage/v1/object/sign/'+encodeURIComponent(bucket)+'/'+encoded,{method:'POST',headers:{apikey:config.supabaseServiceRoleKey,Authorization:'Bearer '+config.supabaseServiceRoleKey,'Content-Type':'application/json'},body:JSON.stringify({expiresIn}),signal:AbortSignal.timeout(15000)});
+ const payload=await response.json().catch(()=>({}));
+ if(!response.ok)throw new HttpError(502,'MEDIA_SIGN_FAILED','The uploaded media could not be opened. Check the storage object and bucket permissions.');
+ const signed=payload.signedURL||payload.signedUrl||payload.url;
+ if(!signed)throw new HttpError(502,'MEDIA_SIGN_FAILED','Storage did not return a signed media URL');
+ return signed.startsWith('http')?signed:base+'/storage/v1'+(signed.startsWith('/')?signed:'/'+signed);
+}
+async function enrichPostsWithMedia(rows,token){
+ const posts=Array.isArray(rows)?rows:[];if(!posts.length)return posts;
+ const ids=posts.map(x=>x.id).filter(Boolean);if(!ids.length)return posts;
+ const links=await supabase.request('/rest/v1/post_media?post_id=in.('+ids.join(',')+')&select=post_id,media_id,position&order=position.asc',{token});
+ const mediaIds=[...new Set((links||[]).map(x=>x.media_id))];if(!mediaIds.length)return posts.map(x=>({...x,media:[]}));
+ const assets=await supabase.request('/rest/v1/media_assets?id=in.('+mediaIds.join(',')+')&select=id,storage_bucket,storage_path,media_type,mime_type,width,height,duration_ms,alt_text,processing_status',{token});
+ const byId=new Map((assets||[]).map(x=>[x.id,x]));
+ const signed=await Promise.all((assets||[]).map(async a=>{try{return [a.id,await signedMediaUrl(a.storage_bucket,a.storage_path)];}catch(e){log('warn','post_media_sign_failed',{mediaId:a.id,code:e.code||'MEDIA_SIGN_FAILED'});return [a.id,null];}}));
+ const urls=new Map(signed),byPost=new Map();
+ for(const link of links||[]){const a=byId.get(link.media_id);if(!a)continue;const item={id:a.id,type:a.media_type,mimeType:a.mime_type,url:urls.get(a.id)||null,width:a.width,height:a.height,durationMs:a.duration_ms,altText:a.alt_text||'',position:link.position};if(!byPost.has(link.post_id))byPost.set(link.post_id,[]);byPost.get(link.post_id).push(item);}
+ return posts.map(x=>({...x,media:byPost.get(x.id)||[]}));
+}
 async function handleApi(req,res,url,requestId){
  const method=req.method||'GET', p=url.pathname;
  if(method==='GET'&&p==='/api/v1/health')return json(res,200,{data:{status:'ok',time:new Date().toISOString()},error:null,meta:{requestId}});
@@ -175,6 +198,7 @@ async function handleApi(req,res,url,requestId){
     const result=await rpc('create_direct_conversation',{p_other_user_id:other},{token});
     return json(res,201,{data:{id:result.conversationId,kind:'direct'},error:null,meta:{requestId}});
   }
+  if(method==='POST'&&p==='/api/v1/conversations'){const {token}=await auth(req);const b=await bodyJson(req);const memberIds=Array.isArray(b.memberIds)?b.memberIds.slice(0,50).map(x=>requireUuid(x,'member id')):[];const title=cleanText(b.title,80);const result=await rpc('create_group_conversation',{p_title:title,p_member_ids:memberIds},{token});return json(res,201,{data:{id:result.conversationId,kind:'group',title:title||null},error:null,meta:{requestId}});}
   if(method==='GET'&&p==='/api/v1/conversations'){
     const {user,token}=await auth(req);
     const memberships=await supabase.request('/rest/v1/conversation_members?user_id=eq.'+user.id+'&select=conversation_id&order=joined_at.desc&limit=100',{token});
@@ -210,6 +234,8 @@ async function handleApi(req,res,url,requestId){
     await rpc('mark_conversation_read',{p_conversation_id:conversationId},{token});
     return json(res,200,{data:(rows||[]).map(x=>({...x,mine:x.sender_id===user.id,sender:profileMap.get(x.sender_id)||{display_name:'ZOVARA member'}})),error:null,meta:{requestId}});
   }
+  const conversationPreferenceMatch=p.match(/^\\/api\\/v1\\/conversations\\/([0-9a-f-]+)\\/preferences$/i);
+  if(conversationPreferenceMatch&&method==='PATCH'){const {user,token}=await auth(req);const cid=requireUuid(conversationPreferenceMatch[1],'conversation id');const b=await bodyJson(req);const fields={};for(const k of ['is_pinned','is_archived','is_muted'])if(b[k]!==undefined)fields[k]=!!b[k];if(!Object.keys(fields).length)throw new HttpError(400,'VALIDATION_ERROR','No conversation preference was supplied');const rows=await supabase.request('/rest/v1/conversation_preferences?on_conflict=conversation_id,user_id',{method:'POST',body:{conversation_id:cid,user_id:user.id,...fields},token,headers:{Prefer:'resolution=merge-duplicates,return=representation'}});return json(res,200,{data:Array.isArray(rows)?rows[0]:rows,error:null,meta:{requestId}});}
   const conversationCallMatch=p.match(/^\/api\/v1\/conversations\/([0-9a-f-]+)\/calls$/i);
   if(conversationCallMatch&&method==='POST'){
     const {user,token}=await auth(req);const conversationId=requireUuid(conversationCallMatch[1],'conversation id');const b=await bodyJson(req);
@@ -300,6 +326,14 @@ async function handleApi(req,res,url,requestId){
  if(blockMatch&&(method==='POST'||method==='DELETE')){
    const {user,token}=await auth(req);const target=requireUuid(blockMatch[1],'profile id');if(target===user.id)throw new HttpError(400,'VALIDATION_ERROR','You cannot block your own account');if(method==='POST'){await insertOne('blocks',{blocker_id:user.id,blocked_id:target},{token}).catch(e=>{if(!String(e.message).toLowerCase().includes('duplicate')&&!String(e.message).toLowerCase().includes('unique'))throw e;});await supabase.request(`/rest/v1/follows?or=(and(follower_id.eq.${user.id},followed_id.eq.${target}),and(follower_id.eq.${target},followed_id.eq.${user.id}))`,{method:'DELETE',service:true}).catch(()=>{});}else await supabase.request(`/rest/v1/blocks?blocker_id=eq.${user.id}&blocked_id=eq.${target}`,{method:'DELETE',token});return json(res,200,{data:{userId:target,blocked:method==='POST'},error:null,meta:{requestId}});
  }
+ const messageMutationMatch=p.match(/^\\/api\\/v1\\/messages\\/([0-9a-f-]+)$/i);
+ if(messageMutationMatch&&(method==='PATCH'||method==='DELETE')){const {token}=await auth(req);const mid=requireUuid(messageMutationMatch[1],'message id');const result=method==='PATCH'?await rpc('edit_conversation_message',{p_message_id:mid,p_body:cleanText((await bodyJson(req)).body,8000)},{token}):await rpc('delete_conversation_message',{p_message_id:mid},{token});return json(res,200,{data:result,error:null,meta:{requestId}});}
+ const reactionMatch=p.match(/^\\/api\\/v1\\/messages\\/([0-9a-f-]+)\\/reactions$/i);
+ if(reactionMatch&&(method==='POST'||method==='DELETE')){const {user,token}=await auth(req);const mid=requireUuid(reactionMatch[1],'message id');const b=method==='POST'?await bodyJson(req):{};const emoji=cleanText(b.emoji,8);const allowed=['❤️','😂','😮','😢','🙏','🔥','👏','👍','👎','💯'];if(method==='POST'&&!allowed.includes(emoji))throw new HttpError(400,'VALIDATION_ERROR','Unsupported message reaction');if(method==='POST')await insertOne('message_reactions',{message_id:mid,user_id:user.id,emoji},{token}).catch(e=>{if(!String(e.message).toLowerCase().includes('duplicate')&&!String(e.message).toLowerCase().includes('unique'))throw e;});else await supabase.request('/rest/v1/message_reactions?message_id=eq.'+mid+'&user_id=eq.'+user.id+'&emoji=eq.'+encodeURIComponent(emoji),{method:'DELETE',token});return json(res,200,{data:{messageId:mid,emoji,active:method==='POST'},error:null,meta:{requestId}});}
+ if(method==='GET'&&p==='/api/v1/drafts'){const {user,token}=await auth(req);const rows=await supabase.request('/rest/v1/content_drafts?author_id=eq.'+user.id+'&select=id,caption,hashtags,visibility,media_ids,cover_media_id,comments_enabled,draft_metadata,created_at,updated_at&order=updated_at.desc&limit=50',{token});return json(res,200,{data:rows,error:null,meta:{requestId}});}
+ if(method==='POST'&&p==='/api/v1/drafts'){const {user,token}=await auth(req);const b=await bodyJson(req);const row=await insertOne('content_drafts',{author_id:user.id,caption:cleanText(b.caption,4000),hashtags:Array.isArray(b.hashtags)?b.hashtags.slice(0,30).map(x=>cleanText(x,60).replace(/^#/,'')).filter(Boolean):[],visibility:['public','followers','friends','private','subscriber'].includes(b.visibility)?b.visibility:'public',media_ids:Array.isArray(b.mediaIds)?b.mediaIds.slice(0,10).filter(isUuid):[],cover_media_id:b.coverMediaId&&isUuid(b.coverMediaId)?b.coverMediaId:null,comments_enabled:b.commentsEnabled!==false,draft_metadata:b.metadata&&typeof b.metadata==='object'?b.metadata:{}},{token});return json(res,201,{data:row,error:null,meta:{requestId}});}
+ const draftMatch=p.match(/^\\/api\\/v1\\/drafts\\/([0-9a-f-]+)$/i);
+ if(draftMatch&&(method==='PATCH'||method==='DELETE')){const {user,token}=await auth(req);const did=requireUuid(draftMatch[1],'draft id');if(method==='DELETE'){await supabase.request('/rest/v1/content_drafts?id=eq.'+did+'&author_id=eq.'+user.id,{method:'DELETE',token});return json(res,200,{data:{id:did,deleted:true},error:null,meta:{requestId}});}const b=await bodyJson(req),fields={updated_at:new Date().toISOString()};if(b.caption!==undefined)fields.caption=cleanText(b.caption,4000);if(b.visibility!==undefined){if(!['public','followers','friends','private','subscriber'].includes(b.visibility))throw new HttpError(400,'VALIDATION_ERROR','Invalid audience');fields.visibility=b.visibility;}if(b.mediaIds!==undefined)fields.media_ids=Array.isArray(b.mediaIds)?b.mediaIds.slice(0,10).filter(isUuid):[];if(b.hashtags!==undefined)fields.hashtags=Array.isArray(b.hashtags)?b.hashtags.slice(0,30).map(x=>cleanText(x,60).replace(/^#/,'')).filter(Boolean):[];const rows=await patchRows('content_drafts','id=eq.'+did+'&author_id=eq.'+user.id,fields,{token});return json(res,200,{data:Array.isArray(rows)?rows[0]:rows,error:null,meta:{requestId}});}
  if(method==='POST'&&p==='/api/v1/posts'){
    const {user,token}=await auth(req);const b=await bodyJson(req);const body=cleanText(b.body,4000);if(!body&&!Array.isArray(b.mediaIds))throw new HttpError(400,'VALIDATION_ERROR','Post text or media is required');
    const visibility=b.visibility||'public';if(!['public','followers','friends','private','subscriber'].includes(visibility))throw new HttpError(400,'VALIDATION_ERROR','Invalid audience');
