@@ -52,7 +52,8 @@ alter table public.creator_analytics_daily enable row level security;
 -- tables are not automatically exposed to API roles on new/existing projects.
 -- Grant table privileges here; RLS policies below remain the row-level boundary.
 grant usage on schema public to anon, authenticated, service_role;
-grant select, insert, update, delete on all tables in schema public to anon, authenticated;
+grant select on all tables in schema public to anon;
+grant select, insert, update, delete on all tables in schema public to authenticated;
 grant all privileges on all tables in schema public to service_role;
 
 create policy profiles_public_read on public.profiles for select using (deleted_at is null and (visibility='public' or id=auth.uid()));
