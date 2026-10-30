@@ -44,6 +44,26 @@ services:
         value: "100"
       - key: SUPABASE_MEDIA_BUCKET
         value: media
+      - key: MAX_UPLOAD_BYTES
+        value: "524288000"
+      - key: TRUST_PROXY
+        value: "false"
+      - key: LOG_LEVEL
+        value: info
+      - key: RATE_LIMIT_WINDOW_MS
+        value: "60000"
+      - key: RATE_LIMIT_MAX_REQUESTS
+        value: "120"
+      - key: COIN_CUSTOM_MIN
+        value: "100"
+      - key: COIN_CUSTOM_MAX
+        value: "1000000"
+      - key: COIN_PRICE_PER_100_USD
+        value: "1.00"
+      - key: CREATOR_SHARE_BPS
+        value: "5000"
+      - key: PAYPAL_PAYOUTS_CURRENCY
+        value: USD
   - type: worker
     name: zovara-background-worker
     runtime: node
