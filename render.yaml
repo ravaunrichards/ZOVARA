@@ -23,7 +23,7 @@ services:
       - key: SUPABASE_ANON_KEY
         sync: false
       - key: SUPABASE_SERVICE_ROLE_KEY
-        sync: false
+        value: REPLACE_WITH_ZOVARA_SUPABASE_SERVICE_ROLE_KEY
       - key: PAYPAL_ENVIRONMENT
         value: sandbox
       - key: PAYPAL_CLIENT_ID
@@ -77,4 +77,4 @@ services:
       - key: SUPABASE_URL
         sync: false
       - key: SUPABASE_SERVICE_ROLE_KEY
-        sync: false
+        value: REPLACE_WITH_ZOVARA_SUPABASE_SERVICE_ROLE_KEY

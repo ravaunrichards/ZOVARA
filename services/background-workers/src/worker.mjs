@@ -1,6 +1,10 @@
 import {randomUUID} from 'node:crypto';
 const url=process.env.SUPABASE_URL?.replace(/\/$/,'');const key=process.env.SUPABASE_SERVICE_ROLE_KEY;
-if(!url||!key){console.error(JSON.stringify({level:'error',event:'worker_configuration_missing',required:['SUPABASE_URL','SUPABASE_SERVICE_ROLE_KEY']}));process.exit(2);}
+const isRealCredential=value=>{
+ const normalized=String(value??'').trim();
+ return Boolean(normalized)&&!/(?:replace[_ -]?with|placeholder|change[_ -]?me|your[_ -])/i.test(normalized);
+};
+if(!isRealCredential(url)||!isRealCredential(key)){console.error(JSON.stringify({level:'error',event:'worker_configuration_missing',required:['SUPABASE_URL','SUPABASE_SERVICE_ROLE_KEY']}));process.exit(2);}
 const worker=`zovara-worker-${process.env.RENDER_INSTANCE_ID||randomUUID()}`;
 async function rpc(name,body){const r=await fetch(`${url}/rest/v1/rpc/${name}`,{method:'POST',headers:{apikey:key,Authorization:`Bearer ${key}`,'Content-Type':'application/json'},body:JSON.stringify(body),signal:AbortSignal.timeout(20000)});const t=await r.text();if(!r.ok)throw new Error(`${name} failed with ${r.status}: ${t.slice(0,200)}`);return t?JSON.parse(t):null;}
 async function processJob(job){

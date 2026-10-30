@@ -7,15 +7,17 @@
 | Local development | Node.js 22.16+ | `http://localhost:3000` | localhost and 127.0.0.1 |
 | Render production | Node.js 22.16+ | `https://zovara-api.onrender.com` | Zovara Render app origin |
 
-Use the root `.env.example` as the local variable contract. Copy it to `.env` for local execution. Never commit `.env` or any real credential file.
+Use the root `.env.example` as the local variable contract. Copy it to `.env` for local execution. Every `REPLACE_WITH_...` value is intentionally invalid and must be replaced with a provider-issued value. Never commit `.env` or any real credential file.
 
-## Provider variables
+## Provider variables used by the deployed API
 
 ### Supabase
-- `SUPABASE_URL` — project API URL.
+- `SUPABASE_URL` — active Zovara project API URL.
 - `SUPABASE_ANON_KEY` — public legacy anon JWT used by the current custom provider as both the API key and fallback bearer token.
 - `SUPABASE_SERVICE_ROLE_KEY` — private server-only key for privileged database/RPC operations. Never put this in a browser bundle, mobile app, or public repository.
 - `SUPABASE_MEDIA_BUCKET` — private media bucket name; currently `media`.
+
+The API's Supabase project URL and public anon key are already configured in Render. The service-role key is not readable through the Render connection, so it is set as the explicit temporary sentinel `REPLACE_WITH_ZOVARA_SUPABASE_SERVICE_ROLE_KEY` until the real key is entered. The API rejects this sentinel for privileged calls. The worker also requires this key and exits before polling if the value is missing or still a placeholder.
 
 ### LiveKit
 - Create or select the Zovara project in LiveKit Cloud, then copy its project WebSocket URL and API credentials from **Settings → Keys**.
@@ -30,49 +32,37 @@ Use the root `.env.example` as the local variable contract. Copy it to `.env` fo
 - Subscribe to `PAYMENT.CAPTURE.COMPLETED`, then copy the generated webhook ID into `PAYPAL_WEBHOOK_ID`. The current Zovara webhook handler verifies signatures and processes this event type.
 - Keep `PAYPAL_PAYOUTS_ENABLED=false`; do not enable payouts until account eligibility, reconciliation, and end-to-end payout verification are complete.
 
+## Worker environment
+
+The repository declares a separate `zovara-background-worker` Render worker in `render.yaml`. It requires:
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
+
+The worker is not currently provisioned as a separate service in the Zovara Render workspace. Its Blueprint definition now includes a replaceable service-role sentinel, and its startup guard rejects placeholders. Do not mistake the repository Blueprint entry for a running worker.
+
 ## Runtime defaults
 
 The deployment contract includes `NODE_ENV`, `NODE_VERSION`, `PORT`, `PUBLIC_APP_URL`, `CORS_ORIGINS`, `TRUST_PROXY`, `LOG_LEVEL`, rate limits, upload limit, coin amount limits, coin pricing, and creator share basis points. Keep the local and Render values aligned with the environment manifests in `config/environments/`.
 
-## Current provider setup
+## Temporary provider placeholders
 
-The Zovara Render API service has been given the active Zovara Supabase project URL and its public legacy anon key, along with production runtime defaults. The update was merged into the service environment; existing private values were not replaced or read back.
+The following values are invalid markers only. They are not keys, do not grant access, and must be replaced with provider-issued credentials.
 
-Private Supabase service-role, LiveKit, and PayPal credentials must be set from their provider-issued secret values. They are intentionally not fabricated or stored in Git. The Render service tool does not expose its existing secret values, so this repository documentation does not claim those secrets are configured.
+| Provider | Render variable | Temporary value |
+|---|---|---|
+| Supabase | `SUPABASE_SERVICE_ROLE_KEY` | `REPLACE_WITH_ZOVARA_SUPABASE_SERVICE_ROLE_KEY` |
+| LiveKit | `LIVEKIT_URL` | `wss://REPLACE_WITH_ZOVARA_PROJECT.livekit.cloud` |
+| LiveKit | `LIVEKIT_API_KEY` | `REPLACE_WITH_ZOVARA_LIVEKIT_API_KEY` |
+| LiveKit | `LIVEKIT_API_SECRET` | `REPLACE_WITH_ZOVARA_LIVEKIT_API_SECRET` |
+| PayPal Sandbox | `PAYPAL_CLIENT_ID` | `REPLACE_WITH_ZOVARA_PAYPAL_SANDBOX_CLIENT_ID` |
+| PayPal Sandbox | `PAYPAL_CLIENT_SECRET` | `REPLACE_WITH_ZOVARA_PAYPAL_SANDBOX_CLIENT_SECRET` |
+| PayPal Sandbox | `PAYPAL_WEBHOOK_ID` | `REPLACE_WITH_ZOVARA_PAYPAL_SANDBOX_WEBHOOK_ID` |
 
-## Provider activation checklist
+Zovara's Supabase, LiveKit, and PayPal provider guards explicitly reject replacement placeholders. Fake credentials therefore do not enable integrations or cause network requests. Replace each value in Render with the matching provider-issued credential. Keep `PAYPAL_ENVIRONMENT=sandbox` until sandbox checkout, capture, and webhook verification pass. Keep payouts disabled.
 
-1. Open the [LiveKit Cloud dashboard](https://cloud.livekit.io/), select the Zovara project, and copy its WebSocket URL, API key, and API secret from Project Settings → Keys.
-2. Open [PayPal Developer Apps & Credentials](https://developer.paypal.com/dashboard/applications/sandbox), select or create the Zovara Sandbox REST app, and copy its client ID and secret.
-3. In that PayPal app's webhook settings, add `https://zovara-api.onrender.com/api/v1/payments/webhooks/paypal`, subscribe to `PAYMENT.CAPTURE.COMPLETED`, and copy the webhook ID.
-4. Save these values directly in the Zovara Render service's Environment page. Do not paste private secrets into GitHub, issue comments, or public chat.
-5. After the values are saved and Render redeploys, check `GET /api/v1/health/livekit` for a successful LiveKit room-service response. Confirm PayPal credentials by running an authenticated Sandbox coin checkout and capture, then confirm the PayPal webhook is accepted.
+## Integrations not enabled in this release
 
-Required Render secrets (values are provider-issued; no example values are valid):
-- `LIVEKIT_URL`
-- `LIVEKIT_API_KEY`
-- `LIVEKIT_API_SECRET`
-- `PAYPAL_CLIENT_ID`
-- `PAYPAL_CLIENT_SECRET`
-- `PAYPAL_WEBHOOK_ID`
-
-The PayPal checkout code currently uses the Sandbox API host unless `PAYPAL_ENVIRONMENT=production`. Do not switch to production until live credentials, webhook configuration, and payment reconciliation have been verified.
-
-## Temporary Render placeholders
-
-The following clearly labeled placeholders may be stored in the Zovara Render service until real provider credentials are available. They are not valid credentials. Zovara's provider configuration checks explicitly reject values containing `REPLACE_WITH`, so health checks continue to report the providers as not configured and no calls are sent to fake provider endpoints.
-
-| Render variable | Temporary value |
-|---|---|
-| `LIVEKIT_URL` | `wss://REPLACE_WITH_ZOVARA_PROJECT.livekit.cloud` |
-| `LIVEKIT_API_KEY` | `REPLACE_WITH_ZOVARA_LIVEKIT_API_KEY` |
-| `LIVEKIT_API_SECRET` | `REPLACE_WITH_ZOVARA_LIVEKIT_API_SECRET` |
-| `PAYPAL_CLIENT_ID` | `REPLACE_WITH_ZOVARA_PAYPAL_SANDBOX_CLIENT_ID` |
-| `PAYPAL_CLIENT_SECRET` | `REPLACE_WITH_ZOVARA_PAYPAL_SANDBOX_CLIENT_SECRET` |
-| `PAYPAL_WEBHOOK_ID` | `REPLACE_WITH_ZOVARA_PAYPAL_SANDBOX_WEBHOOK_ID` |
-
-Replace each value in Render with the corresponding provider-issued credential. Keep `PAYPAL_ENVIRONMENT=sandbox` until sandbox checkout, capture, and webhook verification pass. Keep payouts disabled.
-
+The `integrations/email`, `integrations/push-notifications`, `integrations/sms`, `integrations/currency-rate-providers`, `integrations/card-processors`, `integrations/video-storage`, and `integrations/video-transcoding` directories are explicitly marked as reserved integration areas, not production provider adapters. No runtime environment variables are consumed for those services by the currently deployed API. Credentials are not added to Render until an actual adapter, validation, tests, and operational flow exist.
 
 ## Verification
 

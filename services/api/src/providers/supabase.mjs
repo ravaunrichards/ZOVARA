@@ -1,8 +1,14 @@
 export class ProviderError extends Error { constructor(message,status=502,code='PROVIDER_ERROR'){super(message);this.statusCode=status;this.code=code;} }
+
+function isRealCredential(value){
+ const normalized=String(value??'').trim();
+ return Boolean(normalized)&&!/(?:replace[_ -]?with|placeholder|change[_ -]?me|your[_ -])/i.test(normalized);
+}
+
 export class SupabaseProvider {
  constructor(config, fetchImpl=fetch){this.config=config;this.fetch=fetchImpl;}
- configured(){return Boolean(this.config.supabaseUrl&&this.config.supabaseAnonKey);}
- serviceConfigured(){return Boolean(this.config.supabaseUrl&&this.config.supabaseAnonKey&&this.config.supabaseServiceRoleKey);}
+ configured(){return isRealCredential(this.config.supabaseUrl)&&isRealCredential(this.config.supabaseAnonKey);}
+ serviceConfigured(){return this.configured()&&isRealCredential(this.config.supabaseServiceRoleKey);}
  async request(path,{method='GET',body,token,service=false,headers={}}={}){
   if(!this.configured() || (service&&!this.serviceConfigured())) throw new ProviderError('Supabase integration is not configured. Set the required server environment variables.',503,'CONFIGURATION_REQUIRED');
   const base=this.config.supabaseUrl.replace(/\/$/,'');
