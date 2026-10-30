@@ -48,6 +48,13 @@ alter table public.application_settings enable row level security;
 alter table public.scheduled_tasks enable row level security;
 alter table public.creator_analytics_daily enable row level security;
 
+-- Supabase Data API access is separate from RLS. Since 2026-10-30, public-schema
+-- tables are not automatically exposed to API roles on new/existing projects.
+-- Grant table privileges here; RLS policies below remain the row-level boundary.
+grant usage on schema public to anon, authenticated, service_role;
+grant select, insert, update, delete on all tables in schema public to anon, authenticated;
+grant all privileges on all tables in schema public to service_role;
+
 create policy profiles_public_read on public.profiles for select using (deleted_at is null and (visibility='public' or id=auth.uid()));
 create policy profiles_self_insert on public.profiles for insert with check (id=auth.uid());
 create policy profiles_self_update on public.profiles for update using(id=auth.uid()) with check(id=auth.uid());
