@@ -123,6 +123,11 @@ export class LiveKitProvider{
     });
   }
 
+  async listParticipants(roomName){
+    const token=this.token({identity:'zovara-room-service',video:{roomAdmin:true,room:roomName}});
+    return this.roomRequest('ListParticipants',{room:roomName},token);
+  }
+
   async healthCheck(){
     if(!this.configured()){
       return {configured:false,reachable:false,code:'CONFIGURATION_REQUIRED'};
