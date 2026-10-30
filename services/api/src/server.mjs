@@ -461,32 +461,77 @@ async function handleApi(req,res,url,requestId){
     let roomCreated=false;
     try{
       await livekit.createRoom(roomName,config.livekitDefaultRoomMaxParticipants);roomCreated=true;
-      const startedAt=new Date().toISOString();
-      const rows=await patchRows('live_sessions','id=eq.'+id+'&host_id=eq.'+user.id,{status:'live',started_at:startedAt},{token});
-      if(!Array.isArray(rows)||!rows.length)throw new HttpError(403,'FORBIDDEN','Live session could not be activated for this account');
       const profile=await selectOne('profiles',`id=eq.${user.id}&select=handle,display_name`,{token});
       const participantName=cleanText(`${profile?.display_name||profile?.handle||'ZOVARA creator'}${profile?.handle?` (@${profile.handle})`:''}`,80);
       const participantToken=livekit.createParticipantToken({identity:user.id,name:participantName,room:roomName,canPublish:true,canSubscribe:true,canPublishData:true});
-      return json(res,201,{data:{id:session.id,title:session.title,status:'live',serverUrl:config.livekitUrl,participantToken,host:true},error:null,meta:{requestId}});
+      return json(res,201,{data:{id:session.id,title:session.title,status:'starting',serverUrl:config.livekitUrl,participantToken,host:true},error:null,meta:{requestId}});
     }catch(error){
       if(roomCreated)await livekit.deleteRoom(roomName).catch(()=>{});
-      await patchRows('live_sessions','id=eq.'+id+'&host_id=eq.'+user.id,{status:'failed',ended_at:new Date().toISOString()},{token}).catch(()=>{});
+      await patchRows('live_sessions','id=eq.'+id+'&host_id=eq.'+user.id,{status:'failed',ended_at:new Date().toISOString(),current_viewer_count:0},{token}).catch(()=>{});
+      throw error;
+    }
+  }
+  const liveActivateMatch=p.match(/^\/api\/v1\/lives\/([0-9a-f-]+)\/activate$/i);
+  if(liveActivateMatch&&method==='POST'){
+    const {user,token}=await auth(req);const liveId=requireUuid(liveActivateMatch[1],'live session id');
+    if(!livekit.configured())throw new HttpError(503,'CONFIGURATION_REQUIRED','Livestreaming is not available yet');
+    const live=await selectOne('live_sessions','id=eq.'+liveId+'&select=id,host_id,room_name,status,title,visibility,started_at,created_at,actual_peak_viewers',{token});
+    if(!live)throw new HttpError(404,'NOT_FOUND','Live session not found');
+    if(live.host_id!==user.id)throw new HttpError(403,'FORBIDDEN','Only the host can activate this live session');
+    if(live.status==='live')return json(res,200,{data:{id:live.id,status:'live',replayed:true},error:null,meta:{requestId}});
+    if(live.status!=='scheduled')throw new HttpError(409,'LIVE_SESSION_NOT_STARTING','This live session is not waiting for its host');
+    const room=await livekit.listParticipants(live.room_name);
+    const people=Array.isArray(room?.participants)?room.participants:[];
+    if(!people.some(person=>String(person.identity||'')===user.id))throw new HttpError(409,'LIVE_HOST_NOT_CONNECTED','Connect the host to the live room before activating it');
+    const startedAt=new Date().toISOString();
+    const rows=await patchRows('live_sessions','id=eq.'+liveId+'&host_id=eq.'+user.id+'&status=eq.scheduled',{status:'live',started_at:startedAt,ended_at:null,current_viewer_count:0},{token});
+    if(!Array.isArray(rows)||!rows.length)throw new HttpError(409,'LIVE_ACTIVATION_CONFLICT','This live session could not be activated');
+    const active={...live,status:'live',started_at:startedAt};
+    await getLiveRoomSnapshot(active,{cacheMs:0}).catch(error=>log('warn','live_initial_presence_sync_failed',{sessionId:liveId,code:error.code||'LIVEKIT_UNAVAILABLE'}));
+    return json(res,200,{data:{id:liveId,status:'live',started_at:startedAt},error:null,meta:{requestId}});
+  }
+  const livePresenceMatch=p.match(/^\/api\/v1\/lives\/([0-9a-f-]+)\/presence$/i);
+  if(livePresenceMatch&&method==='GET'){
+    const liveId=requireUuid(livePresenceMatch[1],'live session id');
+    const live=await selectOne('live_sessions','id=eq.'+liveId+'&status=eq.live&visibility=eq.public&select=id,host_id,room_name,status,started_at,created_at,actual_peak_viewers,current_viewer_count');
+    if(!live)throw new HttpError(404,'NOT_FOUND','Public live session is not active');
+    try{
+      const snapshot=await getLiveRoomSnapshot(live,{cacheMs:2500});
+      if(!snapshot.hostOnline){
+        const ageMs=Date.now()-Date.parse(live.started_at||live.created_at);
+        if(ageMs>45000)await expireStaleLiveSession(live,'ended');
+        throw new HttpError(404,'LIVE_SESSION_OFFLINE','The host is no longer connected to this live room');
+      }
+      return json(res,200,{data:{liveSessionId:liveId,current_viewer_count:snapshot.viewerCount,viewer_count:snapshot.viewerCount,viewer_count_verified:true,viewer_count_source:'livekit',actual_peak_viewers:Math.max(Number(live.actual_peak_viewers)||0,snapshot.viewerCount),participants:snapshot.participants},error:null,meta:{requestId}});
+    }catch(error){
+      if(error.providerStatus===404){await expireStaleLiveSession(live,'ended');throw new HttpError(404,'LIVE_SESSION_OFFLINE','The live room is no longer active');}
       throw error;
     }
   }
   const liveTokenMatch=p.match(/^\/api\/v1\/lives\/([0-9a-f-]+)\/token$/i);
   if(liveTokenMatch&&method==='POST'){
-    const {user,token}=await auth(req);const liveId=requireUuid(liveTokenMatch[1],'live session id');
+    const liveId=requireUuid(liveTokenMatch[1],'live session id');
     if(!livekit.configured())throw new HttpError(503,'CONFIGURATION_REQUIRED','Livestreaming is not available yet');
-    const live=await selectOne('live_sessions','id=eq.'+liveId+'&select=id,host_id,room_name,status,title',{token});
-    if(!live||live.status!=='live')throw new HttpError(404,'NOT_FOUND','Live session is not active');
+    const accessToken=bearer(req);
+    if(!accessToken){
+      const live=await selectOne('live_sessions','id=eq.'+liveId+'&status=eq.live&visibility=eq.public&select=id,room_name,status,title,visibility');
+      if(!live)throw new HttpError(404,'NOT_FOUND','Public live session is not active');
+      const guestIdentity='guest:'+randomUUID();
+      const participantToken=livekit.createParticipantToken({identity:guestIdentity,name:'Guest viewer',room:live.room_name,canPublish:false,canSubscribe:true,canPublishData:false});
+      return json(res,200,{data:{token:participantToken,serverUrl:config.livekitUrl,host:false,role:'viewer',guest:true},error:null,meta:{requestId}});
+    }
+    const {user,token}=await auth(req);
+    const live=await selectOne('live_sessions','id=eq.'+liveId+'&select=id,host_id,room_name,status,title,visibility',{token});
+    if(!live)throw new HttpError(404,'NOT_FOUND','Live session not found');
     const isHost=live.host_id===user.id;
+    if(live.status!=='live'&&!(isHost&&live.status==='scheduled'))throw new HttpError(404,'NOT_FOUND','Live session is not active');
     const authorization=isHost?{canPublishAudio:true,canPublishVideo:true,role:'host'}:await rpc('join_live_session',{p_live_session_id:liveId},{token});
     const profile=await selectOne('profiles',`id=eq.${user.id}&select=handle,display_name`,{token});
     const participantName=cleanText(`${profile?.display_name||profile?.handle||'ZOVARA creator'}${profile?.handle?` (@${profile.handle})`:''}`,80);
     const participantToken=livekit.createParticipantToken({identity:user.id,name:participantName,room:live.room_name,canPublish:isHost||!!(authorization.canPublishAudio&&authorization.canPublishVideo),canSubscribe:true,canPublishData:true});
-    return json(res,200,{data:{token:participantToken,serverUrl:config.livekitUrl,host:isHost,role:authorization.role|| (isHost?'host':'viewer')},error:null,meta:{requestId}});
+    return json(res,200,{data:{token:participantToken,serverUrl:config.livekitUrl,host:isHost,role:authorization.role||(isHost?'host':'viewer'),guest:false},error:null,meta:{requestId}});
   }
+
   const liveLeaveMatch=p.match(/^\/api\/v1\/lives\/([0-9a-f-]+)\/leave$/i);
   if(liveLeaveMatch&&method==='POST'){
     const {token}=await auth(req);const liveId=requireUuid(liveLeaveMatch[1],'live session id');
