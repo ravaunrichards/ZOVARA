@@ -29,10 +29,10 @@ function json(res,status,obj,headers={}){res.writeHead(status,{'Content-Type':'a
 function errResponse(res,error,requestId){
  const status=Number.isInteger(error.statusCode)?error.statusCode:500;
  const code=error.code||'INTERNAL_ERROR';
- const providerFailure=['PROVIDER_ERROR','CONFIGURATION_REQUIRED','LIVEKIT_PROVIDER_ERROR','LIVEKIT_UNREACHABLE','LIVEKIT_INVALID_RESPONSE','LIVEKIT_CONFIGURATION_INVALID'].includes(code);
- const generic=status>=500||providerFailure;
- const publicCode=generic?'TEMPORARILY_UNAVAILABLE':code;
- const message=generic?'This feature is temporarily unavailable. Please try again later.':String(error.message||'Request failed');
+ const unauthenticated=status===401&&code==='UNAUTHENTICATED';
+ const generic=status>=500||!(error instanceof HttpError);
+ const publicCode=unauthenticated?'UNAUTHENTICATED':generic?'TEMPORARILY_UNAVAILABLE':code;
+ const message=unauthenticated?'Sign in again to continue.':generic?'This feature is temporarily unavailable. Please try again later.':String(error.message||'Request failed');
  json(res,status,{data:null,error:{code:publicCode,message},meta:{requestId}});
 }
 function bearer(req){const h=req.headers.authorization||'';return h.startsWith('Bearer ')?h.slice(7):null;}
